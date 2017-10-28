@@ -22,7 +22,7 @@ public class UserDao {
             return false;
         }
 
-        String query = "select id from users where login = ? and password = ?";
+        String query = "select id from inform_system.users where login = ? and password = ?";
         int result = 0;
 
         try {
@@ -55,10 +55,11 @@ public class UserDao {
             throw new NullPointerException("Login is null");
         }
 
-        String query = "select salt from users where login = ?";
+        String query = "select salt from inform_system.users where login = ?";
         String result = null;
 
         try {
+            System.out.println(connection);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, login);
 
@@ -83,7 +84,7 @@ public class UserDao {
 
 
     public void addUser(User newUser) {
-        String query = "insert into users (name, login, password, salt) values (?, ?, ?, ?)";
+        String query = "insert into inform_system.users (name, login, password, salt) values (?, ?, ?, ?)";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
