@@ -10,11 +10,6 @@ import java.sql.SQLException;
 
 public class UserDao {
 
-    private Connection connection;
-
-    public UserDao() {
-        connection = DBConnection.getConnection();
-    }
 
     public boolean isUserCorrect(String login, String password) {
 
@@ -25,7 +20,7 @@ public class UserDao {
         String query = "select id from inform_system.users where login = ? and password = ?";
         int result = 0;
 
-        try {
+        try (Connection connection = DBConnection.getConnection();) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
@@ -58,12 +53,12 @@ public class UserDao {
         String query = "select salt from inform_system.users where login = ?";
         String result = null;
 
-        try {
-            System.out.println(connection);
+        try (Connection connection = DBConnection.getConnection();) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, login);
 
             ResultSet resultSet = preparedStatement.executeQuery();
+
             if (resultSet.next()) {
                 result = resultSet.getString("salt");
             } else {
@@ -75,6 +70,7 @@ public class UserDao {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+
         if (result != null) {
             return result;
         } else {
@@ -84,9 +80,10 @@ public class UserDao {
 
 
     public void addUser(User newUser) {
+
         String query = "insert into inform_system.users (name, login, password, salt) values (?, ?, ?, ?)";
 
-        try {
+        try (Connection connection = DBConnection.getConnection();) {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, newUser.getName());
             preparedStatement.setString(2, newUser.getLogin());
