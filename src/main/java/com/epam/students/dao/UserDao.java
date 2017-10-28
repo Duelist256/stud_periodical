@@ -37,11 +37,8 @@ public class UserDao {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-        if (result != 0) {
-            return true;
-        } else {
-            return false;
-        }
+
+        return result != 0;
     }
 
     public String getSaltByLogin(String login) {
