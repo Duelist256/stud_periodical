@@ -2,8 +2,8 @@ package com.epam.students.model;
 
 public class Order {
     private int id;
-    private int id_user;
-    private int id_periodical;
+    private int idUser;
+    private int idPeriodical;
     private String status;
 
     public int getId() {
@@ -14,20 +14,20 @@ public class Order {
         this.id = id;
     }
 
-    public int getId_user() {
-        return id_user;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
-    public int getId_periodical() {
-        return id_periodical;
+    public int getIdPeriodical() {
+        return idPeriodical;
     }
 
-    public void setId_periodical(int id_periodical) {
-        this.id_periodical = id_periodical;
+    public void setIdPeriodical(int idPeriodical) {
+        this.idPeriodical = idPeriodical;
     }
 
     public String getStatus() {
