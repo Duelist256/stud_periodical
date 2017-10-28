@@ -20,8 +20,9 @@ public class UserDao {
         String query = "select id from inform_system.users where login = ? and password = ?";
         int result = 0;
 
-        try (Connection connection = DBConnection.getConnection();) {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
 
@@ -50,8 +51,9 @@ public class UserDao {
         String query = "select salt from inform_system.users where login = ?";
         String result = null;
 
-        try (Connection connection = DBConnection.getConnection();) {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
             preparedStatement.setString(1, login);
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -80,13 +82,12 @@ public class UserDao {
 
         String query = "insert into inform_system.users (name, login, password, salt) values (?, ?, ?, ?)";
 
-        try (Connection connection = DBConnection.getConnection();) {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, newUser.getName());
             preparedStatement.setString(2, newUser.getLogin());
             preparedStatement.setString(3, newUser.getPassword());
             preparedStatement.setString(4, newUser.getSalt());
-
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Fail to execute query");
