@@ -64,16 +64,16 @@ public class UserDao implements Dao<User> {
 
     @Override
     public void update(User user) {
-        throw new RuntimeException("Method isn't implemented yet");
+        throw new UnsupportedOperationException("Method isn't implemented yet");
     }
 
     @Override
     public void delete(User user) {
-        throw new RuntimeException("Method isn't implemented yet");
+        throw new UnsupportedOperationException("Method isn't implemented yet");
     }
 
     @Override
     public List<User> getAll() {
-        throw new RuntimeException("Method isn't implemented yet");
+        throw new UnsupportedOperationException("Method isn't implemented yet");
     }
 }
