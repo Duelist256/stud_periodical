@@ -30,7 +30,7 @@ public class UserDao implements Dao<User> {
     }
 
     @Override
-    public <T> User read(T email) {
+    public User read(String email) {
         String query = "select * from inform_system.users where login = ?";
         User user = null;
 

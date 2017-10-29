@@ -6,7 +6,7 @@ public interface Dao<T> {
 
     void create(T item);
 
-    <R> T read(R value);
+    T read(String value);
 
     void update(T item);
 
