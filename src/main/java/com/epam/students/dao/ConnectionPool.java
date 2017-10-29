@@ -3,12 +3,11 @@ package com.epam.students.dao;
 import org.h2.jdbcx.JdbcConnectionPool;
 import org.h2.tools.RunScript;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class ConnectionPool {
@@ -35,6 +34,7 @@ public class ConnectionPool {
             connectionPool = JdbcConnectionPool.create(url, user, password);
 
             executeSchema("db_schema.sql", connectionPool);
+            executeSchema("db_data.sql", connectionPool);
         }
         return connectionPool;
     }
@@ -44,8 +44,8 @@ public class ConnectionPool {
             URL resource = classLoader.getResource(filename);
             File file = new File(resource.toURI());
             RunScript.execute(conn, new FileReader(file));
-        } catch (Exception ex) {
-            throw new RuntimeException("Failed to execute script");
+        } catch (SQLException | URISyntaxException | FileNotFoundException ex) {
+            throw new RuntimeException(ex);
         }
     }
 }
