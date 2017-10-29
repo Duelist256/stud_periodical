@@ -1,1 +1,0 @@
-To connect to db copy data folder and place it into your "C:/" directory
