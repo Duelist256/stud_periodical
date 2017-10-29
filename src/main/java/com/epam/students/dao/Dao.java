@@ -2,14 +2,15 @@ package com.epam.students.dao;
 
 import java.util.List;
 
-public interface Dao<Item> {
-    void create(Item item);
+public interface Dao<T> {
 
-    <T> Item read(T value);
+    void create(T item);
 
-    void update(Item item);
+    <R> T read(R value);
 
-    void delete(Item item);
+    void update(T item);
 
-    List<Item> getAll();
+    void delete(T item);
+
+    List<T> getAll();
 }
