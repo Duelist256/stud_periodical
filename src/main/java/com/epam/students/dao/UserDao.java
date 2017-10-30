@@ -7,79 +7,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
-public class UserDao {
+public class UserDao implements Dao<User> {
 
-
-    public boolean isUserCorrect(String login, String password) {
-
-        if (login == null || password == null) {
-            return false;
-        }
-
-        String query = "select id from inform_system.users where login = ? and password = ?";
-        int result = 0;
-
-        try (Connection connection = DBConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-
-            preparedStatement.setString(1, login);
-            preparedStatement.setString(2, password);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                result = resultSet.getInt("id");
-            } else {
-                return false;
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Fail to execute query");
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-
-        return result != 0;
-    }
-
-    public String getSaltByLogin(String login) {
-
-        if (login == null) {
-            throw new NullPointerException("Login is null");
-        }
-
-        String query = "select salt from inform_system.users where login = ?";
-        String result = null;
-
-        try (Connection connection = DBConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-
-            preparedStatement.setString(1, login);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                result = resultSet.getString("salt");
-            } else {
-                return "no user";
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Fail to execute query");
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-
-        if (result != null) {
-            return result;
-        } else {
-            throw new RuntimeException("No salt");
-        }
-    }
-
-
-    public void addUser(User newUser) {
-
+    @Override
+    public void create(User newUser) {
         String query = "insert into inform_system.users (name, login, password, salt) values (?, ?, ?, ?)";
 
         try (Connection connection = DBConnection.getConnection();
@@ -94,5 +27,53 @@ public class UserDao {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public User read(String email) {
+        String query = "select * from inform_system.users where login = ?";
+        User user = null;
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setString(1, (String) email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                user = new User();
+
+                user.setId(resultSet.getInt("id"));
+                user.setLogin(resultSet.getString("login"));
+                user.setPassword(resultSet.getString("password"));
+                user.setSalt(resultSet.getString("salt"));
+                user.setName(resultSet.getString("name"));
+                user.setIsAdmin(resultSet.getInt("isAdmin"));
+            } else {
+                return null;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Fail to execute query");
+            throw new RuntimeException(e);
+        }
+
+        return user;
+    }
+
+    @Override
+    public void update(User user) {
+        throw new UnsupportedOperationException("Method isn't implemented yet");
+    }
+
+    @Override
+    public void delete(User user) {
+        throw new UnsupportedOperationException("Method isn't implemented yet");
+    }
+
+    @Override
+    public List<User> getAll() {
+        throw new UnsupportedOperationException("Method isn't implemented yet");
     }
 }
