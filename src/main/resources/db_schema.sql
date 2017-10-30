@@ -7,7 +7,7 @@ SET SCHEMA inform_system;
 CREATE TABLE periodicals (
   id INT NOT NULL AUTO_INCREMENT,
   title VARCHAR(255) NOT NULL,
-  descriprion VARCHAR(255) NULL,
+  description VARCHAR(255) NULL,
   publisher VARCHAR(255) NOT NULL,
   genre VARCHAR(255) NOT NULL,
   price VARCHAR(45) NOT NULL,
