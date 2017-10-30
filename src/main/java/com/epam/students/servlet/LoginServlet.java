@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
         }
 
         if (userDao.isUserCorrect(login, password)) {
-            response.sendRedirect("/testpage.html");
+            response.sendRedirect("/issue.jsp");
         } else {
             request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         }
