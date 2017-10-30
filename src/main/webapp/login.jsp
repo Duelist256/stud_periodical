@@ -21,23 +21,27 @@
 <body class="login">
 <form method="post" action="login">
 
-            <td align="right"><% out.print(new String(resourceBundle.getString("email").getBytes("ISO-8859-1"),"UTF-8"));%></td>
-            <td align="left"><input class="login-field" type="text" name="email"/></td>
+    <td align="right"><% out.print(new String(resourceBundle.getString("email").getBytes("ISO-8859-1"), "UTF-8"));%></td>
+    <td align="left"><input class="login-field" type="text" name="email"/></td>
 
-            <td align="right"><% out.print(new String(resourceBundle.getString("password").getBytes("ISO-8859-1"),"UTF-8")); %></td>
-            <td align="left"><input class="login-field" type="password" name="pass"/></td>
-            <hr>
-            <td align="right"><input type="submit" value=<% out.print(new String(resourceBundle.getString("login").getBytes("ISO-8859-1"),"UTF-8"));%>></td>
+    <td align="right"><% out.print(new String(resourceBundle.getString("password").getBytes("ISO-8859-1"), "UTF-8")); %></td>
+    <td align="left"><input class="login-field" type="password" name="pass"/></td>
+    <hr>
+    <td align="right"><input type="submit"
+                             value=<% out.print(new String(resourceBundle.getString("login").getBytes("ISO-8859-1"),"UTF-8"));%>>
+    </td>
 
 </form>
 <form method="post" action="register.jsp">
-    <input class="login-link" type="submit" value="<% out.print(new String(resourceBundle.getString("register").getBytes("ISO-8859-1"),"UTF-8")); %>"/>
+    <input class="login-link" type="submit"
+           value="<% out.print(new String(resourceBundle.getString("register").getBytes("ISO-8859-1"),"UTF-8")); %>"/>
 </form>
 
 <%--change language--%>
 
 <form method="get" action="login">
-    <input type="submit" value="<%out.print(new String(resourceBundle.getString("Change_Language").getBytes("ISO-8859-1"),"UTF-8"));%>"/>
+    <input type="submit"
+           value="<%out.print(new String(resourceBundle.getString("Change_Language").getBytes("ISO-8859-1"),"UTF-8"));%>"/>
 </form>
 
 

@@ -48,15 +48,14 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       if(Language.getLanguage().equals("en")){
-           //меняем на русский
-           Language.setLanguage("ru");
-           req.getServletContext().getRequestDispatcher("/login.jsp").forward(req,resp);
-       }
-       else {
-           Language.setLanguage("en");
-           req.getServletContext().getRequestDispatcher("/login.jsp").forward(req,resp);
-       }
+        if (Language.getLanguage().equals("en")) {
+            //меняем на русский
+            Language.setLanguage("ru");
+            req.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
+        } else {
+            Language.setLanguage("en");
+            req.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
+        }
 
     }
 

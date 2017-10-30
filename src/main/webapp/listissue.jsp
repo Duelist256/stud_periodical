@@ -14,16 +14,17 @@
 </head>
 <body>
 <div class="title">
-    <p><h1 align="center">List of issue</h1></p>
+    <p>
+    <h1 align="center">List of issue</h1></p>
 </div>
 
-    <c:forEach var="all" items="${list}">
-        <td></td>
-        <td>${all.getTitle()}</td>
-        <td>${all.getDescription()}</td>
-        <td>price</td>
-        <hr>
-    </c:forEach>
+<c:forEach var="all" items="${list}">
+    <td></td>
+    <td>${all.getTitle()}</td>
+    <td>${all.getDescription()}</td>
+    <td>price</td>
+    <hr>
+</c:forEach>
 
 </body>
 </html>
