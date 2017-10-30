@@ -7,77 +7,49 @@ import org.junit.Test;
 
 import java.security.NoSuchAlgorithmException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class UserDaoTest {
 
     private UserDao userDao;
 
+
     private User user;
-
-    private int id = 42;
-    private String login = "testuser1@test.com";
-    private String salt = PasswordUtil.generateSalt();
-    private String password = PasswordUtil.hashPassword("test", salt);
-    private String name = "TestUser10";
-    private int isAdmin = 1;
-
-    public UserDaoTest() throws NoSuchAlgorithmException {
-    }
+    private String login;
+    private String salt;
+    private String password;
+    private String name;
 
     @Before
     public void setUserDao() {
-        userDao = new UserDao();
+
     }
 
-    @Before
-    public void setUser() {
+    public UserDaoTest() throws NoSuchAlgorithmException {
+        login = "testuser1@test.com";
+        salt = PasswordUtil.generateSalt();
+        password = PasswordUtil.hashPassword("test", salt);
+        name = "TestUser10";
+
         user = new User();
-        user.setId(42);
         user.setLogin(login);
         user.setPassword(password);
         user.setSalt(salt);
         user.setName(name);
-        user.setIsAdmin(isAdmin);
-    }
 
-    @Test
-    public void addUser() {
+        userDao = new UserDao();
         userDao.create(user);
     }
 
     @Test
-    public void getUser() {
-        userDao.read(login);
+    public void getAndCheckUser() {
+        User receivedUser = userDao.read(login);
+
+        assertEquals(login, receivedUser.getLogin());
+        assertEquals(password, receivedUser.getPassword());
+        assertEquals(salt, receivedUser.getSalt());
+        assertEquals(name, receivedUser.getName());
+        assertEquals(0, receivedUser.getIsAdmin());
     }
 
-    @Test
-    public void checkId() {
-        assertEquals(id, user.getId());
-    }
-
-    @Test
-    public void checkEmail() {
-        assertEquals(login, user.getLogin());
-    }
-
-    @Test
-    public void checkPassword() {
-        assertEquals(password, user.getPassword());
-    }
-
-    @Test
-    public void checkSalt() {
-        assertEquals(salt, user.getSalt());
-    }
-
-    @Test
-    public void checkName() {
-        assertEquals(name, user.getName());
-    }
-
-    @Test
-    public void checkIsAdmin() {
-        assertEquals(isAdmin, user.getIsAdmin());
-    }
 }
