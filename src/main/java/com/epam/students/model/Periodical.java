@@ -7,7 +7,7 @@ public class Periodical {
     private String publisher;
     private String genre;
     private String price;
-    private String impPath;
+    private String imgPath;
 
     public int getId() {
         return id;
@@ -57,11 +57,11 @@ public class Periodical {
         this.price = price;
     }
 
-    public String getImpPath() {
-        return impPath;
+    public String getImgPath() {
+        return imgPath;
     }
 
-    public void setImpPath(String impPath) {
-        this.impPath = impPath;
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 }
