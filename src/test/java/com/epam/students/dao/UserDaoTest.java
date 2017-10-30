@@ -12,18 +12,11 @@ import static org.junit.Assert.assertEquals;
 public class UserDaoTest {
 
     private UserDao userDao;
-
-
     private User user;
     private String login;
     private String salt;
     private String password;
     private String name;
-
-    @Before
-    public void setUserDao() {
-
-    }
 
     public UserDaoTest() throws NoSuchAlgorithmException {
         login = "testuser1@test.com";
