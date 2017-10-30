@@ -19,3 +19,27 @@ INSERT INTO inform_system.users (login, password, salt, name) VALUES
 ('test18@test.com','0e6ac009d9497a63bda711b9e7f1afb727af9c26aaba62a35b0cc466e3225336','ats6G7WU/iIeZlu5QWDtgNf6ExCyxvfi7nqHFv9l2Z0=','Test18'),
 ('test19@test.com','c32145d7dffc9cc0b638567c0fcfaf9b86d4c88470900b14eaa15b893fd2ccb0','++6QJs9qipAmNQzTYJQ5YAeitnfI65CqrrbFrKDHN1s=','Test19'),
 ('test20@test.com','803da8827f0758595c22c52d02416e3102e6fcb6ecfe12c076395ae6498322f8','VM9Q0SgUDUbs3LA+LOyAgVgzmiGp3m1ubR7fpklOTWU=','Test20');
+
+INSERT INTO inform_system.periodicals (title, descriprion, id_publisher, id_genre, price, imgpath) VALUES
+('Title1','Description1','123','321', '100', 'defaultpath'),
+('Title2','Description2','124','322', '101', 'defaultpath'),
+('Title3','Description3','125','323', '102', 'defaultpath'),
+('Title4','Description4','126','324', '103', 'defaultpath'),
+('Title5','Description5','127','325', '104', 'defaultpath'),
+('Title6','Description6','128','326', '105', 'defaultpath'),
+('Title7','Description7','129','327', '106', 'defaultpath'),
+('Title8','Description8','130','328', '107', 'defaultpath'),
+('Title9','Description9','131','329', '108', 'defaultpath'),
+('Title10','Description10','132','310', '109', 'defaultpath'),
+('Title11','Description11','133','311', '110', 'defaultpath'),
+('Title12','Description12','134','312', '111', 'defaultpath'),
+('Title13','Description13','135','313', '112', 'defaultpath'),
+('Title14','Description14','136','314', '113', 'defaultpath'),
+('Title15','Description15','137','315', '114', 'defaultpath'),
+('Title16','Description16','138','316', '115', 'defaultpath'),
+('Title17','Description17','139','317', '116', 'defaultpath'),
+('Title18','Description18','140','318', '117', 'defaultpath'),
+('Title19','Description19','141','319', '118', 'defaultpath'),
+('Title20','Description20','142','320', '119', 'defaultpath'),
+
+('test20@test.com','803da8827f0758595c22c52d02416e3102e6fcb6ecfe12c076395ae6498322f8','VM9Q0SgUDUbs3LA+LOyAgVgzmiGp3m1ubR7fpklOTWU=','Test20');
