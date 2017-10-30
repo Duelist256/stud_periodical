@@ -1,6 +1,7 @@
 package com.epam.students.dao;
 
 
+import com.epam.students.mappers.PeriodicalMapper;
 import com.epam.students.model.Periodical;
 
 import java.sql.Connection;
@@ -35,6 +36,7 @@ public class PeriodicalDao implements Dao<Periodical> {
     @Override
     public List<Periodical> getAll() {
         String query = "select * from inform_system.periodicals";
+        PeriodicalMapper pm = new PeriodicalMapper();
 
         List<Periodical> periodicals = new ArrayList<>();
 
@@ -44,16 +46,7 @@ public class PeriodicalDao implements Dao<Periodical> {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                Periodical periodical = new Periodical();
-
-                periodical.setId(resultSet.getInt("id"));
-                periodical.setTitle(resultSet.getString("title"));
-                periodical.setDescription(resultSet.getString("description"));
-                periodical.setPublisher(resultSet.getString("publisher"));
-                periodical.setGenre(resultSet.getString("genre"));
-                periodical.setPrice(resultSet.getString("price"));
-                periodical.setImgPath(resultSet.getString("imgpath"));
-
+                Periodical periodical = pm.mapRow(resultSet);
                 periodicals.add(periodical);
             }
 
