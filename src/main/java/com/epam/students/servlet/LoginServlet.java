@@ -1,6 +1,7 @@
 package com.epam.students.servlet;
 
 import com.epam.students.dao.UserDao;
+import com.epam.students.model.Language;
 import com.epam.students.service.PasswordUtil;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
@@ -43,5 +46,19 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { }
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       if(Language.getLanguage().equals("en")){
+           //меняем на русский
+           Language.setLanguage("ru");
+           req.getServletContext().getRequestDispatcher("/login.jsp").forward(req,resp);
+       }
+       else {
+           Language.setLanguage("en");
+           req.getServletContext().getRequestDispatcher("/login.jsp").forward(req,resp);
+       }
+
+    }
+
+    //    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { }
 }
