@@ -31,4 +31,18 @@ public class PeriodicalDaoTest {
             assertNotNull(periodical);
         }
     }
+
+    @Test
+    public void checkFields() {
+        int index = 1;
+        for (Periodical periodical : periodicals) {
+            assertTrue(periodical.getId() == index++);
+            assertTrue(periodical.getTitle().startsWith("Title"));
+            assertTrue(periodical.getDescription().startsWith("Description"));
+            assertTrue(periodical.getPublisher().startsWith("publisher"));
+            assertTrue(periodical.getGenre().startsWith("genre"));
+            assertTrue(periodical.getImgPath().equals("defaultpath"));
+            assertTrue(Integer.parseInt(periodical.getPrice()) >= 100);
+        }
+    }
 }
