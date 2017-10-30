@@ -38,5 +38,11 @@
             <artifactId>h2</artifactId>
             <version>1.4.196</version>
         </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
+        </dependency>
     </dependencies>
 </project>
