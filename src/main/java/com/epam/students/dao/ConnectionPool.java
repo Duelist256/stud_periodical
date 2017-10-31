@@ -28,8 +28,8 @@ public class ConnectionPool {
             try {
                 prop.load(inputStream);
             } catch (IOException e) {
-                e.printStackTrace();
-                logger.error(e.getMessage());
+
+                logger.error("Failed to get connection pool. Cause: "+ e.getMessage());
             }
 
             String url = prop.getProperty("url");
@@ -50,7 +50,7 @@ public class ConnectionPool {
             File file = new File(resource.toURI());
             RunScript.execute(conn, new FileReader(file));
         } catch (SQLException | URISyntaxException | FileNotFoundException ex) {
-            logger.error(ex.getMessage());
+            logger.error("Failed to execute db schema. Cause: " + ex.getMessage());
             throw new RuntimeException(ex);
         }
     }

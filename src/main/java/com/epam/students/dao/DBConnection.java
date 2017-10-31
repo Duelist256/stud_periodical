@@ -16,8 +16,8 @@ public class DBConnection {
         try {
             return cp.getConnection();
         } catch (SQLException e) {
-            logger.error(e.getMessage());
-            throw new RuntimeException("Fail to connect");
+            logger.error("Failed to connect DB. Cause: " + e.getMessage());
+            throw new RuntimeException();
         }
     }
 }
