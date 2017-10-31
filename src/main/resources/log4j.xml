@@ -9,7 +9,7 @@
         <param name="maxBackupIndex" value="5" />
         <param name="Threshold" value="INFO"/>
 
-        <param name="file" value="/logs/INFO_LOG.log" />
+        <param name="file" value="logs/INFO_LOG.log" />
 
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern"
@@ -23,7 +23,7 @@
         <param name="maxBackupIndex" value="5" />
         <param name="Threshold" value="ERROR"/>
 
-        <param name="file" value="/logs/ERROR_LOG.log" />
+        <param name="file" value="logs/ERROR_LOG.log" />
 
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern"
