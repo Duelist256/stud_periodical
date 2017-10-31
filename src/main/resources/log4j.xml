@@ -7,8 +7,9 @@
         <param name="append" value="false" />
         <param name="maxFileSize" value="10KB" />
         <param name="maxBackupIndex" value="5" />
+        <param name="Threshold" value="INFO"/>
 
-        <param name="file" value="${catalina.home}/logs/INFO_LOG.log" />
+        <param name="file" value="/logs/INFO_LOG.log" />
 
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern"
@@ -20,8 +21,9 @@
         <param name="append" value="false" />
         <param name="maxFileSize" value="10KB" />
         <param name="maxBackupIndex" value="5" />
+        <param name="Threshold" value="ERROR"/>
 
-        <param name="file" value="${catalina.home}/logs/ERROR_LOG.log" />
+        <param name="file" value="/logs/ERROR_LOG.log" />
 
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern"
@@ -29,10 +31,12 @@
         </layout>
     </appender>
 
-    <root>
-        <level value="INFO" />
-        <appender-ref ref="file_inf" />
-    </root>
+        <root>
+            <level value="all"/>
+            <appender-ref ref="file_err"/>
+            <appender-ref ref="file_inf"/>
+        </root>
+
 
 
 </log4j:configuration>
