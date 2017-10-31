@@ -12,11 +12,7 @@ import java.util.List;
 
 public class UserDao implements Dao<User> {
 
-    Logger logger;
-
-    public UserDao(){
-        logger = Logger.getLogger(UserDao.class);
-    }
+    private final static Logger logger = Logger.getLogger(UserDao.class);
 
     @Override
     public void create(User newUser) {
