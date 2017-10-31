@@ -1,6 +1,6 @@
 <%@ page import="java.util.ResourceBundle" %>
-<%@ page import="com.epam.students.model.Language" %>
-<%@ page import="java.util.Locale" %><%--
+<%@ page import="java.util.Locale" %>
+<%@ page import="com.epam.students.servlet.LoginServlet" %><%--
   Created by IntelliJ IDEA.
   User: Duelist
   Date: 23.10.2017
@@ -10,8 +10,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="css/style.css">
 <%
-    String language = Language.getLanguage();
-    String country = Language.getCountry();
+    String language = LoginServlet.getLanguage();
+    String country = LoginServlet.getCountry();
     ResourceBundle resourceBundle = ResourceBundle.getBundle("resources", new Locale(language, country));
 %>
 <html>
