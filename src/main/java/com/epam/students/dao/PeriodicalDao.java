@@ -14,8 +14,24 @@ import java.util.List;
 public class PeriodicalDao implements Dao<Periodical> {
 
     @Override
-    public void create(Periodical newUser) {
-        throw new UnsupportedOperationException("Method isn't implemented yet");
+    public void create(Periodical newPeriodical) {
+        String query = "insert into inform_system.periodicals " +
+                "(title, description, publisher, genre, price, imgpath) " +
+                "values (?, ?, ?, ?, ?, ?)";
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, newPeriodical.getTitle());
+            preparedStatement.setString(2, newPeriodical.getDescription());
+            preparedStatement.setString(3, newPeriodical.getPublisher());
+            preparedStatement.setString(4, newPeriodical.getGenre());
+            preparedStatement.setString(5, newPeriodical.getPrice());
+            preparedStatement.setString(6, newPeriodical.getImgPath());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
