@@ -1,6 +1,7 @@
 package com.epam.students.dao;
 
 
+import com.epam.students.mappers.UserMapper;
 import com.epam.students.model.User;
 import org.apache.log4j.Logger;
 
@@ -38,35 +39,23 @@ public class UserDao implements Dao<User> {
     @Override
     public User read(String email) {
         String query = "select * from inform_system.users where login = ?";
-        User user = null;
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            preparedStatement.setString(1, (String) email);
+            preparedStatement.setString(1, email);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-
             if (resultSet.next()) {
-                user = new User();
-
-                user.setId(resultSet.getInt("id"));
-                user.setLogin(resultSet.getString("login"));
-                user.setPassword(resultSet.getString("password"));
-                user.setSalt(resultSet.getString("salt"));
-                user.setName(resultSet.getString("name"));
-                user.setIsAdmin(resultSet.getInt("isAdmin"));
+                return new UserMapper().mapRow(resultSet);
             } else {
                 return null;
             }
-
         } catch (SQLException e) {
 
             logger.error("Failed to read user data. Cause: "+ e.getMessage());
             throw new RuntimeException(e);
         }
-
-        return user;
     }
 
     @Override

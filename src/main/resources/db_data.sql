@@ -20,7 +20,7 @@ INSERT INTO inform_system.users (login, password, salt, name) VALUES
 ('test19@test.com','c32145d7dffc9cc0b638567c0fcfaf9b86d4c88470900b14eaa15b893fd2ccb0','++6QJs9qipAmNQzTYJQ5YAeitnfI65CqrrbFrKDHN1s=','Test19'),
 ('test20@test.com','803da8827f0758595c22c52d02416e3102e6fcb6ecfe12c076395ae6498322f8','VM9Q0SgUDUbs3LA+LOyAgVgzmiGp3m1ubR7fpklOTWU=','Test20');
 
-INSERT INTO inform_system.periodicals (title, descriprion, publisher, genre, price, imgpath) VALUES
+INSERT INTO inform_system.periodicals (title, description, publisher, genre, price, imgpath) VALUES
 ('Title1','Description1','publisher1','genre1', '100', 'defaultpath'),
 ('Title2','Description2','publisher2','genre2', '101', 'defaultpath'),
 ('Title3','Description3','publisher3','genre3', '102', 'defaultpath'),
