@@ -43,20 +43,22 @@ public class UserService {
     }
 
     public void addUser(String login, String password, String name) {
-        User newUser = new User();
-        newUser.setName(name);
-        newUser.setLogin(login);
 
         String salt = PasswordUtil.generateSalt();
         String hashedPassword = null;
+
         try {
             hashedPassword = PasswordUtil.hashPassword(password, salt);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
 
-        newUser.setSalt(salt);
-        newUser.setPassword(hashedPassword);
+        User newUser = new User.Builder()
+                .withName(name)
+                .withLogin(login)
+                .withSalt(salt)
+                .withPassword(hashedPassword)
+                .build();
 
         userDao.create(newUser);
     }
