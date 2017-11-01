@@ -17,7 +17,8 @@ public class UserDao implements Dao<User> {
 
     @Override
     public void create(User newUser) {
-        String query = "insert into inform_system.users (name, login, password, salt) values (?, ?, ?, ?)";
+        String query =
+                "insert into inform_system.users (name, login, password, salt) values (?, ?, ?, ?)";
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -27,10 +28,9 @@ public class UserDao implements Dao<User> {
             preparedStatement.setString(3, newUser.getPassword());
             preparedStatement.setString(4, newUser.getSalt());
             preparedStatement.executeUpdate();
-            logger.info("User " + newUser.getLogin() + " successfully added;");
+            logger.info("User " + newUser.getLogin() + " successfully added");
 
         } catch (SQLException e) {
-
             logger.error("Failed to create user. Cause: " + e.getMessage());
             throw new RuntimeException(e);
         }
@@ -47,12 +47,13 @@ public class UserDao implements Dao<User> {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return UserMapper.mapRow(resultSet);
+                User user = UserMapper.mapRow(resultSet);
+                logger.info("User " + user.getLogin() + " successfully read");
+                return user;
             } else {
                 return null;
             }
         } catch (SQLException e) {
-
             logger.error("Failed to read user data. Cause: " + e.getMessage());
             throw new RuntimeException(e);
         }
@@ -60,7 +61,25 @@ public class UserDao implements Dao<User> {
 
     @Override
     public void update(User user) {
-        throw new UnsupportedOperationException("Method isn't implemented yet");
+        String query = "UPDATE inform_system.users " +
+                "SET login = ?, password = ?, salt = ?, name = ? " +
+                "WHERE id = ?";
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getSalt());
+            preparedStatement.setString(4, user.getName());
+            preparedStatement.setInt(5, user.getId());
+
+            preparedStatement.executeUpdate();
+            logger.info("User " + user.getLogin() + " successfully updated");
+        } catch (SQLException e) {
+            logger.error("Failed to update user. Cause: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
