@@ -8,8 +8,6 @@ import java.util.List;
 public class PeriodicalService {
 
     public List<Periodical> getAll(){
-        //к PeriodacalDAO
-        //заглушка
 
         List<Periodical> all = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
