@@ -8,51 +8,81 @@ public class User {
     private String name;
     private int isAdmin;
 
-    public int getId() {
-        return id;
+    private User(Builder builder){
+        this.id = builder.id;
+        this.login = builder.login;
+        this.password = builder.password;
+        this.salt = builder.salt;
+        this.name = builder.salt;
+        this.isAdmin = builder.isAdmin;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getId() {
+        return id;
     }
 
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getSalt() {
         return salt;
     }
 
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getIsAdmin() {
         return isAdmin;
     }
 
-    public void setIsAdmin(int isAdmin) {
-        this.isAdmin = isAdmin;
+    public static class Builder{
+
+        private int id;
+        private String login;
+        private String password;
+        private String salt;
+        private String name;
+        private int isAdmin;
+
+        public Builder withId(int id){
+            this.id = id;
+            return this;
+        }
+
+        public Builder withLogin(String login){
+            this.login = login;
+            return this;
+        }
+
+        public Builder withPassword(String password){
+            this.password = password;
+            return this;
+        }
+
+        public Builder withSalt(String salt){
+            this.salt = salt;
+            return this;
+        }
+
+        public Builder withAdmin(int isAdmin){
+            this.isAdmin = isAdmin;
+            return this;
+        }
+
+        public Builder withName(String name){
+           this.name = name;
+           return this;
+        }
+
+        public User build(){
+            return new User(this);
+        }
     }
+
 }
