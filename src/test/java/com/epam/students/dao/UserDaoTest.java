@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.security.NoSuchAlgorithmException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class UserDaoTest {
 
@@ -58,5 +58,17 @@ public class UserDaoTest {
         assertEquals(readUser.getPassword(), newPassword);
         assertEquals(readUser.getSalt(), newSalt);
         assertEquals(readUser.getName(), newName);
+    }
+
+    @Test
+    public void readAndDeleteUser() throws Exception {
+        UserDao userDao = new UserDao();
+
+        User readUser = userDao.read("test10@test.com");
+        assertNotNull(readUser);
+        userDao.delete(readUser);
+
+        User readUser2 = userDao.read("test10@test.com");
+        assertNull(readUser2);
     }
 }

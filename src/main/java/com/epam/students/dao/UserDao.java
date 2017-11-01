@@ -54,7 +54,7 @@ public class UserDao implements Dao<User> {
                 return null;
             }
         } catch (SQLException e) {
-            logger.error("Failed to read user data. Cause: " + e.getMessage());
+            logger.error("Failed to read user data. Cause: " + e);
             throw new RuntimeException(e);
         }
     }
@@ -77,14 +77,25 @@ public class UserDao implements Dao<User> {
             preparedStatement.executeUpdate();
             logger.info("User " + user.getLogin() + " successfully updated");
         } catch (SQLException e) {
-            logger.error("Failed to update user. Cause: " + e.getMessage());
+            logger.error("Failed to update user. Cause: " + e);
             throw new RuntimeException(e);
         }
     }
 
     @Override
     public void delete(User user) {
-        throw new UnsupportedOperationException("Method isn't implemented yet");
+        String query = "DELETE FROM inform_system.users WHERE id = ?";
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setInt(1, user.getId());
+            preparedStatement.executeUpdate();
+            logger.info("User " + user.getLogin() + " successfully deleted");
+        } catch (SQLException e) {
+            logger.error("Failed to delete user. Cause: " + e);
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
