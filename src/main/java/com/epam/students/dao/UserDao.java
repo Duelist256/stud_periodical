@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao implements Dao<User> {
@@ -100,6 +101,25 @@ public class UserDao implements Dao<User> {
 
     @Override
     public List<User> getAll() {
-        throw new UnsupportedOperationException("Method isn't implemented yet");
+        String query = "select * from inform_system.users";
+
+        List<User> users = new ArrayList<>();
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                User user = UserMapper.mapRow(resultSet);
+                users.add(user);
+            }
+            logger.info("Users successfully gotten");
+        } catch (SQLException e) {
+            logger.error("Failed to get users. Cause: " + e);
+            throw new RuntimeException(e);
+        }
+
+        return users;
     }
 }

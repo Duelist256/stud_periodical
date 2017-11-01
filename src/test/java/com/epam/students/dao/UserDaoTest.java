@@ -5,6 +5,7 @@ import com.epam.students.service.PasswordUtil;
 import org.junit.Test;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -70,5 +71,12 @@ public class UserDaoTest {
 
         User readUser2 = userDao.read("test10@test.com");
         assertNull(readUser2);
+    }
+
+    @Test
+    public void getAllUsers() throws Exception {
+        UserDao userDao = new UserDao();
+        List<User> users = userDao.getAll();
+        assertFalse(users.isEmpty());
     }
 }
