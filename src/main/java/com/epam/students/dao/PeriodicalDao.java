@@ -3,6 +3,7 @@ package com.epam.students.dao;
 
 import com.epam.students.mappers.PeriodicalMapper;
 import com.epam.students.model.Periodical;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PeriodicalDao implements Dao<Periodical> {
+
+    private final static Logger logger = Logger.getLogger(UserDao.class);
 
     @Override
     public void create(Periodical newPeriodical) {
@@ -29,7 +32,7 @@ public class PeriodicalDao implements Dao<Periodical> {
             preparedStatement.setString(6, newPeriodical.getImgPath());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Failed to create periodical. Cause: " + e);
             throw new RuntimeException(e);
         }
     }
@@ -66,7 +69,7 @@ public class PeriodicalDao implements Dao<Periodical> {
             }
 
         } catch (SQLException e) {
-            System.out.println("Fail to execute query");
+            logger.error("Failed to get periodicals. Cause: " + e);
             throw new RuntimeException(e);
         }
 
