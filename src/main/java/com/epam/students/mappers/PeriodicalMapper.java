@@ -5,9 +5,8 @@ import com.epam.students.model.Periodical;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PeriodicalMapper implements RowMapper<Periodical> {
-    @Override
-    public Periodical mapRow(ResultSet rs) throws SQLException {
+public class PeriodicalMapper {
+    public static Periodical mapRow(ResultSet rs) throws SQLException {
         Periodical periodical = new Periodical();
 
         periodical.setId(rs.getInt("id"));

@@ -31,7 +31,7 @@ public class UserDao implements Dao<User> {
 
         } catch (SQLException e) {
 
-            logger.error("Failed to create user. Cause: "+ e.getMessage());
+            logger.error("Failed to create user. Cause: " + e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -47,13 +47,13 @@ public class UserDao implements Dao<User> {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return new UserMapper().mapRow(resultSet);
+                return UserMapper.mapRow(resultSet);
             } else {
                 return null;
             }
         } catch (SQLException e) {
 
-            logger.error("Failed to read user data. Cause: "+ e.getMessage());
+            logger.error("Failed to read user data. Cause: " + e.getMessage());
             throw new RuntimeException(e);
         }
     }

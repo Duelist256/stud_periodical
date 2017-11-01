@@ -52,7 +52,6 @@ public class PeriodicalDao implements Dao<Periodical> {
     @Override
     public List<Periodical> getAll() {
         String query = "select * from inform_system.periodicals";
-        PeriodicalMapper pm = new PeriodicalMapper();
 
         List<Periodical> periodicals = new ArrayList<>();
 
@@ -62,7 +61,7 @@ public class PeriodicalDao implements Dao<Periodical> {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                Periodical periodical = pm.mapRow(resultSet);
+                Periodical periodical = PeriodicalMapper.mapRow(resultSet);
                 periodicals.add(periodical);
             }
 

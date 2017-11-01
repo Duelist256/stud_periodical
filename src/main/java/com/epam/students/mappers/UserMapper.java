@@ -5,9 +5,8 @@ import com.epam.students.model.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserMapper implements RowMapper<User> {
-    @Override
-    public User mapRow(ResultSet rs) throws SQLException {
+public class UserMapper {
+    public static User mapRow(ResultSet rs) throws SQLException {
         User user = new User();
 
         user.setId(rs.getInt("id"));
