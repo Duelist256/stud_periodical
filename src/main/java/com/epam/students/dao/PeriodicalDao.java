@@ -31,6 +31,8 @@ public class PeriodicalDao implements Dao<Periodical> {
             preparedStatement.setString(5, newPeriodical.getPrice());
             preparedStatement.setString(6, newPeriodical.getImgPath());
             preparedStatement.executeUpdate();
+
+            logger.info("New periodical successfully added");
         } catch (SQLException e) {
             logger.error("Failed to create periodical. Cause: " + e);
             throw new RuntimeException(e);
@@ -67,6 +69,8 @@ public class PeriodicalDao implements Dao<Periodical> {
                 Periodical periodical = PeriodicalMapper.mapRow(resultSet);
                 periodicals.add(periodical);
             }
+
+            logger.info("Periodicals successfully gotten");
 
         } catch (SQLException e) {
             logger.error("Failed to get periodicals. Cause: " + e);
