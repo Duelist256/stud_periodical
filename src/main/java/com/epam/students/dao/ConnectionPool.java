@@ -1,7 +1,9 @@
 package com.epam.students.dao;
 
+import org.apache.log4j.Logger;
 import org.h2.jdbcx.JdbcConnectionPool;
 import org.h2.tools.RunScript;
+
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -11,6 +13,8 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class ConnectionPool {
+
+    private final static Logger logger = Logger.getLogger(ConnectionPool.class);
 
     private static final ClassLoader classLoader = ConnectionPool.class.getClassLoader();
     private static JdbcConnectionPool connectionPool;
@@ -24,7 +28,8 @@ public class ConnectionPool {
             try {
                 prop.load(inputStream);
             } catch (IOException e) {
-                e.printStackTrace();
+
+                logger.error("Failed to get connection pool. Cause: "+ e.getMessage());
             }
 
             String url = prop.getProperty("url");
@@ -45,6 +50,7 @@ public class ConnectionPool {
             File file = new File(resource.toURI());
             RunScript.execute(conn, new FileReader(file));
         } catch (SQLException | URISyntaxException | FileNotFoundException ex) {
+            logger.error("Failed to execute db schema. Cause: " + ex.getMessage());
             throw new RuntimeException(ex);
         }
     }
