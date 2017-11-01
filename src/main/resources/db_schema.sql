@@ -11,7 +11,7 @@ CREATE TABLE periodicals (
   publisher VARCHAR(255) NOT NULL,
   genre VARCHAR(255) NOT NULL,
   price VARCHAR(45) NOT NULL,
-  imgpath VARCHAR(255),
+  img_path VARCHAR(255),
   PRIMARY KEY (`id`));
 
 CREATE TABLE users (
