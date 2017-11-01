@@ -7,14 +7,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
-
     private static String language = "ru";
     private static String country = "US";
+    private UserService userService;
+
+    public LoginServlet() {
+        userService = new UserService();
+    }
 
     public static String getLanguage() {
         return language;
@@ -25,15 +28,12 @@ public class LoginServlet extends HttpServlet {
     }
 
     public static String getCountry() {
-        if (language.equals("ru"))
+        if (language.equals("ru")) {
             return "RU";
-        else return "US";
-    }
+        } else {
+            return "US";
+        }
 
-    private UserService userService;
-
-    public LoginServlet() {
-        userService = new UserService();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

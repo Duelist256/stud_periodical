@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 import org.h2.jdbcx.JdbcConnectionPool;
 import org.h2.tools.RunScript;
 
-
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -29,7 +28,7 @@ public class ConnectionPool {
                 prop.load(inputStream);
             } catch (IOException e) {
 
-                logger.error("Failed to get connection pool. Cause: "+ e.getMessage());
+                logger.error("Failed to get connection pool. Cause: " + e.getMessage());
             }
 
             String url = prop.getProperty("url");
