@@ -19,7 +19,7 @@ public class PeriodicalDao implements Dao<Periodical> {
     @Override
     public void create(Periodical newPeriodical) {
         String query = "insert into inform_system.periodicals " +
-                "(title, description, publisher, genre, price, imgpath) " +
+                "(title, description, publisher, genre, price, img_path) " +
                 "values (?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DBConnection.getConnection();
@@ -51,7 +51,18 @@ public class PeriodicalDao implements Dao<Periodical> {
 
     @Override
     public void delete(Periodical periodical) {
-        throw new UnsupportedOperationException("Method isn't implemented yet");
+        String query = "DELETE FROM inform_system.periodicals WHERE id = ?";
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setInt(1, periodical.getId());
+            preparedStatement.executeUpdate();
+            logger.info("Periodical \"" + periodical.getTitle() + "\" by " + periodical.getTitle() + " successfully deleted");
+        } catch (SQLException e) {
+            logger.error("Failed to delete periodical. Cause: " + e);
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

@@ -15,7 +15,7 @@ public class PeriodicalMapper {
         periodical.setPublisher(rs.getString("publisher"));
         periodical.setGenre(rs.getString("genre"));
         periodical.setPrice(rs.getString("price"));
-        periodical.setImgPath(rs.getString("imgpath"));
+        periodical.setImgPath(rs.getString("img_path"));
 
         return periodical;
     }

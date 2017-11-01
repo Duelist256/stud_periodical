@@ -5,8 +5,8 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class PeriodicalDaoTest {
 
@@ -20,6 +20,7 @@ public class PeriodicalDaoTest {
     @Test
     public void checkCreate() throws Exception {
         PeriodicalDao periodicalDao = new PeriodicalDao();
+        int initialSize = periodicalDao.getAll().size();
 
         Periodical periodical = new Periodical();
         periodical.setTitle("Title1234");
@@ -31,7 +32,22 @@ public class PeriodicalDaoTest {
 
         periodicalDao.create(periodical);
 
+        int currentSize = periodicalDao.getAll().size();
+        assertTrue(initialSize < currentSize);
+    }
+
+    @Test
+    public void deletePeriodical() throws Exception {
+        PeriodicalDao periodicalDao = new PeriodicalDao();
         List<Periodical> periodicals = periodicalDao.getAll();
-        assertEquals(21, periodicals.size());
+        int initialSize = periodicals.size();
+
+        Periodical periodical = periodicals.get(0);
+        periodicalDao.delete(periodical);
+
+        int currentSize = periodicalDao.getAll().size();
+
+        assertTrue(currentSize < initialSize);
+
     }
 }
