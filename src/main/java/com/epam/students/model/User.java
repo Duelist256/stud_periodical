@@ -50,32 +50,32 @@ public class User {
         private String name;
         private int isAdmin;
 
-        public Builder withId(int id){
+        public Builder id(int id){
             this.id = id;
             return this;
         }
 
-        public Builder withLogin(String login){
+        public Builder login(String login){
             this.login = login;
             return this;
         }
 
-        public Builder withPassword(String password){
+        public Builder password(String password){
             this.password = password;
             return this;
         }
 
-        public Builder withSalt(String salt){
+        public Builder salt(String salt){
             this.salt = salt;
             return this;
         }
 
-        public Builder withAdmin(int isAdmin){
+        public Builder isAdmin(int isAdmin){
             this.isAdmin = isAdmin;
             return this;
         }
 
-        public Builder withName(String name){
+        public Builder name(String name){
            this.name = name;
            return this;
         }

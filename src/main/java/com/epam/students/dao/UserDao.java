@@ -48,12 +48,12 @@ public class UserDao implements Dao<User> {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                user = new User.Builder().withId(resultSet.getInt("id"))
-                        .withLogin(resultSet.getString("login"))
-                        .withPassword(resultSet.getString("password"))
-                        .withSalt(resultSet.getString("salt"))
-                        .withName(resultSet.getString("name"))
-                        .withAdmin(resultSet.getInt("isAdmin"))
+                user = new User.Builder().id(resultSet.getInt("id"))
+                        .login(resultSet.getString("login"))
+                        .password(resultSet.getString("password"))
+                        .salt(resultSet.getString("salt"))
+                        .name(resultSet.getString("name"))
+                        .isAdmin(resultSet.getInt("isAdmin"))
                         .build();
 
             } else {

@@ -54,10 +54,10 @@ public class UserService {
         }
 
         User newUser = new User.Builder()
-                .withName(name)
-                .withLogin(login)
-                .withSalt(salt)
-                .withPassword(hashedPassword)
+                .name(name)
+                .login(login)
+                .salt(salt)
+                .password(hashedPassword)
                 .build();
 
         userDao.create(newUser);

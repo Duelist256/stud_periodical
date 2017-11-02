@@ -37,22 +37,22 @@ public class Order {
         private int idPeriodical;
         private String status;
 
-        public Builder withId(int id){
+        public Builder id(int id){
             this.id = id;
             return this;
         }
 
-        public Builder withIdUser(int idUser){
+        public Builder idUser(int idUser){
            this.idUser = idUser;
            return this;
         }
 
-        public Builder withStatus(String status){
+        public Builder status(String status){
             this.status = status;
             return this;
         }
 
-        public Builder withIdPeriodical(int idPeriodical){
+        public Builder idPeriodical(int idPeriodical){
             this.idPeriodical = idPeriodical;
             return this;
         }

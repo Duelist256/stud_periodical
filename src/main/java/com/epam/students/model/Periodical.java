@@ -58,37 +58,37 @@ public class Periodical {
         private String price;
         private String imgPath;
 
-        public Builder withId(int id){
+        public Builder id(int id){
             this.id = id;
             return this;
         }
 
-        public Builder withTitle(String title){
+        public Builder title(String title){
             this.title = title;
             return this;
         }
 
-        public Builder withDescription(String description){
+        public Builder description(String description){
             this.description = description;
             return this;
         }
 
-        public Builder withPublisher(String publisher){
+        public Builder publisher(String publisher){
             this.publisher = publisher;
             return this;
         }
 
-        public Builder withGenre(String genre){
+        public Builder genre(String genre){
             this.genre = genre;
             return this;
         }
 
-        public Builder withPrice(String price){
+        public Builder price(String price){
             this.price = price;
             return this;
         }
 
-        public Builder withImgPath(String imgPath){
+        public Builder imgPath(String imgPath){
             this.imgPath = imgPath;
             return this;
         }
