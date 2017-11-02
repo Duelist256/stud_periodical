@@ -27,10 +27,10 @@
     <div class="row">
         <h2><% out.print(new String(resourceBundle.getString("catalog").getBytes("ISO-8859-1"), "UTF-8"));%></h2>
         <p align="right">
-            <a href="/language?name=russia" name="trololo"><img src="img/Russia.png" width="40" height="40"
+            <a href="/language?name=ru"><img src="img/Russia.png" width="40" height="40"
                                                                 alt="RU"></a>
 
-            <a href="/language?name=us" name="param"><img src="img/United-Kingdom.png" width="40" height="40" alt="US">
+            <a href="/language?name=en"><img src="img/United-Kingdom.png" width="40" height="40" alt="US">
 
             </a></p>
 
@@ -43,7 +43,7 @@
                     }%>
                     </h1>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a>
+                        <li><a href="/mybox.jsp">
                             <button type="button" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
                                 <% out.print(new String(resourceBundle.getString("box").getBytes("ISO-8859-1"), "UTF-8"));%>
                             </button>

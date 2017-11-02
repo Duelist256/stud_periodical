@@ -16,12 +16,18 @@ public class LanguageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getParameter("name").equals("russia")) {
+        if (req.getParameter("name").equals("ru")) {
             setLanguage("ru");
             req.getServletContext().getRequestDispatcher("/issue.jsp").forward(req, resp);
-        } else {
+        } else if (req.getParameter("name").equals("en")) {
             setLanguage("en");
             req.getServletContext().getRequestDispatcher("/issue.jsp").forward(req, resp);
+        } else if (req.getParameter("name").equals("rus")) {
+            setLanguage("en");
+            req.getServletContext().getRequestDispatcher("/mybox.jsp").forward(req, resp);
+        } else if (req.getParameter("name").equals("eng")) {
+            setLanguage("en");
+            req.getServletContext().getRequestDispatcher("/mybox.jsp").forward(req, resp);
         }
     }
 }
