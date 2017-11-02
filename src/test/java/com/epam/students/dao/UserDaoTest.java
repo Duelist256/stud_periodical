@@ -56,9 +56,9 @@ public class UserDaoTest {
         User readUser = userDao.readByEmail(newLogin);
 
         assertEquals(1, readUser.getId());
-        assertEquals(readUser.getPassword(), newPassword);
-        assertEquals(readUser.getSalt(), newSalt);
-        assertEquals(readUser.getName(), newName);
+        assertEquals(newPassword ,readUser.getPassword());
+        assertEquals(newSalt, readUser.getSalt());
+        assertEquals(newName, readUser.getName());
     }
 
     @Test

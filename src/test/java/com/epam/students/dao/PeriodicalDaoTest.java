@@ -68,12 +68,12 @@ public class PeriodicalDaoTest {
         Periodical readPeriodical = periodicalDao.read(5);
 
         assertEquals(5, readPeriodical.getId());
-        assertEquals(readPeriodical.getTitle(), newTitle);
-        assertEquals(readPeriodical.getDescription(), newDescription);
-        assertEquals(readPeriodical.getPublisher(), newPublisher);
-        assertEquals(readPeriodical.getGenre(), newGenre);
-        assertEquals(readPeriodical.getPrice(), newPrice);
-        assertEquals(readPeriodical.getImgPath(), newImgPath);
+        assertEquals(newTitle, readPeriodical.getTitle());
+        assertEquals(newDescription, readPeriodical.getDescription());
+        assertEquals(newPublisher, readPeriodical.getPublisher());
+        assertEquals(newGenre, readPeriodical.getGenre());
+        assertEquals(newPrice, readPeriodical.getPrice());
+        assertEquals(newImgPath, readPeriodical.getImgPath());
     }
 
     @Test
