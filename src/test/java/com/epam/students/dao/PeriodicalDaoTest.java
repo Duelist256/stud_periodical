@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class PeriodicalDaoTest {
@@ -34,6 +35,14 @@ public class PeriodicalDaoTest {
 
         int currentSize = periodicalDao.getAll().size();
         assertTrue(initialSize < currentSize);
+    }
+
+    @Test
+    public void readPeriodical() throws Exception {
+        PeriodicalDao periodicalDao = new PeriodicalDao();
+        Periodical periodical = periodicalDao.read(10);
+
+        assertNotNull(periodical);
     }
 
     @Test
