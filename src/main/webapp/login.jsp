@@ -21,6 +21,8 @@
     if(cookies != null) {
         for (Cookie cookieReq : cookies) {
             if (cookieReq.getName().equals("user")) {
+                session = request.getSession(true);
+                session.setAttribute("userName", cookieReq.getValue());
                 request.getServletContext().getRequestDispatcher("/issue.jsp").forward(request, response);
             }
         }

@@ -1,5 +1,6 @@
 package com.epam.students.servlet;
 
+import com.epam.students.dao.UserDao;
 import com.epam.students.service.UserService;
 
 import javax.servlet.ServletException;
@@ -43,17 +44,17 @@ public class LoginServlet extends HttpServlet {
         Cookie cookieUser;
         HttpSession session;
 
-
         if (userService.isUserCorrect(login, password)) {
-
+            UserDao userDao = new UserDao();
+            String name = userDao.readByEmail(login).getName();
             if (login != null) {
-                cookieUser = new Cookie("user", login);
+                cookieUser = new Cookie("user", name);
                 cookieUser.setMaxAge(60 * 5); //5 mins
                 response.addCookie(cookieUser);
-            }
 
-            session = request.getSession(true);
-            session.setAttribute("userName", login);
+                session = request.getSession(true);
+                session.setAttribute("userName", name);
+            }
 
             response.sendRedirect("/issue.jsp");
         } else {
