@@ -34,6 +34,13 @@
     String country = LoginServlet.getCountry();
     ResourceBundle resourceBundle = ResourceBundle.getBundle("resources", new Locale(language, country));
 %>
+<p align="right">
+    <a href="/language?name=russ"><img src="img/Russia.png" width="40" height="40"
+                                      alt="RU"></a>
+
+    <a href="/language?name=engg"><img src="img/United-Kingdom.png" width="40" height="40" alt="US">
+
+    </a></p>
 <form method="post" action="login">
     <td align="right"><% out.print(new String(resourceBundle.getString("email").getBytes("ISO-8859-1"), "UTF-8"));%></td>
     <td align="left"><input class="login-field" type="text" name="email"/></td>
@@ -53,10 +60,10 @@
 
 <%--change language--%>
 
-<form method="get" action="login">
-    <input type="submit"
-           value="<%out.print(new String(resourceBundle.getString("Change_Language").getBytes("ISO-8859-1"),"UTF-8"));%>"/>
-</form>
+<%--<form method="get" action="login">--%>
+    <%--<input type="submit"--%>
+           <%--value="<%out.print(new String(resourceBundle.getString("Change_Language").getBytes("ISO-8859-1"),"UTF-8"));%>"/>--%>
+<%--</form>--%>
 
 
 </body>

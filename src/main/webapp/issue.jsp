@@ -43,7 +43,7 @@
                     }%>
                     </h1>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/mybox.jsp">
+                        <li><a href="/mybox">
                             <button type="button" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
                                 <% out.print(new String(resourceBundle.getString("box").getBytes("ISO-8859-1"), "UTF-8"));%>
                             </button>
@@ -79,8 +79,8 @@
                     <div class="caption">
                         <h4><a href="#"> ${all.getTitle()} </a></h4>
                         <p>${all.getDescription()}</p>
-                        <a href="#"
-                           class="btn btn-success"><% out.print(new String(resourceBundle.getString("details").getBytes("ISO-8859-1"), "UTF-8"));%></a>
+                        <a href="/bought?id=${all.getId()}"
+                           class="btn btn-success"><% out.print(new String(resourceBundle.getString("buy").getBytes("ISO-8859-1"), "UTF-8"));%></a>
                     </div>
                 </div>
             </div>

@@ -25,10 +25,10 @@
 %>
 <div class="container">
     <div class="row">
-        <h2><% out.print(new String(resourceBundle.getString("purchases").getBytes("ISO-8859-1"), "UTF-8"));%></h2>
+        <h2><% out.print(new String(resourceBundle.getString("box").getBytes("ISO-8859-1"), "UTF-8"));%></h2>
         <p align="right">
             <a href="/language?name=rus"><img src="img/Russia.png" width="40" height="40"
-                                             alt="RU"></a>
+                                              alt="RU"></a>
 
             <a href="/language?name=eng"><img src="img/United-Kingdom.png" width="40" height="40" alt="US">
 
@@ -49,5 +49,31 @@
         </div>
     </div>
 </div>
+
+<div class="container">
+    <h2><% out.print(new String(resourceBundle.getString("purchases").getBytes("ISO-8859-1"), "UTF-8"));%></h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th><% out.print(new String(resourceBundle.getString("Title").getBytes("ISO-8859-1"), "UTF-8"));%></th>
+            <th><% out.print(new String(resourceBundle.getString("Publisher").getBytes("ISO-8859-1"), "UTF-8"));%></th>
+            <th><% out.print(new String(resourceBundle.getString("Price").getBytes("ISO-8859-1"), "UTF-8"));%></th>
+        </tr>
+        </thead>
+        <tbody>
+
+            <c:forEach var="all" items="${list}">
+        <tr>
+            <td> ${all.getTitle()}</td>
+            <td> ${all.getPublisher()}</td>
+            <td> ${all.getPrice()}</td>
+        </tr>
+        </c:forEach>
+
+        </tbody>
+    </table>
+</div>
+
+
 </body>
 </html>

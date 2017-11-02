@@ -49,9 +49,8 @@ public class LoginServlet extends HttpServlet {
             String name = userDao.readByEmail(login).getName();
             if (login != null) {
                 cookieUser = new Cookie("user", name);
-                cookieUser.setMaxAge(60 * 5); //5 mins
+                cookieUser.setMaxAge(60 * 3); //5 mins
                 response.addCookie(cookieUser);
-
                 session = request.getSession(true);
                 session.setAttribute("userName", name);
             }
@@ -72,9 +71,5 @@ public class LoginServlet extends HttpServlet {
             setLanguage("en");
             req.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
         }
-
     }
-
-
-    //    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { }
 }
