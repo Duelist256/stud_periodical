@@ -7,7 +7,7 @@ import java.util.List;
 
 public class PeriodicalService {
 
-    public List<Periodical> getAll(){
+    public List<Periodical> getAll() {
         //к PeriodacalDAO
         //заглушка
 
