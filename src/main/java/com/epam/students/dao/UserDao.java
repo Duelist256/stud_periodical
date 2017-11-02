@@ -40,6 +40,7 @@ public class UserDao implements Dao<User> {
     @Override
     public User read(String email) {
         String query = "select * from inform_system.users where login = ?";
+        User user = null;
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -55,7 +56,7 @@ public class UserDao implements Dao<User> {
                         .name(resultSet.getString("name"))
                         .isAdmin(resultSet.getInt("isAdmin"))
                         .build();
-
+                return user;
             } else {
                 return null;
             }

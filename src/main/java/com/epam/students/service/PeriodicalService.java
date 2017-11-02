@@ -13,12 +13,14 @@ public class PeriodicalService {
 
         List<Periodical> all = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            Periodical periodical = new Periodical();
-            // метод по получить i-й элемент из бд
+            Periodical periodical = new Periodical.Builder()
+                    .title(String.valueOf(i))
+                    .genre("жанр")
+                    .description("desc" + String.valueOf(i))
+                    .build();
+                    
 
-            periodical.setTitle(String.valueOf(i));
-            periodical.setGenre("жанр");
-            periodical.setDescription("desc" + String.valueOf(i));
+            // метод по получить i-й элемент из бд
 
             all.add(periodical);
         }
