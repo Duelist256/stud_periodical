@@ -40,7 +40,7 @@ public class PeriodicalDao implements Dao<Periodical> {
     }
 
     @Override
-    public Periodical read(String value) {
+    public Periodical read(int id) {
         throw new UnsupportedOperationException("Method isn't implemented yet");
     }
 
@@ -58,7 +58,7 @@ public class PeriodicalDao implements Dao<Periodical> {
 
             preparedStatement.setInt(1, periodical.getId());
             preparedStatement.executeUpdate();
-            logger.info("Periodical \"" + periodical.getTitle() + "\" by " + periodical.getTitle() + " successfully deleted");
+            logger.info("Periodical \"" + periodical.getTitle() + "\" by " + periodical.getPublisher() + " successfully deleted");
         } catch (SQLException e) {
             logger.error("Failed to delete periodical. Cause: " + e);
             throw new RuntimeException(e);
