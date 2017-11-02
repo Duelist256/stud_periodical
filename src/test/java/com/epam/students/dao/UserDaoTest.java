@@ -27,7 +27,7 @@ public class UserDaoTest {
         UserDao userDao = new UserDao();
         userDao.create(user);
 
-        User receivedUser = userDao.read(login);
+        User receivedUser = userDao.readByEmail(login);
 
         assertEquals(login, receivedUser.getLogin());
         assertEquals(password, receivedUser.getPassword());
@@ -53,23 +53,23 @@ public class UserDaoTest {
         UserDao userDao = new UserDao();
         userDao.update(user);
 
-        User readUser = userDao.read(newLogin);
+        User readUser = userDao.readByEmail(newLogin);
 
         assertEquals(1, readUser.getId());
-        assertEquals(readUser.getPassword(), newPassword);
-        assertEquals(readUser.getSalt(), newSalt);
-        assertEquals(readUser.getName(), newName);
+        assertEquals(newPassword ,readUser.getPassword());
+        assertEquals(newSalt, readUser.getSalt());
+        assertEquals(newName, readUser.getName());
     }
 
     @Test
     public void readAndDeleteUser() throws Exception {
         UserDao userDao = new UserDao();
 
-        User readUser = userDao.read("test10@test.com");
+        User readUser = userDao.read(5);
         assertNotNull(readUser);
         userDao.delete(readUser);
 
-        User readUser2 = userDao.read("test10@test.com");
+        User readUser2 = userDao.read(5);
         assertNull(readUser2);
     }
 

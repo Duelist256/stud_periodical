@@ -18,7 +18,7 @@ public class UserService {
             return false;
         }
 
-        User user = userDao.read(email);
+        User user = userDao.readByEmail(email);
 
         if (user == null) {
             return false;

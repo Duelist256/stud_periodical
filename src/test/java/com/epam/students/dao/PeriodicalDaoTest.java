@@ -5,8 +5,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class PeriodicalDaoTest {
 
@@ -34,6 +33,47 @@ public class PeriodicalDaoTest {
 
         int currentSize = periodicalDao.getAll().size();
         assertTrue(initialSize < currentSize);
+    }
+
+    @Test
+    public void readPeriodical() throws Exception {
+        PeriodicalDao periodicalDao = new PeriodicalDao();
+        Periodical periodical = periodicalDao.read(10);
+
+        assertNotNull(periodical);
+    }
+
+    @Test
+    public void readUpdateRead() throws Exception {
+        String newTitle = "Za Rulem";
+        String newDescription = "Know more about cars";
+        String newPublisher = "Za Rulem publishing house";
+        String newGenre = "cars";
+        String newPrice = "145";
+        String newImgPath = "newImgPath";
+
+
+        PeriodicalDao periodicalDao = new PeriodicalDao();
+        Periodical periodical = periodicalDao.read(5);
+
+        periodical.setTitle(newTitle);
+        periodical.setDescription(newDescription);
+        periodical.setPublisher(newPublisher);
+        periodical.setGenre(newGenre);
+        periodical.setPrice(newPrice);
+        periodical.setImgPath(newImgPath);
+
+        periodicalDao.update(periodical);
+
+        Periodical readPeriodical = periodicalDao.read(5);
+
+        assertEquals(5, readPeriodical.getId());
+        assertEquals(newTitle, readPeriodical.getTitle());
+        assertEquals(newDescription, readPeriodical.getDescription());
+        assertEquals(newPublisher, readPeriodical.getPublisher());
+        assertEquals(newGenre, readPeriodical.getGenre());
+        assertEquals(newPrice, readPeriodical.getPrice());
+        assertEquals(newImgPath, readPeriodical.getImgPath());
     }
 
     @Test
