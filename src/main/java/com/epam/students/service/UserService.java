@@ -24,13 +24,6 @@ public class UserService {
             return false;
         }
 
-        System.err.println(user.getId());
-        System.err.println(user.getLogin());
-        System.err.println(user.getPassword());
-        System.err.println(user.getName());
-        System.err.println(user.getIsAdmin());
-
-
         String checkedPassword = null;
         try {
             checkedPassword = PasswordUtil.hashPassword(password, user.getSalt());
@@ -38,7 +31,6 @@ public class UserService {
             e.printStackTrace();
         }
 
-        assert checkedPassword != null;
         return checkedPassword.equals(user.getPassword());
     }
 

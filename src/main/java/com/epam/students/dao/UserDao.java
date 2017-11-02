@@ -1,6 +1,7 @@
 package com.epam.students.dao;
 
 
+import com.epam.students.mappers.UserMapper;
 import com.epam.students.model.User;
 import org.apache.log4j.Logger;
 
@@ -8,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao implements Dao<User> {
@@ -16,7 +18,8 @@ public class UserDao implements Dao<User> {
 
     @Override
     public void create(User newUser) {
-        String query = "insert into inform_system.users (name, login, password, salt) values (?, ?, ?, ?)";
+        String query =
+                "insert into inform_system.users (name, login, password, salt) values (?, ?, ?, ?)";
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -26,11 +29,10 @@ public class UserDao implements Dao<User> {
             preparedStatement.setString(3, newUser.getPassword());
             preparedStatement.setString(4, newUser.getSalt());
             preparedStatement.executeUpdate();
-            logger.info("User " + newUser.getLogin() + " successfully added;");
+            logger.info("User " + newUser.getLogin() + " successfully added");
 
         } catch (SQLException e) {
-
-            logger.error("Failed to create user. Cause: "+ e.getMessage());
+            logger.error("Failed to create user. Cause: " + e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -38,15 +40,13 @@ public class UserDao implements Dao<User> {
     @Override
     public User read(String email) {
         String query = "select * from inform_system.users where login = ?";
-        User user = null;
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            preparedStatement.setString(1, (String) email);
+            preparedStatement.setString(1, email);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-
             if (resultSet.next()) {
                 user = new User.Builder().id(resultSet.getInt("id"))
                         .login(resultSet.getString("login"))
@@ -59,28 +59,72 @@ public class UserDao implements Dao<User> {
             } else {
                 return null;
             }
-
         } catch (SQLException e) {
-
-            logger.error("Failed to read user data. Cause: "+ e.getMessage());
+            logger.error("Failed to read user data. Cause: " + e);
             throw new RuntimeException(e);
         }
-
-        return user;
     }
 
     @Override
     public void update(User user) {
-        throw new UnsupportedOperationException("Method isn't implemented yet");
+        String query = "UPDATE inform_system.users " +
+                "SET login = ?, password = ?, salt = ?, name = ? " +
+                "WHERE id = ?";
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getSalt());
+            preparedStatement.setString(4, user.getName());
+            preparedStatement.setInt(5, user.getId());
+
+            preparedStatement.executeUpdate();
+            logger.info("User " + user.getLogin() + " successfully updated");
+        } catch (SQLException e) {
+            logger.error("Failed to update user. Cause: " + e);
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void delete(User user) {
-        throw new UnsupportedOperationException("Method isn't implemented yet");
+        String query = "DELETE FROM inform_system.users WHERE id = ?";
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setInt(1, user.getId());
+            preparedStatement.executeUpdate();
+            logger.info("User " + user.getLogin() + " successfully deleted");
+        } catch (SQLException e) {
+            logger.error("Failed to delete user. Cause: " + e);
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public List<User> getAll() {
-        throw new UnsupportedOperationException("Method isn't implemented yet");
+        String query = "select * from inform_system.users";
+
+        List<User> users = new ArrayList<>();
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                User user = UserMapper.mapRow(resultSet);
+                users.add(user);
+            }
+            logger.info("Users successfully gotten");
+        } catch (SQLException e) {
+            logger.error("Failed to get users. Cause: " + e);
+            throw new RuntimeException(e);
+        }
+
+        return users;
     }
 }

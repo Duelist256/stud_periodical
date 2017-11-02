@@ -1,8 +1,7 @@
 package com.epam.students.dao;
 
-import org.h2.jdbcx.JdbcConnectionPool;
 import org.apache.log4j.Logger;
-
+import org.h2.jdbcx.JdbcConnectionPool;
 
 import java.sql.Connection;
 import java.sql.SQLException;
