@@ -1,9 +1,11 @@
 package com.epam.students.model;
 
+import java.util.Date;
+
 public class Order {
     private int id;
     private int idUser;
-    private int idPeriodical;
+    private Date data;
     private String status;
 
     public int getId() {
@@ -22,19 +24,19 @@ public class Order {
         this.idUser = idUser;
     }
 
-    public int getIdPeriodical() {
-        return idPeriodical;
-    }
-
-    public void setIdPeriodical(int idPeriodical) {
-        this.idPeriodical = idPeriodical;
-    }
-
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
 }
