@@ -24,7 +24,7 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("pass");
 
         userService.addUser(login, password, name);
-
-        request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+        throw new UnsupportedOperationException();
+//        request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
     }
 }
