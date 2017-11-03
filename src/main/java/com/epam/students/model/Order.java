@@ -1,42 +1,65 @@
 package com.epam.students.model;
 
-import java.util.Date;
-
 public class Order {
+
     private int id;
     private int idUser;
-    private Date data;
+    private int idPeriodical;
     private String status;
+
+    private Order(){
+
+    }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public int getIdPeriodical() {
+        return idPeriodical;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public static Builder newBuilder() {
+        return new Order().new Builder();
     }
 
-    public Date getData() {
-        return data;
-    }
+    public class Builder{
 
-    public void setData(Date data) {
-        this.data = data;
+        private Builder(){
+
+        }
+
+        public Builder id(int id){
+            Order.this.id = id;
+            return this;
+        }
+
+        public Builder idUser(int idUser){
+           Order.this.idUser = idUser;
+           return this;
+        }
+
+        public Builder status(String status){
+            Order.this.status = status;
+            return this;
+        }
+
+        public Builder idPeriodical(int idPeriodical){
+            Order.this.idPeriodical = idPeriodical;
+            return this;
+        }
+
+        public Order build(){
+          return Order.this;
+        }
+
     }
 }

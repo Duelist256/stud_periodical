@@ -21,13 +21,14 @@ public class PeriodicalDaoTest {
         PeriodicalDao periodicalDao = new PeriodicalDao();
         int initialSize = periodicalDao.getAll().size();
 
-        Periodical periodical = new Periodical();
-        periodical.setTitle("Title1234");
-        periodical.setDescription("Description1234");
-        periodical.setPublisher("Publisher1234");
-        periodical.setGenre("Genre1234");
-        periodical.setPrice("1234");
-        periodical.setImgPath("path1234");
+        Periodical periodical = Periodical.newBuilder()
+        .title("Title1234")
+        .description("Description1234")
+        .publisher("Publisher1234")
+        .genre("Genre1234")
+        .price("1234")
+        .imgPath("path1234")
+                .build();
 
         periodicalDao.create(periodical);
 

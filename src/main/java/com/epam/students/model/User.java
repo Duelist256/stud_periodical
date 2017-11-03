@@ -1,6 +1,7 @@
 package com.epam.students.model;
 
 public class User {
+
     private int id;
     private String login;
     private String password;
@@ -8,51 +9,77 @@ public class User {
     private String name;
     private int isAdmin;
 
-    public int getId() {
-        return id;
+    private User(){
+
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getId() {
+        return id;
     }
 
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getSalt() {
         return salt;
     }
 
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getIsAdmin() {
         return isAdmin;
     }
 
-    public void setIsAdmin(int isAdmin) {
-        this.isAdmin = isAdmin;
+    public static Builder newBuilder(){
+        return new User().new Builder();
     }
+
+    public class Builder{
+
+        private Builder(){
+
+        }
+
+        public Builder id(int id){
+            User.this.id = id;
+            return this;
+        }
+
+        public Builder login(String login){
+            User.this.login = login;
+            return this;
+        }
+
+        public Builder password(String password){
+            User.this.password = password;
+            return this;
+        }
+
+        public Builder salt(String salt){
+            User.this.salt = salt;
+            return this;
+        }
+
+        public Builder isAdmin(int isAdmin){
+            User.this.isAdmin = isAdmin;
+            return this;
+        }
+
+        public Builder name(String name){
+           User.this.name = name;
+           return this;
+        }
+
+        public User build(){
+            return User.this;
+        }
+    }
+
 }

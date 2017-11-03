@@ -6,6 +6,7 @@ import com.epam.students.model.User;
 import java.security.NoSuchAlgorithmException;
 
 public class UserService {
+
     private UserDao userDao;
 
     public UserService() {
@@ -35,20 +36,22 @@ public class UserService {
     }
 
     public void addUser(String login, String password, String name) {
-        User newUser = new User();
-        newUser.setName(name);
-        newUser.setLogin(login);
 
         String salt = PasswordUtil.generateSalt();
         String hashedPassword = null;
+
         try {
             hashedPassword = PasswordUtil.hashPassword(password, salt);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
 
-        newUser.setSalt(salt);
-        newUser.setPassword(hashedPassword);
+        User newUser = User.newBuilder()
+                .name(name)
+                .login(login)
+                .salt(salt)
+                .password(hashedPassword)
+                .build();
 
         userDao.create(newUser);
     }
