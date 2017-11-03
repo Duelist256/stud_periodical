@@ -8,7 +8,22 @@
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 
+    <!--<error-page>-->
+        <!--<location>/ErrorHandler</location>-->
+    <!--</error-page>-->
+
     <error-page>
+        <error-code>403</error-code>
+        <location>/ErrorHandler</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/ErrorHandler</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
         <location>/ErrorHandler</location>
     </error-page>
 
