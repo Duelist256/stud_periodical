@@ -23,6 +23,9 @@
     String country = LoginServlet.getCountry();
     ResourceBundle resourceBundle = ResourceBundle.getBundle("resources", new Locale(language, country));
 %>
+<%
+
+%>
 <div class="container">
     <div class="row">
         <h2><% out.print(new String(resourceBundle.getString("box").getBytes("ISO-8859-1"), "UTF-8"));%></h2>

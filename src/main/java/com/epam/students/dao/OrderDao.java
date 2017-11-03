@@ -19,13 +19,13 @@ public class OrderDao implements Dao<Order> {
 
     @Override
     public void create(Order newOrder) {
-        String query = "INSERT INTO ininform_system.orders " +
+        String query = "INSERT INTO inform_system.orders " +
                 "(id_user, date_order, status)" + "VALUES (?,?,?)";
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, String.valueOf(newOrder.getIdUser()));
-            preparedStatement.setString(2, String.valueOf(newOrder.getData()));
+            preparedStatement.setString(2, String.valueOf(newOrder.getDate()));
             preparedStatement.setString(3, newOrder.getStatus());
             preparedStatement.executeUpdate();
 
@@ -47,7 +47,7 @@ public class OrderDao implements Dao<Order> {
             if (resultSet.next()) {
                 Order order = OrderMapper.mapRow(resultSet);
                 logger.info("Order done \"" + order.getIdUser() + "\" by "
-                        + order.getData() + " successfully read");
+                        + order.getDate() + " successfully read");
                 return order;
             } else {
                 return null;
@@ -60,16 +60,16 @@ public class OrderDao implements Dao<Order> {
 
     @Override
     public void update(Order order) {
-    String query = "UPDATE inform_system.orders " + "SET id_user = ?, date_order = ?, status = ? " +
-            "WHERE id = ?";
+        String query = "UPDATE inform_system.orders " + "SET id_user = ?, date_order = ?, status = ? " +
+                "WHERE id = ?";
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, String.valueOf(order.getIdUser()));
-            preparedStatement.setString(2, String.valueOf(order.getData()));
-            preparedStatement.setString(3,order.getStatus());
-
+            preparedStatement.setString(2, String.valueOf(order.getDate()));
+            preparedStatement.setString(3, order.getStatus());
+            preparedStatement.setString(4, String.valueOf(order.getId()));
 
             preparedStatement.executeUpdate();
             logger.info("Order \"" + order.getId() + "\" by "
@@ -90,7 +90,7 @@ public class OrderDao implements Dao<Order> {
 
             preparedStatement.setInt(1, order.getId());
             preparedStatement.executeUpdate();
-            logger.info("Order \"" + order.getId() + "\" by "
+            logger.info("Order id =  \"" + order.getId() + "\" by user "
                     + order.getIdUser() + " successfully deleted");
         } catch (SQLException e) {
             logger.error("Failed to delete order. Cause: " + e);
@@ -100,9 +100,9 @@ public class OrderDao implements Dao<Order> {
 
     @Override
     public List<Order> getAll() {
-        String query = "select * from inform_system.orders";
+        String query = "SELECT * FROM inform_system.orders";
 
-        List<Order> orderList= new ArrayList<>();
+        List<Order> orderList = new ArrayList<>();
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -113,7 +113,6 @@ public class OrderDao implements Dao<Order> {
                 Order order = OrderMapper.mapRow(resultSet);
                 orderList.add(order);
             }
-
             logger.info("Orders successfully gotten");
 
         } catch (SQLException e) {

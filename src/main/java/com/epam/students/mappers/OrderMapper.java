@@ -7,11 +7,11 @@ import java.sql.SQLException;
 
 public class OrderMapper {
     public static Order mapRow(ResultSet rs) throws SQLException {
-        Order order = new Order();
-
-        order.setIdUser(rs.getInt("id_user"));
-        order.setData(rs.getDate("date_order"));
-        order.setStatus(rs.getString("status"));
+        Order order = Order.newBuilder()
+                .idUser(rs.getInt("id_user"))
+                .date(rs.getTimestamp("date_order"))
+                .status(rs.getString("status"))
+                .build();
 
         return order;
     }
