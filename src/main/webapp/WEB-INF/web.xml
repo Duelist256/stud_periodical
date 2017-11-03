@@ -8,4 +8,8 @@
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 
+    <error-page>
+        <location>/ErrorHandler</location>
+    </error-page>
+
 </web-app>
