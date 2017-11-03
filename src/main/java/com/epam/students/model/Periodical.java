@@ -1,6 +1,7 @@
 package com.epam.students.model;
 
 public class Periodical {
+
     private int id;
     private String title;
     private String description;
@@ -9,59 +10,87 @@ public class Periodical {
     private String price;
     private String imgPath;
 
-    public int getId() {
-        return id;
+    private Periodical(){
+
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getPublisher() {
         return publisher;
     }
 
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
     public String getGenre() {
         return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
     }
 
     public String getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getImgPath() {
         return imgPath;
     }
 
-    public void setImgPath(String imgPath) {
-        this.imgPath = imgPath;
+    public static Builder newBuilder(){
+        return new Periodical().new Builder();
     }
+
+    public class Builder{
+
+        private Builder(){
+
+        }
+
+        public Builder id(int id){
+            Periodical.this.id = id;
+            return this;
+        }
+
+        public Builder title(String title){
+            Periodical.this.title = title;
+            return this;
+        }
+
+        public Builder description(String description){
+            Periodical.this.description = description;
+            return this;
+        }
+
+        public Builder publisher(String publisher){
+            Periodical.this.publisher = publisher;
+            return this;
+        }
+
+        public Builder genre(String genre){
+            Periodical.this.genre = genre;
+            return this;
+        }
+
+        public Builder price(String price){
+            Periodical.this.price = price;
+            return this;
+        }
+
+        public Builder imgPath(String imgPath){
+            Periodical.this.imgPath = imgPath;
+            return this;
+        }
+
+        public Periodical build(){
+            return Periodical.this;
+        }
+
+    }
+
 }

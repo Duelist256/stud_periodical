@@ -38,8 +38,31 @@ public class UserDao implements Dao<User> {
     }
 
     @Override
-    public User read(String email) {
+    public User read(int id) {
+        String query = "select * from inform_system.users where id = ?";
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                User user = UserMapper.mapRow(resultSet);
+                logger.info("User " + user.getLogin() + " successfully read");
+                return user;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            logger.error("Failed to read user data. Cause: " + e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    public User readByEmail(String email) {
         String query = "select * from inform_system.users where login = ?";
+        User user = null;
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -48,8 +71,13 @@ public class UserDao implements Dao<User> {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                User user = UserMapper.mapRow(resultSet);
-                logger.info("User " + user.getLogin() + " successfully read");
+                user = User.newBuilder().id(resultSet.getInt("id"))
+                        .login(resultSet.getString("login"))
+                        .password(resultSet.getString("password"))
+                        .salt(resultSet.getString("salt"))
+                        .name(resultSet.getString("name"))
+                        .isAdmin(resultSet.getInt("isAdmin"))
+                        .build();
                 return user;
             } else {
                 return null;

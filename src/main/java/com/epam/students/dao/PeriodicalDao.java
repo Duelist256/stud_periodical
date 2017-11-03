@@ -40,13 +40,54 @@ public class PeriodicalDao implements Dao<Periodical> {
     }
 
     @Override
-    public Periodical read(String value) {
-        throw new UnsupportedOperationException("Method isn't implemented yet");
+    public Periodical read(int id) {
+        String query = "select * from inform_system.periodicals where id = ?";
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                Periodical periodical = PeriodicalMapper.mapRow(resultSet);
+                logger.info("Periodical \"" + periodical.getTitle() + "\" by "
+                        + periodical.getPublisher() + " successfully read");
+                return periodical;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            logger.error("Failed to read periodical's data. Cause: " + e);
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void update(Periodical periodical) {
-        throw new UnsupportedOperationException("Method isn't implemented yet");
+        String query = "UPDATE inform_system.periodicals " +
+                "SET title = ?, description = ?, publisher = ?, " +
+                "genre = ?, price = ?, img_path = ? " +
+                "WHERE id = ?";
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setString(1, periodical.getTitle());
+            preparedStatement.setString(2, periodical.getDescription());
+            preparedStatement.setString(3, periodical.getPublisher());
+            preparedStatement.setString(4, periodical.getGenre());
+            preparedStatement.setString(5, periodical.getPrice());
+            preparedStatement.setString(6, periodical.getImgPath());
+            preparedStatement.setInt(7, periodical.getId());
+
+            preparedStatement.executeUpdate();
+            logger.info("Periodical \"" + periodical.getTitle() + "\" by "
+                    + periodical.getPublisher() + " successfully updated");
+        } catch (SQLException e) {
+            logger.error("Failed to update periodical. Cause: " + e);
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -58,7 +99,8 @@ public class PeriodicalDao implements Dao<Periodical> {
 
             preparedStatement.setInt(1, periodical.getId());
             preparedStatement.executeUpdate();
-            logger.info("Periodical \"" + periodical.getTitle() + "\" by " + periodical.getTitle() + " successfully deleted");
+            logger.info("Periodical \"" + periodical.getTitle() + "\" by "
+                    + periodical.getPublisher() + " successfully deleted");
         } catch (SQLException e) {
             logger.error("Failed to delete periodical. Cause: " + e);
             throw new RuntimeException(e);
