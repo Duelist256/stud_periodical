@@ -35,24 +35,7 @@ public class UserService {
         return checkedPassword.equals(user.getPassword());
     }
 
-    public void addUser(String login, String password, String name) {
-
-        String salt = PasswordUtil.generateSalt();
-        String hashedPassword = null;
-
-        try {
-            hashedPassword = PasswordUtil.hashPassword(password, salt);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
-        User newUser = User.newBuilder()
-                .name(name)
-                .login(login)
-                .salt(salt)
-                .password(hashedPassword)
-                .build();
-
-        userDao.create(newUser);
+    public void addUser(User user) {
+        userDao.create(user);
     }
 }

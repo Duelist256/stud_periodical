@@ -14,6 +14,33 @@ import java.util.List;
 @WebServlet(name = "PeriodicalServlet", urlPatterns = "/getall")
 public class PeriodicalServlet extends HttpServlet {
 
+    PeriodicalService periodicalService;
+
+    public PeriodicalServlet(){
+        periodicalService = new PeriodicalService();
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+        String publisher = request.getParameter("publisher");
+        String genre = request.getParameter("publisher");
+        String price = request.getParameter("price");
+        String imgPath = request.getParameter("img_path");
+
+        Periodical periodical = Periodical.newBuilder()
+                .title(title)
+                .description(description)
+                .publisher(publisher)
+                .genre(genre)
+                .price(price)
+                .imgPath(imgPath)
+                .build();
+
+        periodicalService.addPeriodical(periodical);
+
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
