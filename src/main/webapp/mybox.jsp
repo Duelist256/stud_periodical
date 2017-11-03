@@ -62,11 +62,11 @@
         </thead>
         <tbody>
 
-            <c:forEach var="all" items="${list}">
+            <c:forEach var="periodicalList" items="${pl}">
         <tr>
-            <td> ${all.getTitle()}</td>
-            <td> ${all.getPublisher()}</td>
-            <td> ${all.getPrice()}</td>
+            <td> ${periodicalList.getTitle()}</td>
+            <td> ${periodicalList.getPublisher()}</td>
+            <td> ${periodicalList.getPrice()}</td>
         </tr>
         </c:forEach>
 

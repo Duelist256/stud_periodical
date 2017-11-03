@@ -58,13 +58,5 @@
            value="<% out.print(new String(resourceBundle.getString("register").getBytes("ISO-8859-1"),"UTF-8")); %>"/>
 </form>
 
-<%--change language--%>
-
-<%--<form method="get" action="login">--%>
-    <%--<input type="submit"--%>
-           <%--value="<%out.print(new String(resourceBundle.getString("Change_Language").getBytes("ISO-8859-1"),"UTF-8"));%>"/>--%>
-<%--</form>--%>
-
-
 </body>
 </html>
