@@ -1,0 +1,6 @@
+2017-11-03 21:23:29 INFO  UserDao:26 - New order of periodical successfully added
+2017-11-03 21:23:29 INFO  UserDao:26 - New order of periodical successfully added
+2017-11-03 21:23:29 INFO  UserDao:70 - Order Periodical "42" with 2 successfully deleted
+2017-11-03 21:23:29 INFO  UserDao:70 - Order Periodical "1" with 0 successfully deleted
+2017-11-03 21:23:29 INFO  UserDao:52 - Order periodical "2" by 2 successfully updated
+2017-11-03 21:23:29 INFO  UserDao:52 - Order periodical "0" by 1 successfully updated
