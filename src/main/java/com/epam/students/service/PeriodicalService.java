@@ -14,12 +14,11 @@ public class PeriodicalService {
         periodicalDao = new PeriodicalDao();
     }
 
-    public void addPeriodical(){
-
+    public void addPeriodical(Periodical periodical){
+        periodicalDao.create(periodical);
     }
 
-
     public List<Periodical> getAll() {
-       return periodicalDao.getAll();
+        return periodicalDao.getAll();
     }
 }
