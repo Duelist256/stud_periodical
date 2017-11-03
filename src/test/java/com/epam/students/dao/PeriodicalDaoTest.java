@@ -22,7 +22,7 @@ public class PeriodicalDaoTest {
         PeriodicalDao periodicalDao = new PeriodicalDao();
         int initialSize = periodicalDao.getAll().size();
 
-        Periodical periodical = new Periodical.Builder()
+        Periodical periodical = Periodical.newBuilder()
         .title("Title1234")
         .description("Description1234")
         .publisher("Publisher1234")

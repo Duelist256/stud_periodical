@@ -7,11 +7,8 @@ public class Order {
     private int idPeriodical;
     private String status;
 
-    private Order(Builder builder){
-        this.id = builder.id;
-        this.idUser = builder.idUser;
-        this.idPeriodical = builder.idPeriodical;
-        this.status = builder.status;
+    private Order(){
+
     }
 
     public int getId() {
@@ -30,35 +27,38 @@ public class Order {
         return status;
     }
 
-    public static class Builder{
+    public static Builder newBuilder() {
+        return new Order().new Builder();
+    }
 
-        private int id;
-        private int idUser;
-        private int idPeriodical;
-        private String status;
+    public class Builder{
+
+        private Builder(){
+
+        }
 
         public Builder id(int id){
-            this.id = id;
+            Order.this.id = id;
             return this;
         }
 
         public Builder idUser(int idUser){
-           this.idUser = idUser;
+           Order.this.idUser = idUser;
            return this;
         }
 
         public Builder status(String status){
-            this.status = status;
+            Order.this.status = status;
             return this;
         }
 
         public Builder idPeriodical(int idPeriodical){
-            this.idPeriodical = idPeriodical;
+            Order.this.idPeriodical = idPeriodical;
             return this;
         }
 
         public Order build(){
-            return new Order(this);
+          return Order.this;
         }
 
     }

@@ -1,6 +1,7 @@
 package com.epam.students.model;
 
 public class User {
+
     private int id;
     private String login;
     private String password;
@@ -8,13 +9,8 @@ public class User {
     private String name;
     private int isAdmin;
 
-    private User(Builder builder){
-        this.id = builder.id;
-        this.login = builder.login;
-        this.password = builder.password;
-        this.salt = builder.salt;
-        this.name = builder.salt;
-        this.isAdmin = builder.isAdmin;
+    private User(){
+
     }
 
     public int getId() {
@@ -41,47 +37,48 @@ public class User {
         return isAdmin;
     }
 
-    public static class Builder{
+    public static Builder newBuilder(){
+        return new User().new Builder();
+    }
 
-        private int id;
-        private String login;
-        private String password;
-        private String salt;
-        private String name;
-        private int isAdmin;
+    public class Builder{
+
+        private Builder(){
+
+        }
 
         public Builder id(int id){
-            this.id = id;
+            User.this.id = id;
             return this;
         }
 
         public Builder login(String login){
-            this.login = login;
+            User.this.login = login;
             return this;
         }
 
         public Builder password(String password){
-            this.password = password;
+            User.this.password = password;
             return this;
         }
 
         public Builder salt(String salt){
-            this.salt = salt;
+            User.this.salt = salt;
             return this;
         }
 
         public Builder isAdmin(int isAdmin){
-            this.isAdmin = isAdmin;
+            User.this.isAdmin = isAdmin;
             return this;
         }
 
         public Builder name(String name){
-           this.name = name;
+           User.this.name = name;
            return this;
         }
 
         public User build(){
-            return new User(this);
+            return User.this;
         }
     }
 

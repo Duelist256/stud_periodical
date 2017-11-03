@@ -6,6 +6,7 @@ import com.epam.students.model.User;
 import java.security.NoSuchAlgorithmException;
 
 public class UserService {
+
     private UserDao userDao;
 
     public UserService() {
@@ -45,7 +46,7 @@ public class UserService {
             e.printStackTrace();
         }
 
-        User newUser = new User.Builder()
+        User newUser = User.newBuilder()
                 .name(name)
                 .login(login)
                 .salt(salt)

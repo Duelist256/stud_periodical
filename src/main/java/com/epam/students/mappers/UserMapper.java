@@ -7,7 +7,8 @@ import java.sql.SQLException;
 
 public class UserMapper {
     public static User mapRow(ResultSet rs) throws SQLException {
-        User user =  new User.Builder().id(rs.getInt("id"))
+        User user = User.newBuilder()
+                .id(rs.getInt("id"))
                 .login(rs.getString("login"))
                 .password(rs.getString("password"))
                 .salt(rs.getString("salt"))

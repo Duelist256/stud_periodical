@@ -49,7 +49,7 @@ public class UserDao implements Dao<User> {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                user = new User.Builder().id(resultSet.getInt("id"))
+                user = User.newBuilder().id(resultSet.getInt("id"))
                         .login(resultSet.getString("login"))
                         .password(resultSet.getString("password"))
                         .salt(resultSet.getString("salt"))

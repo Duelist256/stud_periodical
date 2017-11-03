@@ -18,11 +18,11 @@ public class UserDaoTest {
         String password = PasswordUtil.hashPassword("test", salt);
         String name = "TestUser10";
 
-        User user = new User.Builder()
-        .login(login)
-        .password(password)
-        .salt(salt)
-        .name(name)
+        User user = User.newBuilder()
+                .login(login)
+                .password(password)
+                .salt(salt)
+                .name(name)
                 .build();
 
         UserDao userDao = new UserDao();
@@ -44,12 +44,12 @@ public class UserDaoTest {
         String newPassword = "user1";
         String newSalt = "salt1";
         String newName = "USER1";
-        User user = new User.Builder()
-        .id(1)
-        .login(newLogin)
-        .password(newPassword)
-        .salt(newSalt)
-        .name(newName)
+        User user = User.newBuilder()
+                .id(1)
+                .login(newLogin)
+                .password(newPassword)
+                .salt(newSalt)
+                .name(newName)
                 .build();
 
         UserDao userDao = new UserDao();
