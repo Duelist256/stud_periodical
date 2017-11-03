@@ -52,6 +52,7 @@ public class BoxServlet extends HttpServlet {
                 cookie.setValue("");
                 cookie.setMaxAge(0);
                 resp.addCookie(cookie);
+                break;
             }
         }
         req.setAttribute("pl", periodicalList);
