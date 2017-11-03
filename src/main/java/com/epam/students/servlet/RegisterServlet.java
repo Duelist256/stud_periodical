@@ -21,29 +21,26 @@ public class RegisterServlet extends HttpServlet {
         userService = new UserService();
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
-        String login = request.getParameter("email");
-        String password = request.getParameter("pass");
+    protected void doPost(HttpServletRequest rs, HttpServletResponse response) throws ServletException, IOException {
 
         String salt = PasswordUtil.generateSalt();
         String hashedPassword = null;
 
         try {
-            hashedPassword = PasswordUtil.hashPassword(password, salt);
+            hashedPassword = PasswordUtil.hashPassword(rs.getParameter("pass"), salt);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
 
         User user = User.newBuilder()
-                .name(name)
-                .login(login)
+                .name(rs.getParameter("name"))
+                .login(rs.getParameter("email"))
                 .salt(salt)
                 .password(hashedPassword)
                 .build();
 
         userService.addUser(user);
 
-        request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+        rs.getServletContext().getRequestDispatcher("/login.jsp").forward(rs, response);
     }
 }

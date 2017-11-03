@@ -20,21 +20,15 @@ public class PeriodicalServlet extends HttpServlet {
         periodicalService = new PeriodicalService();
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String title = request.getParameter("title");
-        String description = request.getParameter("description");
-        String publisher = request.getParameter("publisher");
-        String genre = request.getParameter("publisher");
-        String price = request.getParameter("price");
-        String imgPath = request.getParameter("img_path");
+    protected void doPost(HttpServletRequest rs, HttpServletResponse response) throws ServletException, IOException {
 
         Periodical periodical = Periodical.newBuilder()
-                .title(title)
-                .description(description)
-                .publisher(publisher)
-                .genre(genre)
-                .price(price)
-                .imgPath(imgPath)
+                .title(rs.getParameter("title"))
+                .description(rs.getParameter("description"))
+                .publisher(rs.getParameter("publisher"))
+                .genre(rs.getParameter("publisher"))
+                .price(rs.getParameter("price"))
+                .imgPath(rs.getParameter("img_path"))
                 .build();
 
         periodicalService.addPeriodical(periodical);
