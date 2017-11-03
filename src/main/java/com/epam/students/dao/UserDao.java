@@ -62,6 +62,7 @@ public class UserDao implements Dao<User> {
 
     public User readByEmail(String email) {
         String query = "select * from inform_system.users where login = ?";
+        User user = null;
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -70,8 +71,13 @@ public class UserDao implements Dao<User> {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                User user = UserMapper.mapRow(resultSet);
-                logger.info("User " + user.getLogin() + " successfully read");
+                user = User.newBuilder().id(resultSet.getInt("id"))
+                        .login(resultSet.getString("login"))
+                        .password(resultSet.getString("password"))
+                        .salt(resultSet.getString("salt"))
+                        .name(resultSet.getString("name"))
+                        .isAdmin(resultSet.getInt("isAdmin"))
+                        .build();
                 return user;
             } else {
                 return null;

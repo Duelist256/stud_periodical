@@ -7,14 +7,14 @@ import java.sql.SQLException;
 
 public class UserMapper {
     public static User mapRow(ResultSet rs) throws SQLException {
-        User user = new User();
-
-        user.setId(rs.getInt("id"));
-        user.setLogin(rs.getString("login"));
-        user.setPassword(rs.getString("password"));
-        user.setSalt(rs.getString("salt"));
-        user.setName(rs.getString("name"));
-        user.setIsAdmin(rs.getInt("isAdmin"));
+        User user = User.newBuilder()
+                .id(rs.getInt("id"))
+                .login(rs.getString("login"))
+                .password(rs.getString("password"))
+                .salt(rs.getString("salt"))
+                .name(rs.getString("name"))
+                .isAdmin(rs.getInt("isAdmin"))
+                .build();
 
         return user;
     }

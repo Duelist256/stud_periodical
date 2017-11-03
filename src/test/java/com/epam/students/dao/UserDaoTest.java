@@ -18,11 +18,12 @@ public class UserDaoTest {
         String password = PasswordUtil.hashPassword("test", salt);
         String name = "TestUser10";
 
-        User user = new User();
-        user.setLogin(login);
-        user.setPassword(password);
-        user.setSalt(salt);
-        user.setName(name);
+        User user = User.newBuilder()
+                .login(login)
+                .password(password)
+                .salt(salt)
+                .name(name)
+                .build();
 
         UserDao userDao = new UserDao();
         userDao.create(user);
@@ -38,17 +39,18 @@ public class UserDaoTest {
 
     @Test
     public void updateAndReadUser() throws Exception {
-        User user = new User();
+
         String newLogin = "user1@test.com";
         String newPassword = "user1";
         String newSalt = "salt1";
         String newName = "USER1";
-
-        user.setId(1);
-        user.setLogin(newLogin);
-        user.setPassword(newPassword);
-        user.setSalt(newSalt);
-        user.setName(newName);
+        User user = User.newBuilder()
+                .id(1)
+                .login(newLogin)
+                .password(newPassword)
+                .salt(newSalt)
+                .name(newName)
+                .build();
 
         UserDao userDao = new UserDao();
         userDao.update(user);
