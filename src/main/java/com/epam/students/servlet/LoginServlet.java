@@ -1,5 +1,6 @@
 package com.epam.students.servlet;
 
+import com.epam.students.model.User;
 import com.epam.students.service.UserService;
 
 import javax.servlet.ServletException;
@@ -40,8 +41,14 @@ public class LoginServlet extends HttpServlet {
         String login = request.getParameter("email");
         String password = request.getParameter("pass");
 
-        if (userService.isUserCorrect(login, password)) {
-            response.sendRedirect("/issue.jsp");
+        User user = userService.checkUser(login, password);
+        if (user != null) {
+
+            if (user.isAdmin() == 1) {
+                response.sendRedirect("/adminpage.jsp");
+            } else {
+                response.sendRedirect("/issue.jsp");
+            }
         } else {
             request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         }

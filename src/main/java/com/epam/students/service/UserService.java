@@ -13,16 +13,16 @@ public class UserService {
         userDao = new UserDao();
     }
 
-    public boolean isUserCorrect(String email, String password) {
+    public User checkUser(String email, String password) {
 
         if (email == null || password == null) {
-            return false;
+            return null;
         }
 
         User user = userDao.readByEmail(email);
 
         if (user == null) {
-            return false;
+            return null;
         }
 
         String checkedPassword = null;
@@ -31,8 +31,13 @@ public class UserService {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-
-        return checkedPassword.equals(user.getPassword());
+        
+        if (checkedPassword.equals(user.getPassword())) {
+            return user;
+        } else {
+            return null;
+        }
+        
     }
 
     public void addUser(String login, String password, String name) {
