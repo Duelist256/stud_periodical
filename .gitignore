@@ -1,3 +1,4 @@
 target/
 .idea/
 *.iml
+logs/INFO_LOG.log

@@ -20,7 +20,6 @@ public class BuyServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
-        System.out.println(id + " <----");
         Cookie cookie = new Cookie("id" + String.valueOf(count), id);
         count++;
         cookie.setMaxAge(60 * 10);

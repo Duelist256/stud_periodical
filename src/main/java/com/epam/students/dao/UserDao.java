@@ -19,7 +19,7 @@ public class UserDao implements Dao<User> {
     @Override
     public void create(User newUser) {
         String query =
-                "insert into inform_system.users (name, login, password, salt) values (?, ?, ?, ?)";
+                "INSERT INTO inform_system.users (name, login, password, salt) VALUES (?, ?, ?, ?)";
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -39,7 +39,7 @@ public class UserDao implements Dao<User> {
 
     @Override
     public User read(int id) {
-        String query = "select * from inform_system.users where id = ?";
+        String query = "SELECT * FROM inform_system.users WHERE id = ?";
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -61,7 +61,7 @@ public class UserDao implements Dao<User> {
     }
 
     public User readByEmail(String email) {
-        String query = "select * from inform_system.users where login = ?";
+        String query = "SELECT * FROM inform_system.users WHERE login = ?";
         User user = null;
 
         try (Connection connection = DBConnection.getConnection();
@@ -129,7 +129,7 @@ public class UserDao implements Dao<User> {
 
     @Override
     public List<User> getAll() {
-        String query = "select * from inform_system.users";
+        String query = "SELECT * FROM inform_system.users";
 
         List<User> users = new ArrayList<>();
 

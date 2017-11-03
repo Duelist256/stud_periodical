@@ -15,12 +15,11 @@ import java.util.List;
 
 public class OrderDao implements Dao<Order> {
 
-    private final static Logger logger = Logger.getLogger(UserDao.class);
+    private final static Logger logger = Logger.getLogger(OrderDao.class);
 
     @Override
     public void create(Order newOrder) {
-        String query = "INSERT INTO inform_system.orders " +
-                "(id_user, date_order, status)" + "VALUES (?,?,?)";
+        String query = "INSERT INTO inform_system.orders (id_user, date_order, status) VALUES (?,?,?)";
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -46,7 +45,7 @@ public class OrderDao implements Dao<Order> {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 Order order = OrderMapper.mapRow(resultSet);
-                logger.info("Order done \"" + order.getIdUser() + "\" by "
+                logger.info("Order done " + order.getIdUser() + " by "
                         + order.getDate() + " successfully read");
                 return order;
             } else {
@@ -72,7 +71,7 @@ public class OrderDao implements Dao<Order> {
             preparedStatement.setString(4, String.valueOf(order.getId()));
 
             preparedStatement.executeUpdate();
-            logger.info("Order \"" + order.getId() + "\" by "
+            logger.info("Order " + order.getId() + " by "
                     + order.getIdUser() + " successfully updated");
         } catch (SQLException e) {
             logger.error("Failed to update order. Cause: " + e);
@@ -90,7 +89,7 @@ public class OrderDao implements Dao<Order> {
 
             preparedStatement.setInt(1, order.getId());
             preparedStatement.executeUpdate();
-            logger.info("Order id =  \"" + order.getId() + "\" by user "
+            logger.info("Order id = " + order.getId() + " by user "
                     + order.getIdUser() + " successfully deleted");
         } catch (SQLException e) {
             logger.error("Failed to delete order. Cause: " + e);

@@ -19,12 +19,7 @@ public class BoxServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
-        List<Periodical> periodicalList = new ArrayList<>();
-        for(Periodical periodical: periodicalList){
-            periodicalList.remove(periodical);
-        }
+        periodicalList.clear();
 
         List<Cookie> cookieList = new ArrayList<>();
         Cookie[] cookies = req.getCookies();
@@ -35,7 +30,6 @@ public class BoxServlet extends HttpServlet {
                 continue;
             }
         }
-
         req.setAttribute("pl", periodicalList);
         req.getRequestDispatcher("/mybox.jsp").forward(req, resp);
 
