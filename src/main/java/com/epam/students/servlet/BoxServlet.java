@@ -15,10 +15,16 @@ import java.util.*;
 
 @WebServlet(name = "BoxServlet", urlPatterns = "/mybox")
 public class BoxServlet extends HttpServlet {
+   List<Periodical> periodicalList = new ArrayList<>();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
         List<Periodical> periodicalList = new ArrayList<>();
-        PeriodicalDao periodical = new PeriodicalDao();
+        for(Periodical periodical: periodicalList){
+            periodicalList.remove(periodical);
+        }
 
         List<Cookie> cookieList = new ArrayList<>();
         Cookie[] cookies = req.getCookies();
@@ -34,5 +40,26 @@ public class BoxServlet extends HttpServlet {
         req.getRequestDispatcher("/mybox.jsp").forward(req, resp);
 
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        Cookie[] cookies = req.getCookies();
+        String deleteID = req.getParameter("delete");
+
+        for(Cookie cookie : cookies){
+            if (cookie.getValue().equals(deleteID)) {
+                cookie.setPath("/");
+                cookie.setValue("");
+                cookie.setMaxAge(0);
+                resp.addCookie(cookie);
+            }
+        }
+        req.setAttribute("pl", periodicalList);
+        req.getRequestDispatcher("/mybox.jsp").forward(req, resp);
+
+    }
+
+
+
 
 }
