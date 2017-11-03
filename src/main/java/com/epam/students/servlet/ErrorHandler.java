@@ -24,11 +24,11 @@ public class ErrorHandler extends HttpServlet {
 
         switch (statusCode){
             case 403:
-                req.getRequestDispatcher("/403").forward(req, resp); break;
+                req.getRequestDispatcher("/403.html").forward(req, resp); break;
             case 404:
-                req.getRequestDispatcher("/404").forward(req, resp); break;
+                req.getRequestDispatcher("/404.html").forward(req, resp); break;
             default:
-                req.getRequestDispatcher("/500").forward(req, resp); break;
+                req.getRequestDispatcher("/500.html").forward(req, resp); break;
         }
     }
 }
