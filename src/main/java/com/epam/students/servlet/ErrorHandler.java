@@ -22,13 +22,12 @@ public class ErrorHandler extends HttpServlet {
     private void handle(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer statusCode = (Integer) req.getAttribute("javax.servlet.error.status_code");
 
-        switch (statusCode){
-            case 403:
-                resp.sendRedirect("/403.html"); break;
-            case 404:
-                resp.sendRedirect("/404.html"); break;
-            default:
-                resp.sendRedirect("/500.html"); break;
+        if (statusCode.equals(403)) {
+            resp.sendRedirect("/403.html");
+        } else if (statusCode.equals(404)) {
+            resp.sendRedirect("/404.html");
+        } else {
+            resp.sendRedirect("/500.html");
         }
     }
 }
