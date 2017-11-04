@@ -2,6 +2,7 @@ package com.epam.students.servlet;
 
 import com.epam.students.service.UserService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,6 +44,7 @@ public class LoginServlet extends HttpServlet {
         if (userService.isUserCorrect(login, password)) {
             response.sendRedirect("/issue.jsp");
         } else {
+            request.setAttribute("error","Invalid Username or Password");
             request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }

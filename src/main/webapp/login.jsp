@@ -44,6 +44,10 @@
            value="<%out.print(new String(resourceBundle.getString("Change_Language").getBytes("ISO-8859-1"),"UTF-8"));%>"/>
 </form>
 
-
+<%
+    String login_msg=(String)request.getAttribute("error");
+    if(login_msg!=null)
+        out.println("<font color=red size=4px>"+login_msg+"</font>");
+%>
 </body>
 </html>
