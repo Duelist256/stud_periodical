@@ -18,10 +18,11 @@
 </center>
 
 <div align="center">
-    <form action="/new" method="post">
-        <input type="submit" value='Add New Periodical'>
+    <form action="/adminpage" method="post">
+        <input type="submit" value="Add New Periodical">
+        <input type="hidden" name='action' value="new">
     </form>
-    <form action="/adminpage" method="get">
+    <form action="/adminpage" method="post">
         <input type="submit" value='Refresh List'>
     </form>
     <table border="1" cellpadding="5">
@@ -46,13 +47,15 @@
                 <td><c:out value="${periodical.getPrice()}" /></td>
                 <td><c:out value="${periodical.getImgPath()}" /></td>
                 <td>
-                    <form action="/edit" method="post">
+                    <form action="/adminpage" method="post">
+                        <input type="hidden" name="action" value='edit'>
                         <input type="hidden" name="id" value='${periodical.getId()}'>
                         <input type="submit" value='Edit'>
                     </form>
                 </td>
                 <td>
-                    <form action="/delete" method="post">
+                    <form action="/adminpage" method="post">
+                        <input type="hidden" name="action" value='delete'>
                         <input type="hidden" name="delete" value='${periodical.getId()}'>
                         <input type="submit" value='Delete'>
                     </form>

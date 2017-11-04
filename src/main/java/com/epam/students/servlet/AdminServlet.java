@@ -13,34 +13,35 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/adminpage", "/new", "/insert", "/edit", "/update", "/delete"})
+@WebServlet(urlPatterns = {"/adminpage"})
 public class AdminServlet extends javax.servlet.http.HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, java.io.IOException {
 
-        String servletPath = request.getServletPath();
-        System.out.println("in post: " + servletPath);
+        String action = request.getParameter("action");
 
         try {
-            switch (servletPath) {
-                case "/new":
-                    showNewForm(request, response);
-                    break;
-                case "/insert":
-                    insertPeriodical(request, response);
-                    break;
-                case "/edit":
-                    showEditForm(request, response);
-                    break;
-                case "/update":
-                    updatePeriodical(request, response);
-                    break;
-                case "/delete":
-                    int id = Integer.parseInt(request.getParameter("delete"));
-                    deletePeriodical(request, response, id);
-                    break;
-                default:
-                    showPeriodicals(request, response);
-                    break;
+
+            if (action == null) {
+                showPeriodicals(request, response);
+            } else {
+                switch (action) {
+                    case "new":
+                        showNewForm(request, response);
+                        break;
+                    case "insert":
+                        insertPeriodical(request, response);
+                        break;
+                    case "edit":
+                        showEditForm(request, response);
+                        break;
+                    case "update":
+                        updatePeriodical(request, response);
+                        break;
+                    case "delete":
+                        int id = Integer.parseInt(request.getParameter("delete"));
+                        deletePeriodical(request, response, id);
+                        break;
+                }
             }
         } catch (SQLException e) {
             throw new ServletException(e);
@@ -84,7 +85,7 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
         String price = request.getParameter("price");
         String imgPath = request.getParameter("imgPath");
 
-        Periodical  periodical = Periodical.newBuilder()
+        Periodical periodical = Periodical.newBuilder()
                 .title(title)
                 .description(description)
                 .publisher(publisher)

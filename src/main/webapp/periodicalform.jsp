@@ -21,10 +21,12 @@
         <input type="submit" value='Back To List'>
     </form>
     <c:if test="${periodical != null}">
-    <form action="/update" method="post">
+    <form action="/adminpage" method="post">
+        <input type="hidden" name="action" value="update">
         </c:if>
         <c:if test="${periodical == null}">
-        <form action="/insert" method="post">
+        <form action="/adminpage" method="post">
+            <input type="hidden" name="action" value="insert">
             </c:if>
             <table border="1" cellpadding="5">
                 <caption>
