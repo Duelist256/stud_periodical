@@ -32,7 +32,8 @@ public class PeriodicalDao implements Dao<Periodical> {
             preparedStatement.setString(6, newPeriodical.getImgPath());
             preparedStatement.executeUpdate();
 
-            logger.info("New periodical successfully added");
+            logger.info("New periodical " + newPeriodical.getTitle() +
+                   " by " +newPeriodical.getPublisher() +" successfully added");
         } catch (SQLException e) {
             logger.error("Failed to create periodical. Cause: " + e);
             throw new RuntimeException(e);
