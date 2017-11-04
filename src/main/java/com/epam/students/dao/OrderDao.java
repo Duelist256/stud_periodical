@@ -24,11 +24,11 @@ public class OrderDao implements Dao<Order> {
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, String.valueOf(newOrder.getIdUser()));
-            preparedStatement.setString(2, String.valueOf(newOrder.getDate()));
+            preparedStatement.setTimestamp(2, newOrder.getDate());
             preparedStatement.setString(3, newOrder.getStatus());
             preparedStatement.executeUpdate();
 
-            logger.info("New order successfully added");
+            logger.info("New order successfully added" + newOrder.getId() + " "+ newOrder.getIdUser());
         } catch (SQLException e) {
             logger.error("Failed to create order. Cause: " + e);
             throw new RuntimeException(e);
@@ -36,8 +36,8 @@ public class OrderDao implements Dao<Order> {
     }
 
     @Override
-    public Order read(int id) {
-        String query = "SELECT * FROM inform_system.orders WHERE id = ?";
+    public Order read(int id) { //to get order where id = idUser
+        String query = "SELECT * FROM inform_system.orders WHERE id_user= ?";
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
@@ -66,7 +66,7 @@ public class OrderDao implements Dao<Order> {
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, String.valueOf(order.getIdUser()));
-            preparedStatement.setString(2, String.valueOf(order.getDate()));
+            preparedStatement.setTimestamp(2, order.getDate());
             preparedStatement.setString(3, order.getStatus());
             preparedStatement.setString(4, String.valueOf(order.getId()));
 
@@ -120,4 +120,29 @@ public class OrderDao implements Dao<Order> {
         }
         return orderList;
     }
+
+    public List<Order> getAllByIdUser(int id){
+        String query = "SELECT * FROM inform_system.orders WHERE id_user=?";
+        List<Order> orderList = new ArrayList<>();
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Order order = OrderMapper.mapRow(resultSet);
+                orderList.add(order);
+            }
+            logger.info("Orders list by user successfully gotten");
+
+        } catch (SQLException e) {
+            logger.error("Failed to get orders. Cause: " + e);
+            throw new RuntimeException(e);
+        }
+        return orderList;
+    }
+
+
 }

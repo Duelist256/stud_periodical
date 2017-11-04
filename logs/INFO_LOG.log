@@ -1,6 +1,8 @@
-2017-11-04 01:19:39 INFO  OrderPeriodicalDao:29 - New order of periodical successfully added
-2017-11-04 01:19:39 INFO  OrderPeriodicalDao:29 - New order of periodical successfully added
-2017-11-04 01:19:39 INFO  OrderPeriodicalDao:86 - Order Periodical42 with 2 successfully deleted
-2017-11-04 01:19:39 INFO  OrderPeriodicalDao:86 - Order Periodical1 with 0 successfully deleted
-2017-11-04 01:19:39 INFO  OrderPeriodicalDao:68 - Order periodical 2 by 2 successfully updated
-2017-11-04 01:19:39 INFO  OrderPeriodicalDao:68 - Order periodical 0 by 1 successfully updated
+2017-11-04 23:07:42 INFO  OrderDao:141 - Orders list by user successfully gotten
+2017-11-04 23:07:42 INFO  OrderDao:77 - Order 0 by 1 successfully updated
+2017-11-04 23:07:42 INFO  OrderDao:34 - New order successfully added
+2017-11-04 23:07:42 INFO  OrderDao:34 - New order successfully added
+2017-11-04 23:07:42 INFO  OrderDao:34 - New order successfully added
+2017-11-04 23:07:42 INFO  OrderDao:34 - New order successfully added
+2017-11-04 23:07:42 INFO  OrderDao:95 - Order id = 0 by user 1 successfully deleted
+2017-11-04 23:07:42 INFO  OrderDao:118 - Orders successfully gotten

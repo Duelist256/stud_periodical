@@ -32,6 +32,9 @@ public class LoginServlet extends HttpServlet {
     }
 
     private UserService userService;
+    private Cookie cookieUserName;
+    private Cookie cookieUserId;
+    private HttpSession session;  //?
 
     public LoginServlet() {
         userService = new UserService();
@@ -41,16 +44,22 @@ public class LoginServlet extends HttpServlet {
         String login = request.getParameter("email");
         String password = request.getParameter("pass");
 
-        Cookie cookieUser;
-        HttpSession session;
-
         if (userService.isUserCorrect(login, password)) {
             UserDao userDao = new UserDao();
-            String name = userDao.readByEmail(login).getName();
+
             if (login != null) {
-                cookieUser = new Cookie("user", name);
-                cookieUser.setMaxAge(60 * 10); //5 mins
-                response.addCookie(cookieUser);
+                String name = userDao.readByEmail(login).getName();
+                int id = userDao.readByEmail(login).getId();
+
+
+                cookieUserName = new Cookie("user", name);
+                cookieUserName.setMaxAge(60 * 3); //5 mins
+                response.addCookie(cookieUserName);
+
+                cookieUserId = new Cookie("userId", String.valueOf(userDao.readByEmail(login).getId()));
+                cookieUserName.setMaxAge(60 * 3); //5 mins
+                response.addCookie(cookieUserName);
+
                 session = request.getSession(true);
                 session.setAttribute("userName", name);
             }

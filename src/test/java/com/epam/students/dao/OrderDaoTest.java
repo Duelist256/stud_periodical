@@ -44,4 +44,17 @@ public class OrderDaoTest {
         Order ordered1 = Order.newBuilder().idUser(1).date(new Timestamp(new Date().getTime())).status("Sold").build();
         orderDao.update(ordered1);
     }
+
+    @Test
+    public void getAllByIdUserTest() throws Exception {
+        OrderDao orderDao = new OrderDao();
+        Order ordered1 = Order.newBuilder().idUser(1).date(new Timestamp(new Date().getTime())).status("Sold").build();
+        Order ordered2 = Order.newBuilder().idUser(1).date(new Timestamp(new Date().getTime())).status("Sold").build();
+        Order ordered3 = Order.newBuilder().idUser(1).date(new Timestamp(new Date().getTime())).status("Sold").build();
+        Order ordered4 = Order.newBuilder().idUser(1).date(new Timestamp(new Date().getTime())).status("Sold").build();
+
+        orderDao.getAllByIdUser(1);
+
+
+    }
 }
