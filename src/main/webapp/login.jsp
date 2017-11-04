@@ -52,6 +52,10 @@
            name="changeLang" value="<fmt:message key="changeLanguage"/>"/>
 </form>
 
-
+<%
+    String login_msg=(String)request.getAttribute("error");
+    if(login_msg!=null)
+        out.println("<font color=red size=4px>"+login_msg+"</font>");
+%>
 </body>
 </html>
