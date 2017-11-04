@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
         if (user != null) {
 
             if (user.isAdmin() == 1) {
-                response.sendRedirect("/adminpage.jsp");
+                response.sendRedirect("/adminpage");
             } else {
                 response.sendRedirect("/issue.jsp");
             }
