@@ -15,6 +15,13 @@ import java.util.List;
 
 @WebServlet(urlPatterns = {"/adminpage"})
 public class AdminServlet extends javax.servlet.http.HttpServlet {
+
+    private PeriodicalService periodicalService;
+
+    public AdminServlet() {
+        periodicalService = new PeriodicalService();
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, java.io.IOException {
 
         String action = request.getParameter("action");
@@ -54,7 +61,7 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
 
     private void showPeriodicals(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        List<Periodical> periodicals = new PeriodicalService().getAll();
+        List<Periodical> periodicals = periodicalService.getAll();
         request.setAttribute("periodicals", periodicals);
         RequestDispatcher dispatcher = request.getRequestDispatcher("adminpage.jsp");
         dispatcher.forward(request, response);
@@ -69,7 +76,7 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Periodical periodical = new PeriodicalDao().read(id);
+        Periodical periodical = periodicalService.getById(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("periodicalform.jsp");
         request.setAttribute("periodical", periodical);
         dispatcher.forward(request, response);
@@ -93,7 +100,7 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
                 .price(price)
                 .imgPath(imgPath)
                 .build();
-        new PeriodicalDao().create(periodical);
+        periodicalService.addPeriodical(periodical);
         response.sendRedirect("/adminpage");
     }
 
@@ -116,14 +123,14 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
                 .price(price)
                 .imgPath(imgPath)
                 .build();
-        new PeriodicalDao().update(periodical);
+        periodicalService.updatePeriodical(periodical);
         response.sendRedirect("/adminpage");
     }
 
     private void deletePeriodical(HttpServletRequest request, HttpServletResponse response, int id)
             throws SQLException, IOException {
         Periodical periodical = Periodical.newBuilder().id(id).build();
-        new PeriodicalDao().delete(periodical);
+        periodicalService.deletePeriodical(periodical);
         response.sendRedirect("/adminpage");
 
     }
