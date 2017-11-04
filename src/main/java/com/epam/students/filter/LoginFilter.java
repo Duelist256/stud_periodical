@@ -1,4 +1,4 @@
-package com.epam.students.servlet;
+package com.epam.students.filter;
 
 import com.epam.students.model.User;
 import com.epam.students.service.UserService;
@@ -18,6 +18,7 @@ public class LoginFilter implements Filter {
         String password = req.getParameter("pass");
 
         UserService userService = new UserService();
+
         HttpServletResponse response = (HttpServletResponse) resp;
 
         User user = userService.checkUser(login, password);
