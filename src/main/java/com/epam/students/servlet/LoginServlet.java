@@ -38,20 +38,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String login = request.getParameter("email");
-        String password = request.getParameter("pass");
 
-        User user = userService.checkUser(login, password);
-        if (user != null) {
-
-            if (user.isAdmin() == 1) {
-                response.sendRedirect("/adminpage");
-            } else {
-                response.sendRedirect("/issue.jsp");
-            }
-        } else {
-            request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-        }
     }
 
     @Override
@@ -66,7 +53,4 @@ public class LoginServlet extends HttpServlet {
         }
 
     }
-
-
-    //    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { }
 }
