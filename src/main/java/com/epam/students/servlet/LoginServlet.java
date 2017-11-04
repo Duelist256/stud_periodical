@@ -14,11 +14,6 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     private static String language = "ru";
     private static String country = "US";
-    private UserService userService;
-
-    public LoginServlet() {
-        userService = new UserService();
-    }
 
     public static String getLanguage() {
         return language;
