@@ -1,6 +1,4 @@
-<%@ page import="com.epam.students.servlet.LoginServlet" %>
-<%@ page import="java.util.Locale" %>
-<%@ page import="java.util.ResourceBundle" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Duelist
   Date: 05.11.2017
@@ -14,11 +12,7 @@
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="resources" />
 <link rel="stylesheet" href="css/style.css">
-<%--<%--%>
-    <%--String language = LoginServlet.getLanguage();--%>
-    <%--String country = LoginServlet.getCountry();--%>
-    <%--ResourceBundle resourceBundle = ResourceBundle.getBundle("resources", new Locale(language, country));--%>
-<%--%>--%>
+
 <html lang="${language}">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -30,12 +24,10 @@
     <c:when test="${reset}">
         <form method="post" action="resetPassword">
             <input type="hidden" name="emailChange" value="approveChange">
-            <%--<td align="right"><% out.print(new String(resourceBundle.getString("newpassword").getBytes("ISO-8859-1"), "UTF-8"));%></td>--%>
             <td align="right"><fmt:message key="newpassword" /></td>
             <td align="left"><input class="login-field" type="password" name="pass"/></td>
             <hr>
             <td align="right"><input type="submit" value=<fmt:message key="approve" />>
-                                     <%--value=<% out.print(new String(resourceBundle.getString("approve").getBytes("ISO-8859-1"),"UTF-8"));%>>--%>
             </td>
         </form>
     </c:when>
@@ -43,7 +35,6 @@
         <%-- Email input--%>
         <form method="post" action="resetPassword">
             <input type="hidden" name="emailChange" value="changeEmail">
-            <%--<td align="right"><% out.print(new String(resourceBundle.getString("email").getBytes("ISO-8859-1"), "UTF-8"));%></td>--%>
             <td align="right"><fmt:message key="email"/></td>
             <td align="left"><input class="login-field" type="text" name="email"/></td>
             <c:if test="${error != null}">
@@ -56,7 +47,6 @@
             <hr width="125%">
             <td align="right"><input type="submit"
                                      value=<fmt:message key="reset" />>
-                                     <%--value=<% out.print(new String(resourceBundle.getString("reset").getBytes("ISO-8859-1"),"UTF-8"));%>>--%>
             </td>
         </form>
     </c:otherwise>
