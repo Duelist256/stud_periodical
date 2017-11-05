@@ -33,8 +33,14 @@
 
 </form>
 <form method="post" action="register.jsp">
-    <input class="login-link" type="submit"
+    <input type="submit"
            value="<% out.print(new String(resourceBundle.getString("register").getBytes("ISO-8859-1"),"UTF-8")); %>"/>
+</form>
+
+
+<form method="post" action="/resetPassword">
+    <input type="submit"
+           value="<% out.print(new String(resourceBundle.getString("forgot").getBytes("ISO-8859-1"),"UTF-8")); %>"/>
 </form>
 
 <%--change language--%>
