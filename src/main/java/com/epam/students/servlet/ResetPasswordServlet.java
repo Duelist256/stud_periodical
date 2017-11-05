@@ -16,7 +16,6 @@ import java.security.NoSuchAlgorithmException;
 public class ResetPasswordServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("kek");
 
         boolean reset = false;
 
@@ -28,7 +27,6 @@ public class ResetPasswordServlet extends HttpServlet{
             return;
         }
 
-        System.out.println(emailChange);
         if (emailChange.equals("changeEmail")) {
 
             String email = req.getParameter("email");
@@ -66,10 +64,5 @@ public class ResetPasswordServlet extends HttpServlet{
 
             req.getServletContext().getRequestDispatcher("/login").forward(req,resp);
         }
-    }
-
-    @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPut(req, resp);
     }
 }
