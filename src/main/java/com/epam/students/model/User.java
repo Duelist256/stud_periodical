@@ -33,7 +33,7 @@ public class User {
         return name;
     }
 
-    public int getIsAdmin() {
+    public int isAdmin() {
         return isAdmin;
     }
 

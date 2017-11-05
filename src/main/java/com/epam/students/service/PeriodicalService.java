@@ -18,6 +18,18 @@ public class PeriodicalService {
         periodicalDao.create(periodical);
     }
 
+    public Periodical getById(int id){
+        return periodicalDao.read(id);
+    }
+
+    public void updatePeriodical(Periodical periodical){
+        periodicalDao.update(periodical);
+    }
+
+    public void deletePeriodical(Periodical periodical){
+        periodicalDao.delete(periodical);
+    }
+
     public List<Periodical> getAll() {
         return periodicalDao.getAll();
     }

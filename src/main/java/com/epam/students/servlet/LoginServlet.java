@@ -1,5 +1,6 @@
 package com.epam.students.servlet;
 
+import com.epam.students.model.User;
 import com.epam.students.service.UserService;
 
 import javax.servlet.ServletException;
@@ -13,11 +14,6 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     private static String language = "ru";
     private static String country = "US";
-    private UserService userService;
-
-    public LoginServlet() {
-        userService = new UserService();
-    }
 
     public static String getLanguage() {
         return language;
@@ -40,8 +36,15 @@ public class LoginServlet extends HttpServlet {
         String login = request.getParameter("email");
         String password = request.getParameter("pass");
 
-        if (userService.isUserCorrect(login, password)) {
-            response.sendRedirect("/issue.jsp");
+        UserService userService = new UserService();
+
+        User user = userService.checkUser(login, password);
+        if (user != null) {
+            if (user.isAdmin() == 1) {
+                response.sendRedirect("/adminpage");
+            } else {
+                response.sendRedirect("/issue.jsp");
+            }
         } else {
             request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         }
@@ -59,7 +62,4 @@ public class LoginServlet extends HttpServlet {
         }
 
     }
-
-
-    //    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { }
 }
