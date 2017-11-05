@@ -1,6 +1,5 @@
 package com.epam.students.servlet;
 
-import com.epam.students.dao.PeriodicalDao;
 import com.epam.students.model.Periodical;
 import com.epam.students.service.PeriodicalService;
 
