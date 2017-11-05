@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect("/issue.jsp");
             }
         } else {
-            request.setAttribute("error","Invalid Username or Password");
+            request.setAttribute("error",login);
             request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }
