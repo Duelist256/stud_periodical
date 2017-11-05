@@ -2,7 +2,6 @@ package com.epam.students.servlet;
 
 import com.epam.students.dao.OrderDao;
 import com.epam.students.dao.OrderPeriodicalDao;
-import com.epam.students.dao.PeriodicalDao;
 import com.epam.students.model.Order;
 import com.epam.students.model.OrderPeriodical;
 

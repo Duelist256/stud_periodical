@@ -14,11 +14,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.*;
 
 @WebServlet(name = "BoxServlet", urlPatterns = "/mybox")
 public class BoxServlet extends HttpServlet {
     List<Periodical> periodicalList = new ArrayList<>();
+    List<Periodical> boughtList = new ArrayList<>();
     int idUser;
 
     @Override
@@ -48,14 +50,12 @@ public class BoxServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         int delete = Integer.valueOf(req.getParameter("delete"));
-
         for (Periodical periodical : periodicalList) {
             if (periodical.getId() == delete) {
                 periodicalList.remove(periodical);
                 break;
             }
         }
-
         OrderDao orderDao = new OrderDao();
         OrderPeriodicalDao orderPeriodicalDao = new OrderPeriodicalDao();
         List<OrderPeriodical> all = orderPeriodicalDao.getAll();
@@ -73,6 +73,4 @@ public class BoxServlet extends HttpServlet {
         req.getRequestDispatcher("/mybox.jsp").forward(req, resp);
 
     }
-
-
 }
