@@ -24,6 +24,7 @@
     <c:when test="${reset}">
         <form method="post" action="resetPassword">
             <input type="hidden" name="emailChange" value="approveChange">
+            <input type="hidden" name="email" value="${useremail}">
             <td align="right"><fmt:message key="newpassword" /></td>
             <td align="left"><input class="login-field" type="password" name="pass"/></td>
             <hr>
@@ -35,6 +36,7 @@
         <%-- Email input--%>
         <form method="post" action="resetPassword">
             <input type="hidden" name="emailChange" value="changeEmail">
+
             <td align="right"><fmt:message key="email"/></td>
             <td align="left"><input class="login-field" type="text" name="email"/></td>
             <c:if test="${error != null}">

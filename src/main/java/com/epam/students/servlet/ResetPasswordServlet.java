@@ -32,7 +32,6 @@ public class ResetPasswordServlet extends HttpServlet {
         if (emailChange.equals("changeEmail")) {
 
             String email = req.getParameter("email");
-            req.getSession().setAttribute("email", email);
 
             UserDao userDao = new UserDao();
             User user = userDao.readByEmail(email);
@@ -41,6 +40,7 @@ public class ResetPasswordServlet extends HttpServlet {
                 req.setAttribute("error", "Invalid email or password");
             } else {
                 reset = !reset;
+                req.setAttribute("useremail", email);
             }
 
             req.setAttribute("reset", reset);
@@ -48,7 +48,7 @@ public class ResetPasswordServlet extends HttpServlet {
         }
 
         if (emailChange.equals("approveChange")) {
-            String email = (String) req.getSession().getAttribute("email");
+            String email = req.getParameter("email");
             String password = req.getParameter("pass");
 
             UserDao userDao = new UserDao();
@@ -73,7 +73,7 @@ public class ResetPasswordServlet extends HttpServlet {
 
             userDao.update(updatedUser);
 
-            req.getServletContext().getRequestDispatcher("/login").forward(req, resp);
+            resp.sendRedirect("/login");
         }
     }
 }
