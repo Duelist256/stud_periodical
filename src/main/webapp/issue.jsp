@@ -9,9 +9,25 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<script type="text/javascript" src="main.js"></script>
 <link href="css/bootstrap.css" rel="stylesheet">
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+    var RestGet = function (id) {
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:8080/bought?id=' + id,
+            dataType: 'json',
+            async: true,
+            success: function (result) {
+                alert('Answer' + result);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.status + ' ' + jqXHR.responseText);
+            }
+        });
+    }
+</script>
 
 <html>
 <head>
@@ -28,7 +44,7 @@
         <h2><% out.print(new String(resourceBundle.getString("catalog").getBytes("ISO-8859-1"), "UTF-8"));%></h2>
         <p align="right">
             <a href="/language?name=ru"><img src="img/Russia.png" width="40" height="40"
-                                                                alt="RU"></a>
+                                             alt="RU"></a>
 
             <a href="/language?name=en"><img src="img/United-Kingdom.png" width="40" height="40" alt="US">
 
@@ -79,9 +95,9 @@
                     <div class="caption">
                         <h4><a href="#"> ${all.getTitle()} </a></h4>
                         <p>${all.getDescription()}</p>
-                        <a href="/bought?id=${all.getId()}"
-                           class="btn btn-success"><% out.print(new String(resourceBundle.getString("buy").getBytes("ISO-8859-1"), "UTF-8"));%></a>
+                        <button type="button" class="btn btn-success" onclick="RestGet(${all.getId()})">Buy</button>
                     </div>
+
                 </div>
             </div>
         </c:forEach>

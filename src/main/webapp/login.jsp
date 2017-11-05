@@ -18,7 +18,7 @@
 <body class="login">
 <%
     Cookie[] cookies = request.getCookies();
-    if(cookies != null) {
+    if (cookies != null) {
         for (Cookie cookieReq : cookies) {
             if (cookieReq.getName().equals("user")) {
                 session = request.getSession(true);
@@ -36,7 +36,7 @@
 %>
 <p align="right">
     <a href="/language?name=russ"><img src="img/Russia.png" width="40" height="40"
-                                      alt="RU"></a>
+                                       alt="RU"></a>
 
     <a href="/language?name=engg"><img src="img/United-Kingdom.png" width="40" height="40" alt="US">
 

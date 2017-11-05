@@ -2,6 +2,7 @@ package com.epam.students.servlet;
 
 import com.epam.students.dao.OrderDao;
 import com.epam.students.dao.OrderPeriodicalDao;
+import com.epam.students.dao.PeriodicalDao;
 import com.epam.students.model.Order;
 import com.epam.students.model.OrderPeriodical;
 
@@ -23,7 +24,7 @@ public class BuyServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cookie[] cookies = req.getCookies();
-        if(cookies != null) {
+        if (cookies != null) {
             for (Cookie cookieReq : cookies) {
                 if (cookieReq.getName().equals("userId")) {
                     idUser = Integer.valueOf(cookieReq.getValue());
@@ -41,6 +42,6 @@ public class BuyServlet extends HttpServlet {
         OrderPeriodicalDao orderPeriodicalDao = new OrderPeriodicalDao();
         orderPeriodicalDao.create(orderPeriodical);
 
-        req.getServletContext().getRequestDispatcher("/issue.jsp").forward(req, resp);
+        resp.getWriter().write("Periodical " + new PeriodicalDao().read(idPeriodical).getTitle() + " added in your box");
     }
 }
