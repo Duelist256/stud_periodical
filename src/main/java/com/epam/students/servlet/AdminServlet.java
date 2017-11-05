@@ -63,13 +63,13 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
             throws SQLException, IOException, ServletException {
         List<Periodical> periodicals = periodicalService.getAll();
         request.setAttribute("periodicals", periodicals);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("adminpage.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("adminPage.jsp");
         dispatcher.forward(request, response);
     }
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("periodicalform.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("periodicalForm.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -77,7 +77,7 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         Periodical periodical = periodicalService.getById(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("periodicalform.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("periodicalForm.jsp");
         request.setAttribute("periodical", periodical);
         dispatcher.forward(request, response);
 
