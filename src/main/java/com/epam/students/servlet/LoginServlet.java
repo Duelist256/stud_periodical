@@ -33,6 +33,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         if (req.getSession().getAttribute("language") == null || req.getSession().getAttribute("language").equals("ru")) {
 
             req.getSession().setAttribute("language","en");
