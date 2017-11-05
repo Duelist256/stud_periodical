@@ -40,13 +40,13 @@
                     </h2>
                 </caption>
                 <c:if test="${periodical != null}">
-                    <input type="hidden" name="id" value="<c:out value='${periodical.getId()}' />"/>
+                    <input type="hidden" name="id" value='${periodical.getId()}'/>
                 </c:if>
                 <tr>
                     <th>Title:</th>
                     <td>
                         <input type="text" name="title" size="45"
-                               value="<c:out value='${periodical.getTitle()}' />"
+                               value='${periodical.getTitle()}'
                         />
                     </td>
                 </tr>
@@ -54,7 +54,7 @@
                     <th>Description:</th>
                     <td>
                         <input type="text" name="description" size="45"
-                               value="<c:out value='${periodical.getDescription()}' />"
+                               value='${periodical.getDescription()}'
                         />
                     </td>
                 </tr>
@@ -62,7 +62,7 @@
                     <th>Publisher:</th>
                     <td>
                         <input type="text" name="publisher" size="45"
-                               value="<c:out value='${periodical.getPublisher()}' />"
+                               value='${periodical.getPublisher()}'
                         />
                     </td>
                 </tr>
@@ -70,7 +70,7 @@
                     <th>Genre:</th>
                     <td>
                         <input type="text" name="genre" size="45"
-                               value="<c:out value='${periodical.getGenre()}' />"
+                               value='${periodical.getGenre()}'
                         />
                     </td>
                 </tr>
@@ -78,7 +78,7 @@
                     <th>Price:</th>
                     <td>
                         <input type="text" name="price" size="5"
-                               value="<c:out value='${periodical.getPrice()}' />"
+                               value='${periodical.getPrice()}'
                         />
                     </td>
                 </tr>
@@ -86,7 +86,7 @@
                     <th>Image Path:</th>
                     <td>
                         <input type="text" name="imgPath" size="45"
-                               value="<c:out value='${periodical.getImgPath()}' />"
+                               value='${periodical.getImgPath()}'
                         />
                     </td>
                 </tr>
