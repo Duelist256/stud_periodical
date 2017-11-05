@@ -31,12 +31,14 @@
             <table border="1" cellpadding="5">
                 <caption>
                     <h2>
-                        <c:if test="${periodical != null}">
-                            Edit Periodical
-                        </c:if>
-                        <c:if test="${periodical == null}">
-                            Add New Periodical
-                        </c:if>
+                        <c:choose>
+                            <c:when test="${periodical != null}">
+                                Edit Periodical
+                            </c:when>
+                            <c:when test="${periodical == null}">
+                                Add New Periodical
+                            </c:when>
+                        </c:choose>
                     </h2>
                 </caption>
                 <c:if test="${periodical != null}">
