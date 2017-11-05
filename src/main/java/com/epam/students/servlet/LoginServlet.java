@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
         if (userService.isUserCorrect(login, password)) {
             response.sendRedirect("/issue.jsp");
         } else {
-            request.setAttribute("error","Invalid Username or Password");
+            request.setAttribute("error",login);
             request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }

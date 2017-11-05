@@ -7,7 +7,11 @@
   Time: 21:53
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+
 <link rel="stylesheet" href="css/style.css">
 <%
     String language = LoginServlet.getLanguage();
@@ -22,7 +26,9 @@
 <form method="post" action="login">
 
     <td align="right"><% out.print(new String(resourceBundle.getString("email").getBytes("ISO-8859-1"), "UTF-8"));%></td>
-    <td align="left"><input class="login-field" type="text" name="email"/></td>
+
+    <c:set var="login" value="${requestScope.error}" />
+    <td align="left"><input class="login-field" type="text" name="email" value="<c:out value="${login}" default=""/>"/></td>
 
     <td align="right"><% out.print(new String(resourceBundle.getString("password").getBytes("ISO-8859-1"), "UTF-8")); %></td>
     <td align="left"><input class="login-field" type="password" name="pass"/></td>
@@ -43,11 +49,11 @@
     <input type="submit"
            value="<%out.print(new String(resourceBundle.getString("Change_Language").getBytes("ISO-8859-1"),"UTF-8"));%>"/>
 </form>
+<fmt:setBundle basename="resources" var="bundle"/>
+<fmt:setLocale value="en"/>
+<c:if test="${login != null}">
+    <font color=red size=4px>    <fmt:message key="invalid_msg" bundle="${bundle}"/> </font>
+</c:if>
 
-<%
-    String login_msg=(String)request.getAttribute("error");
-    if(login_msg!=null)
-        out.println("<font color=red size=4px>"+login_msg+"</font>");
-%>
 </body>
 </html>
