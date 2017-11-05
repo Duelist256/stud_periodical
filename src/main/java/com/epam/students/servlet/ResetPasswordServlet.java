@@ -25,7 +25,7 @@ public class ResetPasswordServlet extends HttpServlet {
 
         if (emailChange == null) {
             req.setAttribute("reset", reset);
-            req.getServletContext().getRequestDispatcher("/passwordform.jsp").forward(req, resp);
+            req.getServletContext().getRequestDispatcher("/passwordForm.jsp").forward(req, resp);
             return;
         }
 
@@ -51,7 +51,7 @@ public class ResetPasswordServlet extends HttpServlet {
 
             req.setAttribute("reset", reset);
             req.setAttribute("invalidemail", lang);
-            req.getServletContext().getRequestDispatcher("/passwordform.jsp").forward(req, resp);
+            req.getServletContext().getRequestDispatcher("/passwordForm.jsp").forward(req, resp);
         }
 
         if (emailChange.equals("approveChange")) {
