@@ -43,14 +43,7 @@ public class ResetPasswordServlet extends HttpServlet {
                 reset = !reset;
             }
 
-            String language = LoginServlet.getLanguage();
-            String country = LoginServlet.getCountry();
-            ResourceBundle resourceBundle = ResourceBundle.getBundle("resources", new Locale(language, country));
-
-            String lang = new String(resourceBundle.getString("invalidemail").getBytes("ISO-8859-1"), "UTF-8");
-
             req.setAttribute("reset", reset);
-            req.setAttribute("invalidemail", lang);
             req.getServletContext().getRequestDispatcher("/passwordForm.jsp").forward(req, resp);
         }
 
