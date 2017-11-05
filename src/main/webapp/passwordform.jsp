@@ -40,7 +40,14 @@
             <input type="hidden" name="emailChange" value="changeEmail">
             <td align="right"><% out.print(new String(resourceBundle.getString("email").getBytes("ISO-8859-1"), "UTF-8"));%></td>
             <td align="left"><input class="login-field" type="text" name="email"/></td>
-            <hr>
+            <c:if test="${error != null}">
+                <td>
+                    <font color="red">
+                        <c:out value="${invalidemail}"/>
+                    </font>
+                </td>
+            </c:if>
+            <hr width="125%">
             <td align="right"><input type="submit"
                                      value=<% out.print(new String(resourceBundle.getString("reset").getBytes("ISO-8859-1"),"UTF-8"));%>>
             </td>

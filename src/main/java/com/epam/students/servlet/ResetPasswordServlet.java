@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 @WebServlet(urlPatterns = "/resetPassword")
-public class ResetPasswordServlet extends HttpServlet{
+public class ResetPasswordServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -23,7 +25,7 @@ public class ResetPasswordServlet extends HttpServlet{
 
         if (emailChange == null) {
             req.setAttribute("reset", reset);
-            req.getServletContext().getRequestDispatcher("/passwordform.jsp").forward(req,resp);
+            req.getServletContext().getRequestDispatcher("/passwordform.jsp").forward(req, resp);
             return;
         }
 
@@ -32,8 +34,24 @@ public class ResetPasswordServlet extends HttpServlet{
             String email = req.getParameter("email");
             req.getSession().setAttribute("email", email);
 
-            req.setAttribute("reset", !reset);
-            req.getServletContext().getRequestDispatcher("/passwordform.jsp").forward(req,resp);
+            UserDao userDao = new UserDao();
+            User user = userDao.readByEmail(email);
+
+            if (user == null) {
+                req.setAttribute("error", "Invalid email or password");
+            } else {
+                reset = !reset;
+            }
+
+            String language = LoginServlet.getLanguage();
+            String country = LoginServlet.getCountry();
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("resources", new Locale(language, country));
+
+            String lang = new String(resourceBundle.getString("invalidemail").getBytes("ISO-8859-1"), "UTF-8");
+
+            req.setAttribute("reset", reset);
+            req.setAttribute("invalidemail", lang);
+            req.getServletContext().getRequestDispatcher("/passwordform.jsp").forward(req, resp);
         }
 
         if (emailChange.equals("approveChange")) {
@@ -62,7 +80,7 @@ public class ResetPasswordServlet extends HttpServlet{
 
             userDao.update(updatedUser);
 
-            req.getServletContext().getRequestDispatcher("/login").forward(req,resp);
+            req.getServletContext().getRequestDispatcher("/login").forward(req, resp);
         }
     }
 }
