@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderPeriodicalDao implements Dao<OrderPeriodical> {
@@ -63,7 +64,6 @@ public class OrderPeriodicalDao implements Dao<OrderPeriodical> {
             preparedStatement.setInt(1, orderPeriodical.getIdPeriodical());
             preparedStatement.setInt(2, orderPeriodical.getIdOrder());
 
-
             preparedStatement.executeUpdate();
             logger.info("Order periodical " + orderPeriodical.getIdPeriodical() + " by "
                     + orderPeriodical.getIdOrder() + " successfully updated");
@@ -75,12 +75,12 @@ public class OrderPeriodicalDao implements Dao<OrderPeriodical> {
 
     @Override
     public void delete(OrderPeriodical orderPeriodical) {
-        String query = "DELETE FROM inform_system.orderPeriodical WHERE id_order = ?";
+        String query = "DELETE FROM inform_system.orderPeriodical WHERE id_periodical = ?";
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            preparedStatement.setInt(1, orderPeriodical.getIdOrder());
+            preparedStatement.setInt(1, orderPeriodical.getIdPeriodical());
             preparedStatement.executeUpdate();
 
             logger.info("Order Periodical" + orderPeriodical.getIdOrder() + " with "
@@ -93,6 +93,27 @@ public class OrderPeriodicalDao implements Dao<OrderPeriodical> {
 
     @Override
     public List<OrderPeriodical> getAll() {
-        return null;
+        String query = "SELECT * FROM inform_system.orderPeriodical";
+
+        List<OrderPeriodical> orderList = new ArrayList<>();
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                OrderPeriodical order = OrderPeriodicalMapper.mapRow(resultSet);
+                orderList.add(order);
+            }
+            logger.info("OrdersPeriodicals successfully gotten");
+
+        } catch (SQLException e) {
+            logger.error("Failed to get orders. Cause: " + e);
+            throw new RuntimeException(e);
+        }
+        return orderList;
     }
+
+
 }

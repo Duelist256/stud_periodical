@@ -31,19 +31,16 @@ public class BuyServlet extends HttpServlet {
                 }
             }
         }
-        int id_periodical = Integer.valueOf(req.getParameter("id"));
+        int idPeriodical = Integer.valueOf(req.getParameter("id"));
+        System.out.println("id periodical" + idPeriodical);
 
         Order ordered = Order.newBuilder().idUser(idUser).date(new Timestamp(new Date().getTime())).status("Ordered").build();
         OrderDao orderDao = new OrderDao();
         orderDao.create(ordered);
 
-        System.out.println(ordered.getId() + " " + ordered.getIdUser() + " " + ordered.getDate());
-
-        OrderPeriodical orderPeriodical = OrderPeriodical.newBuilder().idOrder(ordered.getId()).idPeriodical(id_periodical).build();
+        OrderPeriodical orderPeriodical = OrderPeriodical.newBuilder().idOrder(orderDao.getLastIdOrder()).idPeriodical(idPeriodical).build();
         OrderPeriodicalDao orderPeriodicalDao = new OrderPeriodicalDao();
         orderPeriodicalDao.create(orderPeriodical);
-
-
 
         req.getServletContext().getRequestDispatcher("/issue.jsp").forward(req, resp);
     }

@@ -1,15 +1,10 @@
 package com.epam.students.dao;
 
 import com.epam.students.mappers.OrderMapper;
-import com.epam.students.mappers.PeriodicalMapper;
 import com.epam.students.model.Order;
-import com.epam.students.model.Periodical;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +18,12 @@ public class OrderDao implements Dao<Order> {
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, String.valueOf(newOrder.getIdUser()));
+            preparedStatement.setInt(1, newOrder.getIdUser());
             preparedStatement.setTimestamp(2, newOrder.getDate());
             preparedStatement.setString(3, newOrder.getStatus());
             preparedStatement.executeUpdate();
 
-            logger.info("New order successfully added" + newOrder.getId() + " "+ newOrder.getIdUser());
+            logger.info("New order successfully added");
         } catch (SQLException e) {
             logger.error("Failed to create order. Cause: " + e);
             throw new RuntimeException(e);
@@ -36,8 +31,8 @@ public class OrderDao implements Dao<Order> {
     }
 
     @Override
-    public Order read(int id) { //to get order where id = idUser
-        String query = "SELECT * FROM inform_system.orders WHERE id_user= ?";
+    public Order read(int id) {
+        String query = "SELECT * FROM inform_system.orders WHERE id= ?";
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
@@ -45,8 +40,8 @@ public class OrderDao implements Dao<Order> {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 Order order = OrderMapper.mapRow(resultSet);
-                logger.info("Order done " + order.getIdUser() + " by "
-                        + order.getDate() + " successfully read");
+                logger.info("Order done id  " + order.getId() + " " + order.getIdUser() + " by "
+                        + order.getDate() + " successfully read ");
                 return order;
             } else {
                 return null;
@@ -107,7 +102,6 @@ public class OrderDao implements Dao<Order> {
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             ResultSet resultSet = preparedStatement.executeQuery();
-
             while (resultSet.next()) {
                 Order order = OrderMapper.mapRow(resultSet);
                 orderList.add(order);
@@ -121,7 +115,7 @@ public class OrderDao implements Dao<Order> {
         return orderList;
     }
 
-    public List<Order> getAllByIdUser(int id){
+    public List<Order> getAllByIdUser(int id) {
         String query = "SELECT * FROM inform_system.orders WHERE id_user=?";
         List<Order> orderList = new ArrayList<>();
 
@@ -142,6 +136,23 @@ public class OrderDao implements Dao<Order> {
             throw new RuntimeException(e);
         }
         return orderList;
+    }
+
+    public int getLastIdOrder() {
+        String query = "SELECT id FROM orders WHERE id=(SELECT MAX(id) FROM orders);";
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                logger.info("Order with id " + resultSet.getInt(1) + " gotten");
+                return resultSet.getInt(1);
+            } else {
+                return 0;
+            }
+        } catch (SQLException e) {
+            logger.error("Failed to read order's data. Cause: " + e);
+            throw new RuntimeException(e);
+        }
     }
 
 
