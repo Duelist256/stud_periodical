@@ -61,6 +61,7 @@
             <th><% out.print(new String(resourceBundle.getString("Title").getBytes("ISO-8859-1"), "UTF-8"));%></th>
             <th><% out.print(new String(resourceBundle.getString("Publisher").getBytes("ISO-8859-1"), "UTF-8"));%></th>
             <th><% out.print(new String(resourceBundle.getString("Price").getBytes("ISO-8859-1"), "UTF-8"));%></th>
+            <th><% out.print(new String(resourceBundle.getString("buy").getBytes("ISO-8859-1"), "UTF-8"));%></th>
             <th><% out.print(new String(resourceBundle.getString("delete").getBytes("ISO-8859-1"), "UTF-8"));%></th>
         </tr>
         </thead>
@@ -71,6 +72,12 @@
                 <td> ${periodicalList.getTitle()}</td>
                 <td> ${periodicalList.getPublisher()}</td>
                 <td> ${periodicalList.getPrice()}</td>
+                <td>
+                    <form method="put" action="#">
+                        <input class="login-link" type="submit"
+                               value="<% out.print(new String(resourceBundle.getString("buy").getBytes("ISO-8859-1"),"UTF-8")); %>"/>
+                    </form>
+                </td>
                 <td>
                     <form method="post" action="/mybox?delete=${periodicalList.getId()}">
                         <input class="login-link" type="submit"

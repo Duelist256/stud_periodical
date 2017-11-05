@@ -31,9 +31,6 @@ public class OrderDaoTest {
         orderDao.read(3);
 
         orderDao.getAll().forEach(t -> System.out.println(t.getId()));
-
-
-
     }
 
     @Test
@@ -55,7 +52,6 @@ public class OrderDaoTest {
         Order ordered2 = Order.newBuilder().idUser(1).date(new Timestamp(new Date().getTime())).status("Ordered").build();
         orderDao.delete(ordered1);
     }
-
 
 
     @Test

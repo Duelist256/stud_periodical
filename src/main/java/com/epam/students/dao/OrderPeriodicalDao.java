@@ -1,9 +1,7 @@
 package com.epam.students.dao;
 
 import com.epam.students.mappers.OrderPeriodicalMapper;
-import com.epam.students.mappers.UserMapper;
 import com.epam.students.model.OrderPeriodical;
-import com.epam.students.model.User;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;

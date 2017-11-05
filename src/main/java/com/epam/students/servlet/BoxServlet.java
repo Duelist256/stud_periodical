@@ -19,9 +19,11 @@ import java.util.*;
 
 @WebServlet(name = "BoxServlet", urlPatterns = "/mybox")
 public class BoxServlet extends HttpServlet {
-    List<Periodical> periodicalList = new ArrayList<>();
-    List<Periodical> boughtList = new ArrayList<>();
-    int idUser;
+    private List<Periodical> periodicalList = new ArrayList<>();
+    private int idUser;
+    private OrderDao orderDao = new OrderDao();
+    private OrderPeriodicalDao orderPeriodicalDao = new OrderPeriodicalDao();
+    private PeriodicalDao periodicalDao = new PeriodicalDao();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,9 +37,6 @@ public class BoxServlet extends HttpServlet {
                 }
             }
         }
-        OrderDao orderDao = new OrderDao();
-        OrderPeriodicalDao orderPeriodicalDao = new OrderPeriodicalDao();
-        PeriodicalDao periodicalDao = new PeriodicalDao();
 
         List<Order> allByIdUser = orderDao.getAllByIdUser(idUser);
         allByIdUser.forEach(t -> periodicalList.add(periodicalDao.read(orderPeriodicalDao.read(t.getId()).getIdPeriodical())));
@@ -56,10 +55,7 @@ public class BoxServlet extends HttpServlet {
                 break;
             }
         }
-        OrderDao orderDao = new OrderDao();
-        OrderPeriodicalDao orderPeriodicalDao = new OrderPeriodicalDao();
         List<OrderPeriodical> all = orderPeriodicalDao.getAll();
-
 
         for (OrderPeriodical orderPeriodical : all) {
             if (orderPeriodical.getIdPeriodical() == delete) {
