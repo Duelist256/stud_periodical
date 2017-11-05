@@ -13,11 +13,19 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
 <link rel="stylesheet" href="css/style.css">
-<%
-    String language = LoginServlet.getLanguage();
-    String country = LoginServlet.getCountry();
-    ResourceBundle resourceBundle = ResourceBundle.getBundle("resources", new Locale(language, country));
-%>
+
+
+<c:choose>
+    <c:when test="${sessionScope.language == 'en'}">
+        <fmt:setLocale value="en"/>
+    </c:when>
+    <c:otherwise>
+        <fmt:setLocale value="ru"/>
+    </c:otherwise>
+</c:choose>
+
+<fmt:setBundle basename="i18n.login" />
+
 <html>
 <head>
     <title>Title</title>
@@ -25,34 +33,31 @@
 <body class="login">
 <form method="post" action="login">
 
-    <td align="right"><% out.print(new String(resourceBundle.getString("email").getBytes("ISO-8859-1"), "UTF-8"));%></td>
+    <td align="right"><fmt:message key="email"/></td>
 
     <c:set var="login" value="${requestScope.error}" />
     <td align="left"><input class="login-field" type="text" name="email" value="<c:out value="${login}" default=""/>"/></td>
 
-    <td align="right"><% out.print(new String(resourceBundle.getString("password").getBytes("ISO-8859-1"), "UTF-8")); %></td>
+    <td align="right"><fmt:message key="password"/></td>
     <td align="left"><input class="login-field" type="password" name="pass"/></td>
     <hr>
-    <td align="right"><input type="submit"
-                             value=<% out.print(new String(resourceBundle.getString("login").getBytes("ISO-8859-1"),"UTF-8"));%>>
-    </td>
+    <td align="right"><input type="submit" value="<fmt:message key="login"/>"></td>
 
 </form>
 <form method="post" action="register.jsp">
     <input class="login-link" type="submit"
-           value="<% out.print(new String(resourceBundle.getString("register").getBytes("ISO-8859-1"),"UTF-8")); %>"/>
+           value="<fmt:message key="register"/>"/>
 </form>
 
 <%--change language--%>
 
 <form method="get" action="login">
-    <input type="submit"
-           value="<%out.print(new String(resourceBundle.getString("Change_Language").getBytes("ISO-8859-1"),"UTF-8"));%>"/>
+    <input type="submit" value="<fmt:message key="change_Language"/>"/>
 </form>
-<fmt:setBundle basename="resources" var="bundle"/>
-<fmt:setLocale value="en"/>
+
+
 <c:if test="${login != null}">
-    <font color=red size=4px>    <fmt:message key="invalid_msg" bundle="${bundle}"/> </font>
+    <font color=red size=4px>    <fmt:message key="invalid_msg" /> </font>
 </c:if>
 
 </body>
