@@ -2,3 +2,4 @@ target/
 .idea/
 *.iml
 logs/INFO_LOG.log
+logs/ERROR_LOG.log
