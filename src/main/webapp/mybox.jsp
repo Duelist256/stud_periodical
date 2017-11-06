@@ -1,6 +1,4 @@
-<%@ page import="com.epam.students.servlet.LoginServlet" %>
-<%@ page import="java.util.ResourceBundle" %>
-<%@ page import="java.util.Locale" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: arina
   Date: 01.11.17
