@@ -132,4 +132,30 @@ public class PeriodicalDao implements Dao<Periodical> {
 
         return periodicals;
     }
+
+    public List<Periodical> getPaged(int page, int size){
+        int lo = (page - 1) * size;
+        int hi = lo + size;
+        String query = "select * from inform_system.periodicals where id > " + lo + " && id <= " + hi + ";";
+        List<Periodical> result = new ArrayList<>();
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Periodical periodical = PeriodicalMapper.mapRow(resultSet);
+                result.add(periodical);
+            }
+
+            logger.info("Periodicals successfully gotten");
+
+        } catch (SQLException e) {
+            logger.error("Failed to get periodicals. Cause: " + e);
+            throw new RuntimeException(e);
+        }
+
+        return  result;
+    }
 }
