@@ -28,7 +28,7 @@
 %>
 <div class="container">
     <div class="row">
-        <h2><% out.print(new String(resourceBundle.getString("box").getBytes("ISO-8859-1"), "UTF-8"));%></h2>
+        <h2>Box</h2>
         <p align="right">
             <a href="/language?name=rus"><img src="img/Russia.png" width="40" height="40"
                                               alt="RU"></a>
@@ -43,7 +43,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/issue.jsp">
                             <button type="button" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
-                                <% out.print(new String(resourceBundle.getString("backshop").getBytes("ISO-8859-1"), "UTF-8"));%>
+                               back to shop
                             </button>
                         </a></li>
                     </ul>
@@ -58,11 +58,11 @@
     <table class="table">
         <thead>
         <tr>
-            <th><% out.print(new String(resourceBundle.getString("Title").getBytes("ISO-8859-1"), "UTF-8"));%></th>
-            <th><% out.print(new String(resourceBundle.getString("Publisher").getBytes("ISO-8859-1"), "UTF-8"));%></th>
-            <th><% out.print(new String(resourceBundle.getString("Price").getBytes("ISO-8859-1"), "UTF-8"));%></th>
-            <th><% out.print(new String(resourceBundle.getString("buy").getBytes("ISO-8859-1"), "UTF-8"));%></th>
-            <th><% out.print(new String(resourceBundle.getString("delete").getBytes("ISO-8859-1"), "UTF-8"));%></th>
+            <th>Title</th>
+            <th>Publisher</th>
+            <th>Price</th>
+            <th>Buy</th>
+            <th>Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -75,13 +75,13 @@
                 <td>
                     <form method="put" action="#">
                         <input class="login-link" type="submit"
-                               value="<% out.print(new String(resourceBundle.getString("buy").getBytes("ISO-8859-1"),"UTF-8")); %>"/>
+                               value="buy"/>
                     </form>
                 </td>
                 <td>
                     <form method="post" action="/mybox?delete=${periodicalList.getId()}">
                         <input class="login-link" type="submit"
-                               value="<% out.print(new String(resourceBundle.getString("delete").getBytes("ISO-8859-1"),"UTF-8")); %>"/>
+                               value="delete"/>
                     </form>
                 </td>
             </tr>

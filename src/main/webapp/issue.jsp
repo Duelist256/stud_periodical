@@ -41,7 +41,7 @@
 %>
 <div class="container">
     <div class="row">
-        <h2><% out.print(new String(resourceBundle.getString("catalog").getBytes("ISO-8859-1"), "UTF-8"));%></h2>
+        <h2>Catalog</h2>
         <p align="right">
             <a href="/language?name=ru"><img src="img/Russia.png" width="40" height="40"
                                              alt="RU"></a>
@@ -60,10 +60,10 @@
                     </p>
                     <ul class="nav navbar-nav navbar-right">
                         <a href="/mybox" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
-                            <% out.print(new String(resourceBundle.getString("box").getBytes("ISO-8859-1"), "UTF-8"));%>
+                           Box
                         </a>
                         <a href="/logout" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
-                            <% out.print(new String(resourceBundle.getString("logout").getBytes("ISO-8859-1"), "UTF-8"));%>
+                           Logout
                         </a>
                     </ul>
                 </div>
@@ -76,13 +76,13 @@
             <li class="active">
 
             <li>
-                <a href="/getall"><% out.print(new String(resourceBundle.getString("getAll").getBytes("ISO-8859-1"), "UTF-8"));%><span
+                <a href="/getall">getAll<span
                         class="badge"> 5</span></a></li>
             <li>
-                <a href="#"><% out.print(new String(resourceBundle.getString("category1").getBytes("ISO-8859-1"), "UTF-8"));%>
+                <a href="#">catalog1
                     <span class="badge"> 5</span></a></li>
             <li>
-                <a href="#"><% out.print(new String(resourceBundle.getString("category2").getBytes("ISO-8859-1"), "UTF-8"));%><span
+                <a href="#">catalog2<span
                         class="badge"> 6</span></a></li>
         </ul>
         <hr>
