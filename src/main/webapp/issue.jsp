@@ -63,8 +63,8 @@
                             <% out.print(new String(resourceBundle.getString("box").getBytes("ISO-8859-1"), "UTF-8"));%>
                         </a>
                         <a href="/logout" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
-                                <% out.print(new String(resourceBundle.getString("logout").getBytes("ISO-8859-1"), "UTF-8"));%>
-                            </a>
+                            <% out.print(new String(resourceBundle.getString("logout").getBytes("ISO-8859-1"), "UTF-8"));%>
+                        </a>
                     </ul>
                 </div>
             </div>
