@@ -44,7 +44,7 @@
         <h2><fmt:message key="catalog"/></h2>
         <p align="right">
             <a href="/language?lan=ru"><img src="img/Russia.png" width="40" height="40"
-                                             alt="RU"></a>
+                                            alt="RU"></a>
 
             <a href="/language?lan=en"><img src="img/United-Kingdom.png" width="40" height="40" alt="US">
 
@@ -94,7 +94,8 @@
                     <div class="caption">
                         <h4><a href="#"> ${all.getTitle()} </a></h4>
                         <p>${all.getDescription()}</p>
-                        <button type="button" class="btn btn-success" onclick="RestGet(${all.getId()})"><fmt:message key="buy"/></button>
+                        <button type="button" class="btn btn-success" onclick="RestGet(${all.getId()})"><fmt:message
+                                key="buy"/></button>
                     </div>
 
                 </div>
