@@ -42,8 +42,7 @@ public class PeriodicalServlet extends HttpServlet {
         List<Periodical> all = periodicalService.getAll();
 
         req.setAttribute("list", all);
-        req.getRequestDispatcher("/listissue.jsp").forward(req, resp);
+        req.getRequestDispatcher("/issue.jsp").forward(req, resp);
 
     }
-
 }

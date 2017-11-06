@@ -17,10 +17,11 @@ public class PeriodicalDao implements Dao<Periodical> {
     private final static Logger logger = Logger.getLogger(UserDao.class);
 
     @Override
+
     public void create(Periodical newPeriodical) {
-        String query = "insert into inform_system.periodicals " +
+        String query = "INSERT INTO inform_system.periodicals " +
                 "(title, description, publisher, genre, price, img_path) " +
-                "values (?, ?, ?, ?, ?, ?)";
+                "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -42,7 +43,7 @@ public class PeriodicalDao implements Dao<Periodical> {
 
     @Override
     public Periodical read(int id) {
-        String query = "select * from inform_system.periodicals where id = ?";
+        String query = "SELECT * FROM inform_system.periodicals WHERE id = ?";
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -110,7 +111,7 @@ public class PeriodicalDao implements Dao<Periodical> {
 
     @Override
     public List<Periodical> getAll() {
-        String query = "select * from inform_system.periodicals";
+        String query = "SELECT * FROM inform_system.periodicals";
 
         List<Periodical> periodicals = new ArrayList<>();
 
