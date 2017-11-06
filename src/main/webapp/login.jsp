@@ -53,12 +53,11 @@
                                 key="login"/></button>
                     </div>
                     <p>Don't have an account? <a href="register.jsp"><fmt:message key="register"/></a></p>
-                    </p> I forgot my password! <form method="post" action="/resetPassword">
-                        <input type="submit"
-                               class="btn btn-link" value="<fmt:message key="forgot"/>"/>
-                    </form>
-                    </p>
                 </form>
+
+                <form method="post" action="/resetPassword">
+                    <p> I forgot my password!
+                        <input type="submit" class="btn btn-link" value="<fmt:message key="forgot"/>"/></p></form>
             </div>
         </div>
     </div>

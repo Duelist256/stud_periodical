@@ -59,12 +59,12 @@
                     }%>
                     </p>
                     <ul class="nav navbar-nav navbar-right">
-                            <a href="/mybox" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
-                                <fmt:message key="box"/>
-                            </a>
-                            <a href="/logout" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
-                                <fmt:message key="logout"/>
-                            </a>
+                        <a href="/mybox" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                            <fmt:message key="box"/>
+                        </a>
+                        <a href="/logout" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                            <fmt:message key="logout"/>
+                        </a>
 
                     </ul>
                 </div>
@@ -77,7 +77,7 @@
             <li class="active">
 
             <li>
-                <a href="/getall"><fmt:message key="getAll" /> <span
+                <a href="/getall"><fmt:message key="getAll"/> <span
                         class="badge"> 5</span></a></li>
             <li>
                 <a href="#"><fmt:message key="category1"/>
