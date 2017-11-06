@@ -9,6 +9,14 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="language"
+       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
+       scope="session"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="i18n.login"/>
+
 <link href="css/bootstrap.css" rel="stylesheet">
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -34,14 +42,9 @@
     <title>Issue</title>
 </head>
 <body>
-<%
-    String language = LoginServlet.getLanguage();
-    String country = LoginServlet.getCountry();
-    ResourceBundle resourceBundle = ResourceBundle.getBundle("resources", new Locale(language, country));
-%>
 <div class="container">
     <div class="row">
-        <h2><% out.print(new String(resourceBundle.getString("catalog").getBytes("ISO-8859-1"), "UTF-8"));%></h2>
+        <h2><fmt:message key="catalog"/></h2>
         <p align="right">
             <a href="/language?name=ru"><img src="img/Russia.png" width="40" height="40"
                                              alt="RU"></a>
@@ -61,7 +64,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/mybox">
                             <button type="button" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
-                                <% out.print(new String(resourceBundle.getString("box").getBytes("ISO-8859-1"), "UTF-8"));%>
+                                <fmt:message key="box"/>
                             </button>
                         </a></li>
                     </ul>
@@ -75,13 +78,13 @@
             <li class="active">
 
             <li>
-                <a href="/getall"><% out.print(new String(resourceBundle.getString("getAll").getBytes("ISO-8859-1"), "UTF-8"));%><span
+                <a href="/getall"><fmt:message key="getAll" /> <span
                         class="badge"> 5</span></a></li>
             <li>
-                <a href="#"><% out.print(new String(resourceBundle.getString("category1").getBytes("ISO-8859-1"), "UTF-8"));%>
+                <a href="#"><fmt:message key="category1"/>
                     <span class="badge"> 5</span></a></li>
             <li>
-                <a href="#"><% out.print(new String(resourceBundle.getString("category2").getBytes("ISO-8859-1"), "UTF-8"));%><span
+                <a href="#"><fmt:message key="category2"/> <span
                         class="badge"> 6</span></a></li>
 
         </ul>

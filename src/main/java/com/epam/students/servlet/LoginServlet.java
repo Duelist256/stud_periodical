@@ -4,13 +4,9 @@ import com.epam.students.dao.UserDao;
 import com.epam.students.model.User;
 import com.epam.students.service.UserService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
@@ -40,9 +36,6 @@ public class LoginServlet extends HttpServlet {
     private Cookie cookieUserId;
     private HttpSession session;
 
-    public LoginServlet() {
-        userService = new UserService();
-    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("email");
