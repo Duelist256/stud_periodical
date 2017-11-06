@@ -50,11 +50,8 @@ public class LoginServlet extends HttpServlet {
         User user = userService.checkUser(login, password);
 
         if (user != null) {
-            UserDao userDao = new UserDao();
-
 
             String name = user.getName();
-
 
             cookieUserName = new Cookie("user", name);
             cookieUserName.setMaxAge(60 * 5); //5 mins
