@@ -6,6 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="language"
+       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
+       scope="session"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="i18n.login"/>
+
 <link href="css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" href="css/style1.css">
 <html>
@@ -27,15 +36,15 @@
                                                                alt="RU"></a></h2>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="signupName">Your name</label>
+                        <label class="control-label" for="signupName"><fmt:message key="name"/></label>
                         <input id="signupName" type="text" name="name" maxlength="50" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="signupEmail">Email</label>
+                        <label class="control-label" for="signupEmail"><fmt:message key="email"/></label>
                         <input id="signupEmail" type="email" name="email" maxlength="50" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="signupPassword">Password</label>
+                        <label class="control-label" for="signupPassword"><fmt:message key="password"/></label>
                         <input id="signupPassword" type="password" name="pass" maxlength="25" class="form-control"
                                placeholder="at least 6 characters" length="40">
                     </div>
