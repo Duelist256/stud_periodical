@@ -31,9 +31,11 @@ public class LanguageServlet extends HttpServlet {
         }
         else if (req.getParameter("name").equals("russ")) {
             setLanguage("ru");
+            req.getSession().setAttribute("language", getLanguage());
             req.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
         } else if (req.getParameter("name").equals("engg")) {
             setLanguage("en");
+            req.getSession().setAttribute("language", getLanguage());
             req.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
         }
     }

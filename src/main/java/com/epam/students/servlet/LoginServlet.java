@@ -7,9 +7,6 @@ import com.epam.students.service.UserService;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
@@ -27,9 +24,11 @@ public class LoginServlet extends HttpServlet {
     }
 
     public static String getCountry() {
-        if (language.equals("ru"))
+        if (language.equals("ru")) {
             return "RU";
-        else return "US";
+        } else {
+            return "US";
+        }
     }
 
     private UserService userService;
@@ -45,39 +44,61 @@ public class LoginServlet extends HttpServlet {
         String login = request.getParameter("email");
         String password = request.getParameter("pass");
 
-        if (userService.isUserCorrect(login, password)) {
+        User user = userService.checkUser(login, password);
+
+        if (user != null) {
             UserDao userDao = new UserDao();
 
-            if (login != null) {
-                String name = userDao.readByEmail(login).getName();
-                int id = userDao.readByEmail(login).getId();
+
+            String name = user.getName();
 
 
-                cookieUserName = new Cookie("user", name);
-                cookieUserName.setMaxAge(60 * 5); //5 mins
-                response.addCookie(cookieUserName);
+            cookieUserName = new Cookie("user", name);
+            cookieUserName.setMaxAge(60 * 5); //5 mins
+            response.addCookie(cookieUserName);
 
-                cookieUserId = new Cookie("userId", String.valueOf(userDao.readByEmail(login).getId()));
-                cookieUserName.setMaxAge(60 * 5); //5 mins
-                response.addCookie(cookieUserName);
+            cookieUserId = new Cookie("userId", String.valueOf(user.getId()));
+            cookieUserId.setMaxAge(60 * 5); //5 mins
+            response.addCookie(cookieUserId);
 
-                session = request.getSession(true);
-                session.setAttribute("userName", name);
-            }
+            session = request.getSession(true);
+            session.setAttribute("userName", name);
 
-            response.sendRedirect("/issue.jsp");
+            redirectUser(response, user);
+
         } else {
             request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+        }
+    }
+
+    private void redirectUser(HttpServletResponse response, User user) throws IOException {
+        if (user.isAdmin() == 1) {
+            response.sendRedirect("/adminpage");
+        } else {
+            response.sendRedirect("/issue.jsp");
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        if (req.getParameter("changeLang")!= null && getLanguage().equals("en")) {
-            setLanguage("ru");
-        } else {
-            setLanguage("en");
+        Cookie[] cookies = req.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("user")) {
+                    session = req.getSession(true);
+                    session.setAttribute("userName", cookie.getValue());
+                }
+            }
+
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("userId")) {
+                    int id = Integer.parseInt(cookie.getValue());
+                    User user = new UserDao().read(id);
+                    redirectUser(resp, user);
+                    return;
+                }
+            }
         }
 
         req.getSession().setAttribute("language", getLanguage());

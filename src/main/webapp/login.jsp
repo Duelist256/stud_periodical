@@ -21,32 +21,16 @@
     <title>Title</title>
 </head>
 <body class="login">
-<%
-    Cookie[] cookies = request.getCookies();
-    if (cookies != null) {
-        for (Cookie cookieReq : cookies) {
-            if (cookieReq.getName().equals("user")) {
-                session = request.getSession(true);
-                session.setAttribute("userName", cookieReq.getValue());
-                request.getServletContext().getRequestDispatcher("/issue.jsp").forward(request, response);
-            }
-        }
-    }
-%>
-
-<%
-    String language = LoginServlet.getLanguage();
-    String country = LoginServlet.getCountry();
-    ResourceBundle resourceBundle = ResourceBundle.getBundle("resources", new Locale(language, country));
-%>
 <p align="right">
     <a href="/language?name=russ"><img src="img/Russia.png" width="40" height="40"
-                                       alt="RU"></a>
+                                        alt="RU"></a>
 
-    <a href="/language?name=engg"><img src="img/United-Kingdom.png" width="40" height="40" alt="US">
+    <a href="/language?name=engg"><img src="img/United-Kingdom.png" width="40" height="40"
+                                        alt="US"></a>
+</p>
 
-    </a></p>
 <form method="post" action="login">
+
 
     <td align="right"><fmt:message key="email"/></td>
     <td align="left"><input class="login-field" type="text" name="email"/></td>
@@ -69,14 +53,6 @@
     <input type="submit"
            value="<fmt:message key="forgot"/>"/>
 </form>
-
-<%--change language--%>
-
-<form method="get" action="login">
-    <input type="submit"
-           name="changeLang" value="<fmt:message key="changeLanguage"/>"/>
-</form>
-
 
 </body>
 </html>
