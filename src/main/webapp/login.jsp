@@ -33,10 +33,10 @@
                 <form method="POST" action="login" role="form">
                     <div class="form-group">
                         <h2>Sign in
-                            <a href="/language?name=russ"><img src="img/Russia.png" align="right" width="40" height="40"
+                            <a href="/language?lan=ru"><img src="img/Russia.png" align="right" width="40" height="40"
                                                                alt="RU"></a>
 
-                            <a href="/language?name=engg"><img src="img/United-Kingdom.png" align="right" width="40"
+                            <a href="/language?lan=en"><img src="img/United-Kingdom.png" align="right" width="40"
                                                                height="40" alt="US"></a></h2>
                     </div>
                     <div class="form-group">
@@ -62,39 +62,5 @@
         </div>
     </div>
 </div>
-
-
-<%--<p align="right">--%>
-<%--<a href="/language?name=russ"><img src="img/Russia.png" width="40" height="40"--%>
-<%--alt="RU"></a>--%>
-
-<%--<a href="/language?name=engg"><img src="img/United-Kingdom.png" width="40" height="40" alt="US"></a>--%>
-<%--</p>--%>
-
-<%--<form method="post" action="login">--%>
-
-
-<%--<td align="right"><fmt:message key="email"/></td>--%>
-<%--<td align="left"><input class="login-field" type="text" name="email"/></td>--%>
-
-<%--<td align="right"><fmt:message key="password"/></td>--%>
-<%--<td align="left"><input class="login-field" type="password" name="pass"/></td>--%>
-<%--<hr>--%>
-<%--<td align="right"><input type="submit"--%>
-<%--value="<fmt:message key="login"/>">--%>
-<%--</td>--%>
-
-<%--</form>--%>
-<%--<form method="post" action="register.jsp">--%>
-<%--<input type="submit"--%>
-<%--value="<fmt:message key="register"/>"/>--%>
-<%--</form>--%>
-
-
-<%--<form method="post" action="/resetPassword">--%>
-<%--<input type="submit"--%>
-<%--value="<fmt:message key="forgot"/>"/>--%>
-<%--</form>--%>
-
 </body>
 </html>

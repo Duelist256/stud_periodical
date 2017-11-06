@@ -13,7 +13,6 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
 
     private static String language = "ru";
-    private static String country = "US";
 
     public static String getLanguage() {
         return language;
@@ -23,18 +22,17 @@ public class LoginServlet extends HttpServlet {
         LoginServlet.language = language;
     }
 
-    public static String getCountry() {
-        if (language.equals("ru")) {
-            return "RU";
-        } else {
-            return "US";
-        }
-    }
-
-    private UserService userService;
+    //    public static String getCountry() {
+//        if (language.equals("ru")) {
+//            return "RU";
+//        } else {
+//            return "US";
+//        }
+//    }
     private Cookie cookieUserName;
     private Cookie cookieUserId;
     private HttpSession session;
+    private HttpSession sessioтLanguage;
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,9 +40,7 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("pass");
 
         UserService userService = new UserService();
-
         User user = userService.checkUser(login, password);
-
         if (user != null) {
 
             String name = user.getName();
@@ -59,6 +55,9 @@ public class LoginServlet extends HttpServlet {
 
             session = request.getSession(true);
             session.setAttribute("userName", name);
+
+            sessioтLanguage = request.getSession(true);
+            sessioтLanguage.setAttribute(language, getLanguage());
 
             redirectUser(response, user);
 

@@ -30,10 +30,10 @@
     <div class="row">
         <h2><fmt:message key="box"/></h2>
         <p align="right">
-            <a href="/language?name=rus"><img src="img/Russia.png" width="40" height="40"
+            <a href="/language?lan=ru"><img src="img/Russia.png" width="40" height="40"
                                               alt="RU"></a>
 
-            <a href="/language?name=eng"><img src="img/United-Kingdom.png" width="40" height="40" alt="US">
+            <a href="/language?lan=en"><img src="img/United-Kingdom.png" width="40" height="40" alt="US">
 
             </a></p>
 
