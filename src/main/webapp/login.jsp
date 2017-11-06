@@ -52,7 +52,7 @@
 <%--change language--%>
 
 <form method="get" action="login">
-    <input type="submit" value="<fmt:message key="change_Language"/>"/>
+    <input type="submit" value="<fmt:message key="changeLanguage"/>"/>
 </form>
 
 
