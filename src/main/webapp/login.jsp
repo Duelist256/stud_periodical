@@ -57,7 +57,7 @@
 
 
 <c:if test="${login != null}">
-    <font color=red size=4px>    <fmt:message key="invalid_msg" /> </font>
+    <font color=red size=4px>    <fmt:message key="invalidMsg" /> </font>
 </c:if>
 
 </body>
