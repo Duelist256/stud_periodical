@@ -8,9 +8,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-<fmt:setLocale value="${language}" />
-<fmt:setBundle basename="resources" />
+<c:set var="language"
+       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
+       scope="session"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="resources"/>
 <link rel="stylesheet" href="css/style.css">
 
 <html lang="${language}">
@@ -25,11 +27,11 @@
         <form method="post" action="resetPassword">
             <input type="hidden" name="emailChange" value="approveChange">
             <input type="hidden" name="email" value="${useremail}">
-            <td align="right"><fmt:message key="newpassword" /></td>
-            <td align="left"><input class="login-field" type="password" name="pass"/></td>
-            <hr>
-            <td align="right"><input type="submit" value=<fmt:message key="approve" />>
-            </td>
+            <div align="left"><fmt:message key="newpassword"/></div>
+            <div align="left"><input class="login-field" type="password" name="pass"/></div>
+            <hr width="125%">
+            <div align="right"><input type="submit" value=<fmt:message key="approve"/>>
+            </div>
         </form>
     </c:when>
     <c:otherwise>
@@ -37,19 +39,17 @@
         <form method="post" action="resetPassword">
             <input type="hidden" name="emailChange" value="changeEmail">
 
-            <td align="right"><fmt:message key="email"/></td>
-            <td align="left"><input class="login-field" type="text" name="email"/></td>
+            <div align="left"><fmt:message key="email"/></div>
+            <div align="left"><input class="login-field" type="text" name="email"/></div>
             <c:if test="${error != null}">
-                <td>
-                    <font color="red">
-                        <fmt:message key="invalidemail" />
-                    </font>
-                </td>
+                <div style="color:red">
+                    <fmt:message key="invalidemail"/>
+                </div>
             </c:if>
             <hr width="125%">
-            <td align="right"><input type="submit"
-                                     value=<fmt:message key="reset" />>
-            </td>
+            <div align="right"><input type="submit"
+                                      value=<fmt:message key="reset"/>>
+            </div>
         </form>
     </c:otherwise>
 </c:choose>
