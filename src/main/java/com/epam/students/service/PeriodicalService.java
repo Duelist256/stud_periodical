@@ -21,4 +21,8 @@ public class PeriodicalService {
     public List<Periodical> getAll() {
         return periodicalDao.getAll();
     }
+
+    public List<Periodical> getPaged(int page, int size){
+        return periodicalDao.getPaged(page, size);
+    }
 }
