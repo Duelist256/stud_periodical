@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        if (getLanguage().equals("en")) {
+        if (req.getParameter("changeLang")!= null && getLanguage().equals("en")) {
             setLanguage("ru");
         } else {
             setLanguage("en");
@@ -59,7 +59,4 @@ public class LoginServlet extends HttpServlet {
         req.getSession().setAttribute("language", getLanguage());
         req.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
     }
-
-
-    //    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { }
 }

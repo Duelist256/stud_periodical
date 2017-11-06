@@ -27,7 +27,7 @@
         <form method="post" action="resetPassword">
             <input type="hidden" name="emailChange" value="approveChange">
             <input type="hidden" name="email" value="${useremail}">
-            <div align="left"><fmt:message key="newpassword"/></div>
+            <div align="left"><fmt:message key="newPassword"/></div>
             <div align="left"><input class="login-field" type="password" name="pass"/></div>
             <hr width="125%">
             <div align="right"><input type="submit" value=<fmt:message key="approve"/>>
@@ -43,7 +43,7 @@
             <div align="left"><input class="login-field" type="text" name="email"/></div>
             <c:if test="${error != null}">
                 <div style="color:red">
-                    <fmt:message key="invalidemail"/>
+                    <fmt:message key="invalidEmail"/>
                 </div>
             </c:if>
             <hr width="125%">
