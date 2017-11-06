@@ -4,6 +4,7 @@ import com.epam.students.dao.UserDao;
 import com.epam.students.model.User;
 import com.epam.students.service.UserService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -47,6 +48,8 @@ public class LoginServlet extends HttpServlet {
         String login = request.getParameter("email");
         String password = request.getParameter("pass");
 
+        UserService userService = new UserService();
+
         User user = userService.checkUser(login, password);
 
         if (user != null) {
@@ -77,6 +80,7 @@ public class LoginServlet extends HttpServlet {
         } else {
             response.sendRedirect("/issue.jsp");
         }
+
     }
 
     @Override
@@ -104,4 +108,5 @@ public class LoginServlet extends HttpServlet {
         req.getSession().setAttribute("language", getLanguage());
         req.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
     }
+
 }
