@@ -27,9 +27,11 @@ public class LanguageServlet extends HttpServlet {
             req.getServletContext().getRequestDispatcher("/issue.jsp").forward(req, resp);
         } else if (req.getParameter("name").equals("rus")) {
             setLanguage("ru");
+            req.getSession().setAttribute("language", getLanguage());
             req.getServletContext().getRequestDispatcher("/mybox.jsp").forward(req, resp);
         } else if (req.getParameter("name").equals("eng")) {
             setLanguage("en");
+            req.getSession().setAttribute("language", getLanguage());
             req.getServletContext().getRequestDispatcher("/mybox.jsp").forward(req, resp);
         } else if (req.getParameter("name").equals("russ")) {
             setLanguage("ru");

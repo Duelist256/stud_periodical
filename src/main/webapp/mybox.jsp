@@ -9,6 +9,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="language"
+       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
+       scope="session"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="i18n.login"/>
 
 <script type="text/javascript" src="main.js"></script>
 <link href="css/bootstrap.css" rel="stylesheet">
@@ -18,17 +25,10 @@
 
 </head>
 <body>
-<%
-    String language = LoginServlet.getLanguage();
-    String country = LoginServlet.getCountry();
-    ResourceBundle resourceBundle = ResourceBundle.getBundle("resources", new Locale(language, country));
-%>
-<%
 
-%>
 <div class="container">
     <div class="row">
-        <h2><% out.print(new String(resourceBundle.getString("box").getBytes("ISO-8859-1"), "UTF-8"));%></h2>
+        <h2><fmt:message key="box"/></h2>
         <p align="right">
             <a href="/language?name=rus"><img src="img/Russia.png" width="40" height="40"
                                               alt="RU"></a>
@@ -43,7 +43,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/issue.jsp">
                             <button type="button" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
-                                <% out.print(new String(resourceBundle.getString("backshop").getBytes("ISO-8859-1"), "UTF-8"));%>
+                                <fmt:message key="backshop"/>
                             </button>
                         </a></li>
                     </ul>
@@ -54,15 +54,15 @@
 </div>
 
 <div class="container">
-    <h2><% out.print(new String(resourceBundle.getString("purchases").getBytes("ISO-8859-1"), "UTF-8"));%></h2>
+    <h2><fmt:message key="purchases"/></h2>
     <table class="table">
         <thead>
         <tr>
-            <th><% out.print(new String(resourceBundle.getString("Title").getBytes("ISO-8859-1"), "UTF-8"));%></th>
-            <th><% out.print(new String(resourceBundle.getString("Publisher").getBytes("ISO-8859-1"), "UTF-8"));%></th>
-            <th><% out.print(new String(resourceBundle.getString("Price").getBytes("ISO-8859-1"), "UTF-8"));%></th>
-            <th><% out.print(new String(resourceBundle.getString("buy").getBytes("ISO-8859-1"), "UTF-8"));%></th>
-            <th><% out.print(new String(resourceBundle.getString("delete").getBytes("ISO-8859-1"), "UTF-8"));%></th>
+            <th><fmt:message key="Title"/></th>
+            <th><fmt:message key="Publisher"/></th>
+            <th><fmt:message key="Price"/></th>
+            <th><fmt:message key="buy"/></th>
+            <th><fmt:message key="delete"/></th>
         </tr>
         </thead>
         <tbody>
@@ -75,13 +75,14 @@
                 <td>
                     <form method="put" action="#">
                         <input class="login-link" type="submit"
-                               value="<% out.print(new String(resourceBundle.getString("buy").getBytes("ISO-8859-1"),"UTF-8")); %>"/>
+                               value="<fmt:message key="buy"/>"
+                        />
                     </form>
                 </td>
                 <td>
                     <form method="post" action="/mybox?delete=${periodicalList.getId()}">
                         <input class="login-link" type="submit"
-                               value="<% out.print(new String(resourceBundle.getString("delete").getBytes("ISO-8859-1"),"UTF-8")); %>"/>
+                               value="<fmt:message key="delete"/>"/>
                     </form>
                 </td>
             </tr>
