@@ -22,13 +22,6 @@ public class LoginServlet extends HttpServlet {
         LoginServlet.language = language;
     }
 
-    //    public static String getCountry() {
-//        if (language.equals("ru")) {
-//            return "RU";
-//        } else {
-//            return "US";
-//        }
-//    }
     private Cookie cookieUserName;
     private Cookie cookieUserId;
     private HttpSession session;
