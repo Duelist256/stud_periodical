@@ -51,19 +51,17 @@ public class LoginServlet extends HttpServlet {
                 String name = userDao.readByEmail(login).getName();
                 int id = userDao.readByEmail(login).getId();
 
-
                 cookieUserName = new Cookie("user", name);
-                cookieUserName.setMaxAge(60 * 5); //5 mins
+                cookieUserName.setMaxAge(60 * 10);
                 response.addCookie(cookieUserName);
 
                 cookieUserId = new Cookie("userId", String.valueOf(userDao.readByEmail(login).getId()));
-                cookieUserName.setMaxAge(60 * 5); //5 mins
+                cookieUserName.setMaxAge(60 * 10);
                 response.addCookie(cookieUserName);
 
                 session = request.getSession(true);
                 session.setAttribute("userName", name);
             }
-
             response.sendRedirect("/issue.jsp");
         } else {
             request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);

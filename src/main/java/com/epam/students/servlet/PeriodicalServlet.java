@@ -16,7 +16,7 @@ public class PeriodicalServlet extends HttpServlet {
 
     PeriodicalService periodicalService;
 
-    public PeriodicalServlet(){
+    public PeriodicalServlet() {
         periodicalService = new PeriodicalService();
     }
 

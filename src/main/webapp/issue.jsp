@@ -53,17 +53,18 @@
         <div class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="myNavbar">
-                    <h1 class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                    <p class="btn btn-link" data-toggle="modal" data-target="#MyBox">
                         Hello <% if (session.getAttribute("userName") != null) {
                         out.print(session.getAttribute("userName").toString());
                     }%>
-                    </h1>
+                    </p>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/mybox">
-                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
-                                <% out.print(new String(resourceBundle.getString("box").getBytes("ISO-8859-1"), "UTF-8"));%>
-                            </button>
-                        </a></li>
+                        <a href="/mybox" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                            <% out.print(new String(resourceBundle.getString("box").getBytes("ISO-8859-1"), "UTF-8"));%>
+                        </a>
+                        <a href="/logout" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                                <% out.print(new String(resourceBundle.getString("logout").getBytes("ISO-8859-1"), "UTF-8"));%>
+                            </a>
                     </ul>
                 </div>
             </div>
@@ -83,7 +84,6 @@
             <li>
                 <a href="#"><% out.print(new String(resourceBundle.getString("category2").getBytes("ISO-8859-1"), "UTF-8"));%><span
                         class="badge"> 6</span></a></li>
-
         </ul>
         <hr>
 
