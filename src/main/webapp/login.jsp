@@ -23,10 +23,9 @@
 <body class="login">
 <p align="right">
     <a href="/language?name=russ"><img src="img/Russia.png" width="40" height="40"
-                                        alt="RU"></a>
+                                       alt="RU"></a>
 
-    <a href="/language?name=engg"><img src="img/United-Kingdom.png" width="40" height="40"
-                                        alt="US"></a>
+    <a href="/language?name=engg"><img src="img/United-Kingdom.png" width="40" height="40" alt="US"></a>
 </p>
 
 <form method="post" action="login">
