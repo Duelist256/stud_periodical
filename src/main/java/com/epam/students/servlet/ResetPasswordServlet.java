@@ -68,7 +68,7 @@ public class ResetPasswordServlet extends HttpServlet {
                     .password(newPassword)
                     .salt(salt)
                     .name(user.getName())
-                    .isAdmin(user.getIsAdmin())
+                    .isAdmin(user.isAdmin())
                     .build();
 
             userDao.update(updatedUser);
