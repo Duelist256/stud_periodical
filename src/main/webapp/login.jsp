@@ -11,15 +11,6 @@
 <link href="css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" href="css/style1.css">
 
-
-<c:set var="language"
-       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
-       scope="session"/>
-
-<fmt:setLocale value="${language}"/>
-
-<fmt:setBundle basename="i18n.login"/>
-
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
