@@ -1,6 +1,4 @@
-<%@ page import="com.epam.students.servlet.LoginServlet" %>
-<%@ page import="java.util.ResourceBundle" %>
-<%@ page import="java.util.Locale" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: arina
   Date: 30.10.17
@@ -18,7 +16,6 @@
 <fmt:setBundle basename="i18n.login"/>
 
 <link href="css/bootstrap.css" rel="stylesheet">
-
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
     var RestGet = function (id) {
@@ -42,11 +39,6 @@
     <title>Issue</title>
 </head>
 <body>
-<%
-    String language = LoginServlet.getLanguage();
-    String country = LoginServlet.getCountry();
-    ResourceBundle resourceBundle = ResourceBundle.getBundle("resources", new Locale(language, country));
-%>
 <div class="container">
     <div class="row">
         <h2><fmt:message key="catalog"/></h2>
@@ -61,17 +53,19 @@
         <div class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="myNavbar">
-                    <h1 class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                    <p class="btn btn-link" data-toggle="modal" data-target="#MyBox">
                         Hello <% if (session.getAttribute("userName") != null) {
                         out.print(session.getAttribute("userName").toString());
                     }%>
-                    </h1>
+                    </p>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/mybox">
-                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                            <a href="/mybox" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
                                 <fmt:message key="box"/>
-                            </button>
-                        </a></li>
+                            </a>
+                            <a href="/logout" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                                <fmt:message key="logout"/>
+                            </a>
+
                     </ul>
                 </div>
             </div>
@@ -91,10 +85,7 @@
             <li>
                 <a href="#"><fmt:message key="category2"/> <span
                         class="badge"> 6</span></a></li>
-
         </ul>
-        <hr>
-
         <!-- Блоки с текстом!!!!!! -->
         <c:forEach var="all" items="${list}">
             <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
