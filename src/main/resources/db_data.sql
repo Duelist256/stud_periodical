@@ -21,6 +21,10 @@ INSERT INTO inform_system.users (login, password, salt, name) VALUES
 ('test20@test.com','803da8827f0758595c22c52d02416e3102e6fcb6ecfe12c076395ae6498322f8','VM9Q0SgUDUbs3LA+LOyAgVgzmiGp3m1ubR7fpklOTWU=','Test20');
 -- For each accounts passwords test1, test2 ... test20 respectively
 
+INSERT INTO inform_system.users (login, password, salt, name, isAdmin) VALUES
+('admin@test.com','2199700756900cac220c305b8be1b1d4ee567f9f389bd194a644062500b3ba91','cB0Dh/agK8WHuAETRL8h2DPJXKsXMxM/8T2Nu/lXsF0=','Admin', TRUE);
+-- login "admin@test.com", password "admin"
+
 INSERT INTO inform_system.periodicals (title, description, publisher, genre, price, img_path) VALUES
 ('Title1','Description1','publisher1','genre1', '100', 'defaultpath'),
 ('Title2','Description2','publisher2','genre2', '101', 'defaultpath'),

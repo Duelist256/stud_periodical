@@ -29,7 +29,7 @@ public class UserDao implements Dao<User> {
             preparedStatement.setString(3, newUser.getPassword());
             preparedStatement.setString(4, newUser.getSalt());
             preparedStatement.executeUpdate();
-            logger.info("User " + newUser.getLogin() + " successfully added");
+            logger.info(String.format("User %s successfully created", newUser.getLogin()));
 
         } catch (SQLException e) {
             logger.error("Failed to create user. Cause: " + e.getMessage());
@@ -49,7 +49,7 @@ public class UserDao implements Dao<User> {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 User user = UserMapper.mapRow(resultSet);
-                logger.info("User " + user.getLogin() + " successfully read");
+                logger.info(String.format("User %s successfully read", user.getLogin()));
                 return user;
             } else {
                 return null;
@@ -78,6 +78,7 @@ public class UserDao implements Dao<User> {
                         .name(resultSet.getString("name"))
                         .isAdmin(resultSet.getInt("isAdmin"))
                         .build();
+                logger.info(String.format("User %s successfully read", user.getLogin()));
                 return user;
             } else {
                 return null;
@@ -104,7 +105,7 @@ public class UserDao implements Dao<User> {
             preparedStatement.setInt(5, user.getId());
 
             preparedStatement.executeUpdate();
-            logger.info("User " + user.getLogin() + " successfully updated");
+            logger.info(String.format("User %s successfully updated", user.getLogin()));
         } catch (SQLException e) {
             logger.error("Failed to update user. Cause: " + e);
             throw new RuntimeException(e);
@@ -120,7 +121,7 @@ public class UserDao implements Dao<User> {
 
             preparedStatement.setInt(1, user.getId());
             preparedStatement.executeUpdate();
-            logger.info("User " + user.getLogin() + " successfully deleted");
+            logger.info(String.format("User %s successfully deleted", user.getLogin()));
         } catch (SQLException e) {
             logger.error("Failed to delete user. Cause: " + e);
             throw new RuntimeException(e);

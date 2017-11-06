@@ -9,6 +9,14 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="language"
+       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
+       scope="session"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="i18n.login"/>
+
 <link href="css/bootstrap.css" rel="stylesheet">
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -41,7 +49,7 @@
 %>
 <div class="container">
     <div class="row">
-        <h2>Catalog</h2>
+        <h2><fmt:message key="catalog"/></h2>
         <p align="right">
             <a href="/language?name=ru"><img src="img/Russia.png" width="40" height="40"
                                              alt="RU"></a>
@@ -53,18 +61,17 @@
         <div class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="myNavbar">
-                    <p class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                    <h1 class="btn btn-link" data-toggle="modal" data-target="#MyBox">
                         Hello <% if (session.getAttribute("userName") != null) {
                         out.print(session.getAttribute("userName").toString());
                     }%>
-                    </p>
+                    </h1>
                     <ul class="nav navbar-nav navbar-right">
-                        <a href="/mybox" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
-                           Box
-                        </a>
-                        <a href="/logout" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
-                           Logout
-                        </a>
+                        <li><a href="/mybox">
+                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                                <fmt:message key="box"/>
+                            </button>
+                        </a></li>
                     </ul>
                 </div>
             </div>
@@ -76,14 +83,15 @@
             <li class="active">
 
             <li>
-                <a href="/getall">getAll<span
+                <a href="/getall"><fmt:message key="getAll" /> <span
                         class="badge"> 5</span></a></li>
             <li>
-                <a href="#">catalog1
+                <a href="#"><fmt:message key="category1"/>
                     <span class="badge"> 5</span></a></li>
             <li>
-                <a href="#">catalog2<span
+                <a href="#"><fmt:message key="category2"/> <span
                         class="badge"> 6</span></a></li>
+
         </ul>
         <hr>
 

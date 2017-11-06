@@ -57,12 +57,15 @@ public class PeriodicalDaoTest {
         PeriodicalDao periodicalDao = new PeriodicalDao();
         Periodical periodical = periodicalDao.read(5);
 
-//        periodical.setTitle(newTitle);
-//        periodical.setDescription(newDescription);
-//        periodical.setPublisher(newPublisher);
-//        periodical.setGenre(newGenre);
-//        periodical.setPrice(newPrice);
-//        periodical.setImgPath(newImgPath);
+        periodical = Periodical.newBuilder()
+                .id(periodical.getId())
+                .title(newTitle)
+                .description(newDescription)
+                .publisher(newPublisher)
+                .genre(newGenre)
+                .price(newPrice)
+                .imgPath(newImgPath)
+                .build();
 
         periodicalDao.update(periodical);
 
