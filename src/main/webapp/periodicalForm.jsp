@@ -21,11 +21,11 @@
         <input type="submit" value='Back To List'>
     </form>
     <c:if test="${periodical != null}">
-    <form action="/adminpage" method="post">
+    <form action="/adminpage" method="post" enctype="multipart/form-data">
         <input type="hidden" name="action" value="update">
         </c:if>
         <c:if test="${periodical == null}">
-        <form action="/adminpage" method="post">
+        <form action="/adminpage" method="post" enctype="multipart/form-data">
             <input type="hidden" name="action" value="insert">
             </c:if>
             <table border="1" cellpadding="5">
@@ -87,9 +87,7 @@
                 <tr>
                     <th>Image Path:</th>
                     <td>
-                        <input type="text" name="imgPath" size="45"
-                               value='${periodical.getImgPath()}'
-                        />
+                        <input type="file" name="file" size="45" />
                     </td>
                 </tr>
                 <tr>
