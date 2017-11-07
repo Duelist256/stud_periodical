@@ -103,5 +103,22 @@
         </c:forEach>
     </div>
 </div>
+
+<nav class="text-center">
+    <ul class="pagination">
+        <li>
+            <a href="#">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+            </a>
+        </li>
+        <li><a href="/page?num=1">1</a></li>
+        <li><a href="/page?num=2">2</a></li>
+        <li>
+            <a href="#">
+                <i class="glyphicon glyphicon-chevron-right"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
 </body>
 </html>
