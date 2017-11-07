@@ -3,7 +3,6 @@ package com.epam.students.service;
 import com.epam.students.dao.PeriodicalDao;
 import com.epam.students.model.Periodical;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PeriodicalService {
@@ -32,5 +31,9 @@ public class PeriodicalService {
 
     public List<Periodical> getAll() {
         return periodicalDao.getAll();
+    }
+
+    public List<Periodical> getPage(int page, int size){
+        return periodicalDao.getPage(page, size);
     }
 }
