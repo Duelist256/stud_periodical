@@ -35,6 +35,9 @@ public class CheckFilter implements Filter {
         necessaryPages.add("/register");
         necessaryPages.add("/resetPassword");
         necessaryPages.add("/language");
+        necessaryPages.add("/403.html");
+        necessaryPages.add("/404.html");
+        necessaryPages.add("/500.html");
 
         boolean isUserNotAdmin = isUserNotAdmin(request.getCookies());
 
