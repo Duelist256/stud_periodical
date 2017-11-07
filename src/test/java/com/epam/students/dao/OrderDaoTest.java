@@ -48,8 +48,8 @@ public class OrderDaoTest {
     @Test
     public void testDelete() throws Exception {
         OrderDao orderDao = new OrderDao();
-        Order ordered1 = Order.newBuilder().idUser(1).date(new Timestamp(new Date().getTime())).status("Ordered").build();
-        Order ordered2 = Order.newBuilder().idUser(1).date(new Timestamp(new Date().getTime())).status("Ordered").build();
+        Order ordered1 = Order.newBuilder().id(1).idUser(1).date(new Timestamp(new Date().getTime())).status("Ordered").build();
+        Order ordered2 = Order.newBuilder().id(2).idUser(1).date(new Timestamp(new Date().getTime())).status("Ordered").build();
         orderDao.delete(ordered1);
     }
 

@@ -19,7 +19,6 @@
 <html>
 <head>
     <title>MyBox</title>
-
 </head>
 <body>
 <div class="container">
@@ -49,57 +48,62 @@
 </div>
 
 <div class="container">
-    <h2><fmt:message key="purchases"/></h2>
+    <h3><fmt:message key="purchases"/></h3>
     <div class="table-responsive">
-    <table class="table">
-        <thead>
-        <div class="row" align="center" style="border: 1px solid grey">
-            <div class="col-sm-3">
-                <h3><fmt:message key="Title"/></h3>
-            </div>
-            <div class="col-sm-3">
-                <h3><fmt:message key="Publisher"/></h3>
-            </div>
-            <div class="col-sm-3">
-                <h3><fmt:message key="Price"/></h3>
-            </div>
-            <div class="col-sm-3">
-                <h3><fmt:message key="delete"/></h3>
-            </div>
-        </div>
-        </thead>
-        <tbody>
-        <c:set var="sum" value="${0}"></c:set>
-        <c:forEach var="periodicalList" items="${pl}">
-            <div class="row"  align="center">
+        <table class="table">
+            <thead>
+            <div class="row" align="center" style="border: 1px solid grey">
                 <div class="col-sm-3">
-                    <h4> ${periodicalList.getTitle()} </h4>
+                    <h4><fmt:message key="Title"/></h4>
                 </div>
                 <div class="col-sm-3">
-                    <h4> ${periodicalList.getPublisher()} </h4>
+                    <h4><fmt:message key="Publisher"/></h4>
                 </div>
                 <div class="col-sm-3">
-                    <h4> ${periodicalList.getPrice()} </h4>
+                    <h4><fmt:message key="Price"/></h4>
                 </div>
                 <div class="col-sm-3">
-                    <form method="post" action="/mybox?delete=${periodicalList.getId()}">
-                        <h4><button type="submit" class="login-link"><span class="glyphicon glyphicon-trash"></span>
-                        </button></h4>
-                    </form>
+                    <h4><fmt:message key="delete"/></h4>
                 </div>
             </div>
-            <c:set var="sum" value="${sum + Integer.valueOf(periodicalList.getPrice())}"/>
-        </c:forEach>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <c:set var="sum" value="${0}"></c:set>
+            <c:forEach var="periodicalList" items="${pl}">
+                <div class="row" align="center">
+                    <div class="col-sm-3">
+                        <h5> ${periodicalList.getTitle()} </h5>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5> ${periodicalList.getPublisher()} </h5>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5> ${periodicalList.getPrice()} </h5>
+                    </div>
+                    <div class="col-sm-3">
+                        <form method="post" action="/mybox?delete=${periodicalList.getId()}">
+                            <h5>
+                                <button type="submit" class="login-link"><span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </h5>
+                        </form>
+                    </div>
+                </div>
+                <c:set var="sum" value="${sum + Integer.valueOf(periodicalList.getPrice())}"/>
+            </c:forEach>
+            </tbody>
+        </table>
     </div>
     <hr>
     <p>
-    <h4  align="right"><fmt:message key="Total"/>
+    <h4 align="right"><fmt:message key="Total"/>
         <c:out value="${sum}"/></h4>
-    <form method="put" action="#">
-       <p align="right"><button type="submit" class="btn btn-default" align="right" ><h3><span class="glyphicon glyphicon-shopping-cart"></span></h3>
-        </button></p>
+    <form action="/mybox?buy=1" method="post">
+        <p align="right"><input type="hidden" name="buy" value="ololo">
+            <button type="submit" class="btn btn-default" align="right"><h3><span
+                    class="glyphicon glyphicon-shopping-cart"></span></h3>
+            </button>
+        </p>
     </form>
 </div>
 </body>
