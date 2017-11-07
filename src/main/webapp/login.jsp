@@ -11,6 +11,11 @@
 <link href="css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" href="css/style1.css">
 
+
+<c:set var="language"
+       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
+       scope="session"/>
+
 <c:choose>
     <c:when test="${sessionScope.language == 'en'}">
         <fmt:setLocale value="en"/>
@@ -20,8 +25,9 @@
     </c:otherwise>
 </c:choose>
 <fmt:setBundle basename="i18n.login"/>
+<fmt:setLocale value="${language}"/>
 
-<link rel="stylesheet" href="css/style.css">
+<fmt:setBundle basename="i18n.login"/>
 
 <html>
 <head>
