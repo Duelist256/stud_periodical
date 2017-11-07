@@ -135,8 +135,7 @@ public class PeriodicalDao implements Dao<Periodical> {
 
     public List<Periodical> getPaged(int page, int size){
         int lo = (page - 1) * size;
-        int hi = lo + size;
-        String query = "select * from inform_system.periodicals where id > " + lo + " && id <= " + hi + ";";
+        String query = "select * from inform_system.periodicals where id limit " + lo + "," + size + ";";
         List<Periodical> result = new ArrayList<>();
 
         try (Connection connection = DBConnection.getConnection();
