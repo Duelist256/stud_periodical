@@ -25,10 +25,10 @@
             dataType: 'json',
             async: true,
             success: function (result) {
-                alert('Answer' + result);
+                console.log(result);
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                alert(jqXHR.status + ' ' + jqXHR.responseText);
+//                alert(jqXHR.status + ' ' + jqXHR.responseText);
             }
         });
     }
@@ -78,13 +78,7 @@
 
             <li>
                 <a href="/getall"><fmt:message key="getAll"/> <span
-                        class="badge"> 5</span></a></li>
-            <li>
-                <a href="#"><fmt:message key="category1"/>
-                    <span class="badge"> 5</span></a></li>
-            <li>
-                <a href="#"><fmt:message key="category2"/> <span
-                        class="badge"> 6</span></a></li>
+                        class="badge">  20</span></a></li>
         </ul>
         <!-- Блоки с текстом!!!!!! -->
         <c:forEach var="all" items="${list}">
@@ -97,11 +91,28 @@
                         <button type="button" class="btn btn-success" onclick="RestGet(${all.getId()})"><fmt:message
                                 key="buy"/></button>
                     </div>
-
                 </div>
             </div>
         </c:forEach>
     </div>
 </div>
+
+<nav class="text-center">
+    <ul class="pagination">
+        <li>
+            <a href="#">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+            </a>
+        </li>
+        <li><a href="/page?num=1">1</a></li>
+        <li><a href="/page?num=2">2</a></li>
+        <li>
+            <a href="#">
+                <i class="glyphicon glyphicon-chevron-right"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
 </body>
 </html>

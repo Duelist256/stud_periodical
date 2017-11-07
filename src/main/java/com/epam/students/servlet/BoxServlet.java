@@ -38,7 +38,18 @@ public class BoxServlet extends HttpServlet {
         }
 
         List<Order> allByIdUser = orderDao.getAllByIdUser(idUser);
-        allByIdUser.forEach(t -> periodicalList.add(periodicalDao.read(orderPeriodicalDao.read(t.getId()).getIdPeriodical())));
+        if (allByIdUser.size() > 0) {
+            for (Order order : allByIdUser) {
+                if (order != null) {
+                    OrderPeriodical orderPeriodical = orderPeriodicalDao.read(order.getId());
+                    if(orderPeriodical != null) {
+                        int idPeriodical = orderPeriodical.getIdPeriodical();
+                        Periodical periodical = periodicalDao.read(idPeriodical);
+                        periodicalList.add(periodical);
+                    }
+                }
+            }
+        }
 
         req.setAttribute("pl", periodicalList);
         req.getRequestDispatcher("/mybox.jsp").forward(req, resp);
