@@ -28,7 +28,7 @@
     <div class="row">
         <div class="panel panel-primary">
             <div class="panel-body">
-                <form name="regForm" method="POST" action="register" role="form">
+                <form method="POST" action="register" role="form">
                     <div class="form-group">
                         <h2><fmt:message key="Createyouraccount"/><a href="/language?lan=ru"><img src="img/Russia.png" align="right"
                                                                               width="40"
