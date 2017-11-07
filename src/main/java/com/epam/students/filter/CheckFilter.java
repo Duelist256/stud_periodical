@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 @WebFilter("/*")
 public class CheckFilter implements Filter {
@@ -24,26 +26,32 @@ public class CheckFilter implements Filter {
 
         String requestURI = request.getRequestURI();
         String loginURI = request.getContextPath() + "/login";
-        boolean loginRequest = requestURI.equals(loginURI);
 
         System.out.println(requestURI);
-        boolean register = requestURI.equals("/register.jsp") || requestURI.equals("/register");
-        boolean resetPassword = requestURI.equals("/resetPassword");
-        boolean languageRequest = requestURI.equals("/language");
 
-        Cookie[] cookies = request.getCookies();
-        boolean isUserNotAdmin = isUserNotAdmin(cookies);
-        boolean adminPages = requestURI.equals("/adminpage") || requestURI.equals("/adminPage.jsp")
-                || requestURI.equals("/periodicalForm.jsp");
+        Set<String> necessaryPages = new HashSet<>();
+        necessaryPages.add(loginURI);
+        necessaryPages.add("/register.jsp");
+        necessaryPages.add("/register");
+        necessaryPages.add("/resetPassword");
+        necessaryPages.add("/language");
 
-        if (loggedIn || loginRequest || register || resetPassword || languageRequest
+        boolean isUserNotAdmin = isUserNotAdmin(request.getCookies());
+
+        Set<String> adminPages = new HashSet<>();
+        adminPages.add("/adminpage");
+        adminPages.add("/adminPage.jsp");
+        adminPages.add("/periodicalForm.jsp");
+
+        if (loggedIn || necessaryPages.contains(requestURI)
                 || requestURI.matches(".*(css|jpg|png|gif|js|ico)")) {
 
-            if (isUserNotAdmin && adminPages) {
+            if (isUserNotAdmin && adminPages.contains(requestURI)) {
                 response.sendRedirect("/issue.jsp");
             } else {
                 chain.doFilter(request, response);
             }
+
         } else {
             response.sendRedirect(loginURI);
         }
