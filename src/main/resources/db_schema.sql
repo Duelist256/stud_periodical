@@ -25,8 +25,14 @@ CREATE TABLE users (
   UNIQUE (`login`));
 
 CREATE TABLE orders (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   id_user	INT NOT NULL,
-  id_periodical INT NOT NULL,
+  date_order TIMESTAMP NOT NULL,
   status VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`));
+
+CREATE TABLE orderPeriodical (
+  id_order INT NOT NULL,
+  id_periodical INT NOT NULL
+);
+
