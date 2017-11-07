@@ -34,7 +34,7 @@ public class UserDaoTest {
         assertEquals(password, receivedUser.getPassword());
         assertEquals(salt, receivedUser.getSalt());
         assertEquals(name, receivedUser.getName());
-        assertEquals(0, receivedUser.getIsAdmin());
+        assertEquals(0, receivedUser.isAdmin());
     }
 
     @Test

@@ -17,10 +17,11 @@ public class PeriodicalDao implements Dao<Periodical> {
     private final static Logger logger = Logger.getLogger(UserDao.class);
 
     @Override
+
     public void create(Periodical newPeriodical) {
-        String query = "insert into inform_system.periodicals " +
+        String query = "INSERT INTO inform_system.periodicals " +
                 "(title, description, publisher, genre, price, img_path) " +
-                "values (?, ?, ?, ?, ?, ?)";
+                "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -32,7 +33,8 @@ public class PeriodicalDao implements Dao<Periodical> {
             preparedStatement.setString(6, newPeriodical.getImgPath());
             preparedStatement.executeUpdate();
 
-            logger.info("New periodical successfully added");
+            logger.info(String.format("New periodical \"%s\" by %s successfully added",
+                    newPeriodical.getTitle(), newPeriodical.getPublisher()));
         } catch (SQLException e) {
             logger.error("Failed to create periodical. Cause: " + e);
             throw new RuntimeException(e);
@@ -41,7 +43,7 @@ public class PeriodicalDao implements Dao<Periodical> {
 
     @Override
     public Periodical read(int id) {
-        String query = "select * from inform_system.periodicals where id = ?";
+        String query = "SELECT * FROM inform_system.periodicals WHERE id = ?";
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -51,8 +53,8 @@ public class PeriodicalDao implements Dao<Periodical> {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 Periodical periodical = PeriodicalMapper.mapRow(resultSet);
-                logger.info("Periodical \"" + periodical.getTitle() + "\" by "
-                        + periodical.getPublisher() + " successfully read");
+                logger.info(String.format("Periodical \"%s\" by %s successfully read",
+                        periodical.getTitle(), periodical.getPublisher()));
                 return periodical;
             } else {
                 return null;
@@ -82,8 +84,8 @@ public class PeriodicalDao implements Dao<Periodical> {
             preparedStatement.setInt(7, periodical.getId());
 
             preparedStatement.executeUpdate();
-            logger.info("Periodical \"" + periodical.getTitle() + "\" by "
-                    + periodical.getPublisher() + " successfully updated");
+            logger.info(String.format("Periodical \"%s\" by %s successfully updated",
+                    periodical.getTitle(), periodical.getPublisher()));
         } catch (SQLException e) {
             logger.error("Failed to update periodical. Cause: " + e);
             throw new RuntimeException(e);
@@ -99,8 +101,8 @@ public class PeriodicalDao implements Dao<Periodical> {
 
             preparedStatement.setInt(1, periodical.getId());
             preparedStatement.executeUpdate();
-            logger.info("Periodical \"" + periodical.getTitle() + "\" by "
-                    + periodical.getPublisher() + " successfully deleted");
+            logger.info(String.format("Periodical \"%s\" by %s successfully deleted",
+                    periodical.getTitle(), periodical.getPublisher()));
         } catch (SQLException e) {
             logger.error("Failed to delete periodical. Cause: " + e);
             throw new RuntimeException(e);
@@ -109,7 +111,7 @@ public class PeriodicalDao implements Dao<Periodical> {
 
     @Override
     public List<Periodical> getAll() {
-        String query = "select * from inform_system.periodicals";
+        String query = "SELECT * FROM inform_system.periodicals";
 
         List<Periodical> periodicals = new ArrayList<>();
 

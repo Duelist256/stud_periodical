@@ -1,11 +1,15 @@
-form { margin: 0px 10px; }
+form {
+    margin: 0px 10px;
+}
 
 h2 {
     margin-top: 2px;
     margin-bottom: 2px;
 }
 
-.container { max-width: 360px; }
+.container {
+    max-width: 360px;
+}
 
 .divider {
     text-align: center;
@@ -18,6 +22,10 @@ h2 {
     width: 35%;
 }
 
-.left { float: left; }
+.left {
+    float: left;
+}
 
-.right { float: right; }
+.right {
+    float: right;
+}
