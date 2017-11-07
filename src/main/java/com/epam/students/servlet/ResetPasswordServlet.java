@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 @WebServlet(urlPatterns = "/resetPassword")
 public class ResetPasswordServlet extends HttpServlet {
@@ -73,7 +71,7 @@ public class ResetPasswordServlet extends HttpServlet {
 
             userDao.update(updatedUser);
 
-            resp.sendRedirect("/login");
+            resp.sendRedirect("/login.jsp");
         }
     }
 }
