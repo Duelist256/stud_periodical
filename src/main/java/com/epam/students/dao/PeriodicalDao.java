@@ -111,28 +111,7 @@ public class PeriodicalDao implements Dao<Periodical> {
 
     @Override
     public List<Periodical> getAll() {
-        String query = "SELECT * FROM inform_system.periodicals";
-
-        List<Periodical> periodicals = new ArrayList<>();
-
-        try (Connection connection = DBConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                Periodical periodical = PeriodicalMapper.mapRow(resultSet);
-                periodicals.add(periodical);
-            }
-
-            logger.info("Periodicals successfully gotten");
-
-        } catch (SQLException e) {
-            logger.error("Failed to get periodicals. Cause: " + e);
-            throw new RuntimeException(e);
-        }
-
-        return periodicals;
+        return getPage(1, Integer.MAX_VALUE);
     }
 
     public List<Periodical> getPage(int page, int size){
