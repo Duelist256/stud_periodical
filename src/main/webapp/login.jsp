@@ -1,6 +1,4 @@
-<%@ page import="java.util.ResourceBundle" %>
-<%@ page import="java.util.Locale" %>
-<%@ page import="com.epam.students.servlet.LoginServlet" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Duelist
   Date: 23.10.2017
@@ -12,9 +10,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
-<link rel="stylesheet" href="css/style.css">
-
-
 <c:choose>
     <c:when test="${sessionScope.language == 'en'}">
         <fmt:setLocale value="en"/>
@@ -23,8 +18,9 @@
         <fmt:setLocale value="ru"/>
     </c:otherwise>
 </c:choose>
+<fmt:setBundle basename="i18n.login"/>
 
-<fmt:setBundle basename="i18n.login" />
+<link rel="stylesheet" href="css/style.css">
 
 <html>
 <head>
@@ -33,20 +29,27 @@
 <body class="login">
 <form method="post" action="login">
 
-    <td align="right"><fmt:message key="email"/></td>
+    <div align="left"><fmt:message key="email"/></div>
+    <c:set var="login" value="${requestScope.error}"/>
+    <div align="left">
+        <input class="login-field" type="text" name="email"
+               value="<c:out value="${login}" default=""/>"/>
+    </div>
 
-    <c:set var="login" value="${requestScope.error}" />
-    <td align="left"><input class="login-field" type="text" name="email" value="<c:out value="${login}" default=""/>"/></td>
-
-    <td align="right"><fmt:message key="password"/></td>
-    <td align="left"><input class="login-field" type="password" name="pass"/></td>
-    <hr>
-    <td align="right"><input type="submit" value="<fmt:message key="login"/>"></td>
+    <div align="left"><fmt:message key="password"/></div>
+    <div align="left"><input class="login-field" type="password" name="pass"/></div>
+    <hr width="125%">
+    <div align="right"><input type="submit" value="<fmt:message key="login"/>"></div>
 
 </form>
+
 <form method="post" action="register.jsp">
     <input class="login-link" type="submit"
            value="<fmt:message key="register"/>"/>
+</form>
+
+<form method="post" action="/resetPassword">
+    <input class="login-link" type="submit" value="<fmt:message key="forgot" />"/>
 </form>
 
 <%--change language--%>
@@ -57,7 +60,9 @@
 
 
 <c:if test="${login != null}">
-    <font color=red size=4px>    <fmt:message key="invalidMsg" /> </font>
+    <div style="color: red">
+        <fmt:message key="invalidMsg"/>
+    </div>
 </c:if>
 
 </body>
