@@ -28,7 +28,7 @@
                 alert('Answer' + result);
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                alert(jqXHR.status + ' ' + jqXHR.responseText);
+//             alert(jqXHR.status + ' ' + jqXHR.responseText);
             }
         });
     }
