@@ -22,8 +22,9 @@ public class LoginServlet extends HttpServlet {
         LoginServlet.language = language;
     }
 
-    private Cookie cookieUserName;
     private Cookie cookieUserId;
+    private Cookie cookieUserName;
+    private Cookie cookieIsAdmin;
     private HttpSession session;
     private HttpSession sessionLanguage;
 
@@ -43,8 +44,12 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(cookieUserName);
 
             cookieUserId = new Cookie("userId", String.valueOf(user.getId()));
-            cookieUserId.setMaxAge(60 * 5); //5 mins
+            cookieUserId.setMaxAge(60 * 5);
             response.addCookie(cookieUserId);
+
+            cookieIsAdmin = new Cookie("userIsAdmin", String.valueOf(user.isAdmin()));
+            cookieIsAdmin.setMaxAge(60 * 5);
+            response.addCookie(cookieIsAdmin);
 
             session = request.getSession(true);
             session.setAttribute("userName", name);
@@ -77,6 +82,11 @@ public class LoginServlet extends HttpServlet {
                 if (cookie.getName().equals("user")) {
                     session = req.getSession(true);
                     session.setAttribute("userName", cookie.getValue());
+                }
+
+                if (cookie.getName().equals("userIsAdmin")) {
+                    session = req.getSession(true);
+                    session.setAttribute("userIsAdmin", cookie.getValue());
                 }
             }
 

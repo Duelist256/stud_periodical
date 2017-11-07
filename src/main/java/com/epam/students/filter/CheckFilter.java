@@ -2,6 +2,7 @@ package com.epam.students.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -30,12 +31,37 @@ public class CheckFilter implements Filter {
         boolean resetPassword = requestURI.equals("/resetPassword");
         boolean languageRequest = requestURI.equals("/language");
 
+        Cookie[] cookies = request.getCookies();
+        boolean isUserNotAdmin = isUserNotAdmin(cookies);
+        boolean adminPages = requestURI.equals("/adminpage") || requestURI.equals("/adminPage.jsp")
+                || requestURI.equals("/periodicalForm.jsp");
+
         if (loggedIn || loginRequest || register || resetPassword || languageRequest
                 || requestURI.matches(".*(css|jpg|png|gif|js|ico)")) {
-            chain.doFilter(request, response);
+
+            if (isUserNotAdmin && adminPages) {
+                response.sendRedirect("/issue.jsp");
+            } else {
+                chain.doFilter(request, response);
+            }
         } else {
             response.sendRedirect(loginURI);
         }
+    }
+
+    private boolean isUserNotAdmin(Cookie[] cookies) {
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("userIsAdmin")) {
+                    if (Integer.parseInt(cookie.getValue()) == 0) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     public void init(FilterConfig config) throws ServletException {
