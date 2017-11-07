@@ -1,5 +1,7 @@
 package com.epam.students.filter;
 
+import org.apache.log4j.Logger;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
@@ -12,6 +14,9 @@ import java.util.Set;
 
 @WebFilter("/*")
 public class CheckFilter implements Filter {
+
+    private final static Logger logger = Logger.getLogger(CheckFilter.class);
+
     public void destroy() {
     }
 
@@ -27,7 +32,7 @@ public class CheckFilter implements Filter {
         String requestURI = request.getRequestURI();
         String loginURI = request.getContextPath() + "/login";
 
-        System.out.println(requestURI);
+        logger.info("Request URI: " + requestURI);
 
         Set<String> necessaryPages = new HashSet<>();
         necessaryPages.add(loginURI);
