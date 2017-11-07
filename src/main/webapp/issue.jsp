@@ -28,7 +28,7 @@
                 console.log(result);
             },
             error: function (jqXHR, textStatus, errorThrown) {
-//                alert(jqXHR.status + ' ' + jqXHR.responseText);
+                alert(jqXHR.status + ' ' + jqXHR.responseText);
             }
         });
     }
@@ -96,7 +96,6 @@
         </c:forEach>
     </div>
 </div>
-
 <nav class="text-center">
     <ul class="pagination">
         <li>
