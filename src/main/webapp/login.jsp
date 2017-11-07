@@ -10,6 +10,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link href="css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" href="css/style1.css">
+<c:set var="language"
+       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
+       scope="session"/>
+
+<fmt:setLocale value="${language}"/>
+
+<fmt:setBundle basename="i18n.login"/>
 
 <html>
 <head>
@@ -26,13 +33,13 @@
                         <h2>Sign in
                             <a href="/language?lan=ru"><img src="img/Russia.png" align="right" width="40" height="40"
                                                                alt="RU"></a>
-
+                            <c:set var="error" value="${requestScope.error}" />
                             <a href="/language?lan=en"><img src="img/United-Kingdom.png" align="right" width="40"
                                                                height="40" alt="US"></a></h2>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupEmail"><fmt:message key="email"/></label>
-                        <input id="signupEmail" type="email" name="email" maxlength="50" class="form-control">
+                        <input id="signupEmail" type="email" name="email" value="<c:out value="${error}" default=""/>" maxlength="50" class="form-control">
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupPassword"><fmt:message key="password"/></label>
@@ -50,6 +57,9 @@
                     <p> I forgot my password!
                         <input type="submit" class="btn btn-link" value="<fmt:message key="forgot"/>"/></p></form>
             </div>
+            <c:if test="${error != null}">
+                <font color=red size=4px>    <fmt:message key="invalidMsg" /> </font>
+            </c:if>
         </div>
     </div>
 </div>

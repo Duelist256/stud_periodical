@@ -43,4 +43,5 @@ public class RegisterServlet extends HttpServlet {
 
         rs.getServletContext().getRequestDispatcher("/login.jsp").forward(rs, response);
     }
+
 }
