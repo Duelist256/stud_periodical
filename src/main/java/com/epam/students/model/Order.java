@@ -1,10 +1,12 @@
 package com.epam.students.model;
 
+import java.sql.Timestamp;
+
 public class Order {
 
     private int id;
     private int idUser;
-    private int idPeriodical;
+    private Timestamp date;
     private String status;
 
     private Order(){
@@ -19,8 +21,8 @@ public class Order {
         return idUser;
     }
 
-    public int getIdPeriodical() {
-        return idPeriodical;
+    public Timestamp getDate() {
+        return date;
     }
 
     public String getStatus() {
@@ -52,8 +54,8 @@ public class Order {
             return this;
         }
 
-        public Builder idPeriodical(int idPeriodical){
-            Order.this.idPeriodical = idPeriodical;
+        public Builder date(Timestamp date){
+            Order.this.date = date;
             return this;
         }
 
