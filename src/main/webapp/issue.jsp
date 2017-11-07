@@ -90,7 +90,7 @@
         <c:forEach var="all" items="${list}">
             <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
                 <div class="thumbnail">
-                    <img src="http://placehold.it/300x240" alt="">
+                    <img src="${all.getImgPath()}" alt="Image unavailable">
                     <div class="caption">
                         <h4><a href="#"> ${all.getTitle()} </a></h4>
                         <p>${all.getDescription()}</p>
