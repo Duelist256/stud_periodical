@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
     private Cookie cookieUserName;
     private Cookie cookieUserId;
     private HttpSession session;
-    private HttpSession sessioтLanguage;
+    private HttpSession sessionLanguage;
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,8 +49,8 @@ public class LoginServlet extends HttpServlet {
             session = request.getSession(true);
             session.setAttribute("userName", name);
 
-            sessioтLanguage = request.getSession(true);
-            sessioтLanguage.setAttribute(language, getLanguage());
+            sessionLanguage = request.getSession(true);
+            sessionLanguage.setAttribute(language, getLanguage());
 
             redirectUser(response, user);
 
