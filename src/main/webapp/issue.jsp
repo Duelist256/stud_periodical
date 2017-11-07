@@ -103,7 +103,6 @@
         </c:forEach>
     </div>
 </div>
-
 <nav class="text-center">
     <ul class="pagination">
         <li>
