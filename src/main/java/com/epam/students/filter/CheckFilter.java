@@ -19,27 +19,23 @@ public class CheckFilter implements Filter {
 
         HttpSession session = request.getSession(false);
 
-        String loginURI = request.getContextPath() + "/login";
-
         boolean loggedIn = session != null && session.getAttribute("userName") != null;
+
         String requestURI = request.getRequestURI();
+        String loginURI = request.getContextPath() + "/login";
         boolean loginRequest = requestURI.equals(loginURI);
 
         System.out.println(requestURI);
+        boolean register = requestURI.equals("/register.jsp") || requestURI.equals("/register");
+        boolean resetPassword = requestURI.equals("/resetPassword");
+        boolean languageRequest = requestURI.equals("/language");
 
-        boolean isBootstrap = "/css/bootstrap.css".equals(requestURI);
-        boolean isStyle1 = "/css/style1.css".equals(requestURI);
-        boolean firstImg = "/img/Russia.png".equals(requestURI);
-        boolean secondImg = "/img/United-Kingdom.png".equals(requestURI);
-        boolean favicon = "/favicon.ico".equals(requestURI);
-
-        if (loggedIn || loginRequest
-                || isBootstrap || isStyle1 || firstImg || secondImg || favicon) {
+        if (loggedIn || loginRequest || register || resetPassword || languageRequest
+                || requestURI.matches(".*(css|jpg|png|gif|js|ico)")) {
             chain.doFilter(request, response);
         } else {
             response.sendRedirect(loginURI);
         }
-
     }
 
     public void init(FilterConfig config) throws ServletException {
