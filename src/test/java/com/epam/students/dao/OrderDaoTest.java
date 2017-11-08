@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class OrderDaoTest {
 
@@ -46,25 +47,8 @@ public class OrderDaoTest {
     @Test
     public void testGetAll() throws Exception {
         OrderDao orderDao = new OrderDao();
-        orderDao.getAll();
-
-    }
-
-    @Test
-    public void updateTest() throws Exception {
-        OrderDao orderDao = new OrderDao();
-        Order ordered1 = Order.newBuilder().idUser(1).date(new Timestamp(new Date().getTime())).status("Sold").build();
-
-        orderDao.create(ordered1);
-        int lastIdOrder = orderDao.getLastIdOrder();
-        orderDao.read(lastIdOrder);
-
-        Order ordered2 = Order.newBuilder().id(lastIdOrder).idUser(ordered1.getIdUser()).date(new Timestamp(ordered1.getDate().getTime())).status("Trololo").build();
-
-        orderDao.update(ordered2);
-
-        assertEquals(1, orderDao.read(lastIdOrder).getIdUser());
-        assertEquals("Trololo", orderDao.read(1).getStatus());
+        List<Order> all = orderDao.getAll();
+        assertFalse(all.isEmpty());
 
     }
 
@@ -82,14 +66,11 @@ public class OrderDaoTest {
     @Test
     public void getOrderId() throws Exception {
         OrderDao orderDao = new OrderDao();
-        Order ordered1 = Order.newBuilder().idUser(1).date(new Timestamp(new Date().getTime())).status("Sold").build();
+        Order ordered1 = Order.newBuilder().idUser(1111).date(new Timestamp(new Date().getTime())).status("Sold").build();
 
         orderDao.create(ordered1);
-        orderDao.create(ordered1);
-        orderDao.create(ordered1);
-        orderDao.create(ordered1);
+        assertEquals(1111, orderDao.read(orderDao.getLastIdOrder()).getIdUser());
 
-//        int idOrder = orderDao.getLastIdOrder();
-//        assertEquals(8, idOrder);
+
     }
 }
