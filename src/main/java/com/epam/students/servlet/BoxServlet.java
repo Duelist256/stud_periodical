@@ -60,8 +60,6 @@ public class BoxServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
-        //переход в корзину
         if (req.getParameter("buy") != null) {
             List<OrderPeriodical> all = orderPeriodicalDao.getAll();
             if (!all.isEmpty()) {
