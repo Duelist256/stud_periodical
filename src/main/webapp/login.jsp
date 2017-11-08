@@ -30,7 +30,7 @@
             <div class="panel-body">
                 <form method="POST" action="login" role="form">
                     <div class="form-group">
-                        <h2>Sign in
+                        <h2><fmt:message key="Sign"/>
                             <a href="/language?lan=ru"><img src="img/Russia.png" align="right" width="40" height="40"
                                                                alt="RU"></a>
 
@@ -51,11 +51,11 @@
                         <button type="submit" value="login" class="btn btn-info btn-block"><fmt:message
                                 key="login"/></button>
                     </div>
-                    <p>Don't have an account? <a href="register.jsp"><fmt:message key="register"/></a></p>
+                    <p><fmt:message key="Doyouhave"/><a href="register.jsp"><fmt:message key="register"/></a></p>
                 </form>
 
                 <form method="post" action="/resetPassword">
-                    <p> I forgot my password!
+                    <p><fmt:message key="Iforgotpass"/>
                         <input type="submit" class="btn btn-link" value="<fmt:message key="forgot"/>"/></p></form>
             </div>
             <p  align="center"><c:if test="${requestScope.error != null}">

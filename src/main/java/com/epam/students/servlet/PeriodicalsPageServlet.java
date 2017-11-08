@@ -15,14 +15,17 @@ import java.util.List;
 @WebServlet(name = "PeriodicalPageServlet", urlPatterns = "/page")
 public class PeriodicalsPageServlet extends HttpServlet {
 
+    int lastPage;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PeriodicalService periodicalService = new PeriodicalService();
         String parameter = req.getParameter("num");
         int pageNum = Integer.parseInt(parameter);
 
+        List<Periodical> all = periodicalService.getAll();
         List<Periodical> resultPage = periodicalService.getPage(pageNum, 12);
 
+        req.setAttribute("allList", all);
         req.setAttribute("list", resultPage);
         req.getRequestDispatcher("/issue.jsp").forward(req, resp);
     }

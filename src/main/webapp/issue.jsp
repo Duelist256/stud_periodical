@@ -21,11 +21,11 @@
     var RestGet = function (id) {
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8080/bought?id=' + id,
+            url:  '/bought?id=' + id,
             dataType: 'json',
             async: true,
             success: function (result) {
-                alert('Answer' + result);
+                console.log(result);
             },
             error: function (jqXHR, textStatus, errorThrown) {
 //             alert(jqXHR.status + ' ' + jqXHR.responseText);
@@ -72,51 +72,27 @@
         </div>
     </div>
     <div class="container">
-
-        <ul class="nav nav-tabs">
-            <li class="active">
-
-            <li>
-                <a href="/getall"><fmt:message key="getAll"/> <span
-                        class="badge"> 5</span></a></li>
-            <li>
-                <a href="#"><fmt:message key="category1"/>
-                    <span class="badge"> 5</span></a></li>
-            <li>
-                <a href="#"><fmt:message key="category2"/> <span
-                        class="badge"> 6</span></a></li>
-        </ul>
-        <!-- Блоки с текстом!!!!!! -->
         <c:forEach var="all" items="${list}">
             <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
                 <div class="thumbnail">
-                    <img src="${all.getImgPath()}" alt="Image unavailable">
+                    <img src="http://placehold.it/300x240" alt="">
                     <div class="caption">
                         <h4><a href="#"> ${all.getTitle()} </a></h4>
                         <p>${all.getDescription()}</p>
                         <button type="button" class="btn btn-success" onclick="RestGet(${all.getId()})"><fmt:message
                                 key="buy"/></button>
                     </div>
-
                 </div>
             </div>
         </c:forEach>
     </div>
 </div>
+
 <nav class="text-center">
     <ul class="pagination">
-        <li>
-            <a href="#">
-                <i class="glyphicon glyphicon-chevron-left"></i>
-            </a>
-        </li>
-        <li><a href="/page?num=1">1</a></li>
-        <li><a href="/page?num=2">2</a></li>
-        <li>
-            <a href="#">
-                <i class="glyphicon glyphicon-chevron-right"></i>
-            </a>
-        </li>
+        <c:forEach var="num" begin="1" end="${Integer.valueOf(Math.cbrt(allList.size()+1/12))}">
+            <li><a href="/page?num=${num}">${num}</a></li>
+        </c:forEach>
     </ul>
 </nav>
 </body>

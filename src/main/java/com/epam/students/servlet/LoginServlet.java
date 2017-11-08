@@ -28,7 +28,6 @@ public class LoginServlet extends HttpServlet {
     private HttpSession session;
     private HttpSession sessionLanguage;
 
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("email");
         String password = request.getParameter("pass");
@@ -60,7 +59,7 @@ public class LoginServlet extends HttpServlet {
             redirectUser(response, user);
 
         } else {
-            request.setAttribute("error",login);
+            request.setAttribute("error", login);
             request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }
