@@ -1,5 +1,9 @@
 package com.epam.students.model;
 
+/**
+ * POJO class for User table data access with Builder,
+ * not much to comment here.
+ */
 public class User {
 
     private int id;
