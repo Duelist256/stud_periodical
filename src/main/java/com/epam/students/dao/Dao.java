@@ -5,6 +5,7 @@ import java.util.List;
 /**
  * Generic interface for Data Access Objects.
  * Has basic CRUD methods and getAll() as long as it seems to be useful in this project.
+ * Provided this interface is documented, I'm gonna allow myself not to document its implementations.
  *
  * @param <T> represents an object from database
  */

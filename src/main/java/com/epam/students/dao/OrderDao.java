@@ -8,6 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of Dao interface for Orders table.
+ */
 public class OrderDao implements Dao<Order> {
 
     private final static Logger logger = Logger.getLogger(OrderDao.class);
