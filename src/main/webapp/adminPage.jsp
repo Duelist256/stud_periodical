@@ -22,9 +22,6 @@
         <input type="submit" value="Add New Periodical">
         <input type="hidden" name='action' value="new">
     </form>
-    <form action="/adminpage" method="post">
-        <input type="submit" value='Refresh List'>
-    </form>
     <table border="1" cellpadding="5">
         <caption><h2>List of Periodicals</h2></caption>
         <tr>
