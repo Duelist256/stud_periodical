@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupEmail"><fmt:message key="email"/></label>
-                        <input id="signupEmail" pattern="^[A-Za-z0-9,@]{1,20}$" required title="<fmt:message key="loginRegPattern"/>"
+                        <input id="signupEmail" title="<fmt:message key="loginRegPattern"/>"
                                type="email" name="email" maxlength="50" class="form-control">
                         <c:if test="${requestScope.emptyEmail != null}">
                             <font color=red size=4px>    <fmt:message key="emptyField" /> </font>

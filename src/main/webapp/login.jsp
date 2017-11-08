@@ -32,15 +32,14 @@
                     <div class="form-group">
                         <h2>Sign in
                             <a href="/language?lan=ru"><img src="img/Russia.png" align="right" width="40" height="40"
-                                                               alt="RU"></a>
+                                                            alt="RU"></a>
 
                             <a href="/language?lan=en"><img src="img/United-Kingdom.png" align="right" width="40"
-                                                               height="40" alt="US"></a></h2>
+                                                            height="40" alt="US"></a></h2>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupEmail"><fmt:message key="email"/></label>
-                        <input id="signupEmail" type="email" name="email" value="<c:out value="${error}" default=""/>" maxlength="50" class="form-control"
-                               pattern="^[A-Za-z0-9,@]{1,20}$" required>
+                        <input id="signupEmail" type="email" name="email" value="<c:out value="${error}" default=""/>" maxlength="50" class="form-control">
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupPassword"><fmt:message key="password"/></label>
@@ -53,43 +52,6 @@
                     </div>
                     <p>Don't have an account? <a href="register.jsp"><fmt:message key="register"/></a></p>
                 </form>
-=========
-    <div align="left"><fmt:message key="email"/></div>
-    <c:set var="login" value="${requestScope.error}"/>
-    <div align="left">
-        <input class="login-field" type="text" name="email"
-               value="<c:out value="${login}" default=""/>"/>
-    </div>
-
-    <div align="left"><fmt:message key="password"/></div>
-    <div align="left"><input class="login-field" type="password" name="pass"/></div>
-    <hr width="125%">
-    <div align="right"><input type="submit" value="<fmt:message key="login"/>"></div>
-
-</form>
-
-<form method="post" action="register.jsp">
-    <input class="login-link" type="submit"
-           value="<fmt:message key="register"/>"/>
-</form>
-
-<form method="post" action="/resetPassword">
-    <input class="login-link" type="submit" value="<fmt:message key="forgot" />"/>
-</form>
-
-<%--change language--%>
-
-<form method="get" action="login">
-    <input type="submit" value="<fmt:message key="changeLanguage"/>"/>
-</form>
-
-
-<c:if test="${login != null}">
-    <div style="color: red">
-        <fmt:message key="invalidMsg"/>
-    </div>
-</c:if>
->>>>>>>>> Temporary merge branch 2
 
                 <form method="post" action="/resetPassword">
                     <p> I forgot my password!
