@@ -88,6 +88,7 @@
                     <th>Image Path:</th>
                     <td>
                         <input type="file" name="file" size="45" />
+                        <input type="hidden" name="imgPath" value='${periodical.getImgPath()}' size="45" />
                     </td>
                 </tr>
                 <tr>

@@ -101,6 +101,9 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
         String price = request.getParameter("price");
 
         String imgPath = uploadFile(request);
+        if (imgPath == null) {
+            imgPath = "";
+        }
 
         Periodical periodical = Periodical.newBuilder()
                 .title(title)
@@ -126,6 +129,10 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
 
         String imgPath = uploadFile(request);
 
+        if (imgPath == null) {
+            imgPath = request.getParameter("imgPath");
+        }
+
         Periodical periodical = Periodical.newBuilder()
                 .id(id)
                 .title(title)
@@ -141,6 +148,9 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
 
     private String uploadFile(HttpServletRequest request) throws IOException, ServletException {
         Part filePart = request.getPart("file");
+        if (filePart.getSize() == 0) {
+            return null;
+        }
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 
         File uploads = new File(request.getServletContext().getRealPath("/img"));
