@@ -55,7 +55,7 @@ public class CheckFilter implements Filter {
                 || requestURI.matches(".*(css|jpg|png|gif|js|ico)")) {
 
             if (isUserNotAdmin && adminPages.contains(requestURI)) {
-                response.sendRedirect("/issue.jsp");
+                response.sendRedirect("/page?num=1");
             } else {
                 chain.doFilter(request, response);
             }
