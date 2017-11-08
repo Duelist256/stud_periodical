@@ -39,20 +39,15 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupName"><fmt:message key="name"/></label>
-                        <input id="signupName" pattern="[A-Za-z0-9]{4,20}$" required
-                               title="<fmt:message key="loginRegPattern"/>"
-                               type="text" name="name" class="form-control">
-
-                        <p align="center">
-                            <c:if test="${requestScope.emptyName != null}">
-                            <font class="btn btn-danger"> <fmt:message key="emptyField"/> </font>
-                            </c:if>
+                        <input id="signupName" pattern="^[A-Za-z0-9]{4,20}$" required title="<fmt:message key="loginRegPattern"/>"
+                               type="text" name="name" maxlength="50" class="form-control">
+                        <c:if test="${requestScope.emptyName != null}">
+                            <font color=red size=4px>    <fmt:message key="emptyField" /> </font>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupEmail"><fmt:message key="email"/></label>
-                        <input id="signupEmail" pattern="[A-Za-z0-9]+@[A-Za-z0-9]+.[a-z]{2,}$" required
-
-                               type="email" name="email" class="form-control">
+                        <input id="signupEmail" type="email" name="email" class="form-control" required>
 
                         <p align="center">
                             <c:if test="${requestScope.emptyEmail != null}">
