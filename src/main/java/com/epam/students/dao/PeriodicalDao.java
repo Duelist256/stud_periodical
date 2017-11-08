@@ -111,9 +111,13 @@ public class PeriodicalDao implements Dao<Periodical> {
 
     @Override
     public List<Periodical> getAll() {
-        String query = "SELECT * FROM inform_system.periodicals";
+        return getPage(1, Integer.MAX_VALUE);
+    }
 
-        List<Periodical> periodicals = new ArrayList<>();
+    public List<Periodical> getPage(int page, int size){
+        int first = (page - 1) * size;
+        String query = "select * from inform_system.periodicals limit " + first + "," + size + ";";
+        List<Periodical> result = new ArrayList<>();
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -122,7 +126,7 @@ public class PeriodicalDao implements Dao<Periodical> {
 
             while (resultSet.next()) {
                 Periodical periodical = PeriodicalMapper.mapRow(resultSet);
-                periodicals.add(periodical);
+                result.add(periodical);
             }
 
             logger.info("Periodicals successfully gotten");
@@ -132,6 +136,6 @@ public class PeriodicalDao implements Dao<Periodical> {
             throw new RuntimeException(e);
         }
 
-        return periodicals;
+        return  result;
     }
 }

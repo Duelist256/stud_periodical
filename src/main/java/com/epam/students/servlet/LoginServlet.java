@@ -22,10 +22,11 @@ public class LoginServlet extends HttpServlet {
         LoginServlet.language = language;
     }
 
-    private Cookie cookieUserName;
     private Cookie cookieUserId;
+    private Cookie cookieUserName;
+    private Cookie cookieIsAdmin;
     private HttpSession session;
-    private HttpSession sessioтLanguage;
+    private HttpSession sessionLanguage;
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,18 +44,23 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(cookieUserName);
 
             cookieUserId = new Cookie("userId", String.valueOf(user.getId()));
-            cookieUserId.setMaxAge(60 * 5); //5 mins
+            cookieUserId.setMaxAge(60 * 5);
             response.addCookie(cookieUserId);
+
+            cookieIsAdmin = new Cookie("userIsAdmin", String.valueOf(user.isAdmin()));
+            cookieIsAdmin.setMaxAge(60 * 5);
+            response.addCookie(cookieIsAdmin);
 
             session = request.getSession(true);
             session.setAttribute("userName", name);
 
-            sessioтLanguage = request.getSession(true);
-            sessioтLanguage.setAttribute(language, getLanguage());
+            sessionLanguage = request.getSession(true);
+            sessionLanguage.setAttribute(language, getLanguage());
 
             redirectUser(response, user);
 
         } else {
+            request.setAttribute("error",login);
             request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }
@@ -63,7 +69,7 @@ public class LoginServlet extends HttpServlet {
         if (user.isAdmin() == 1) {
             response.sendRedirect("/adminpage");
         } else {
-            response.sendRedirect("/issue.jsp");
+            response.sendRedirect(" /page?num=1");
         }
 
     }
@@ -77,6 +83,11 @@ public class LoginServlet extends HttpServlet {
                 if (cookie.getName().equals("user")) {
                     session = req.getSession(true);
                     session.setAttribute("userName", cookie.getValue());
+                }
+
+                if (cookie.getName().equals("userIsAdmin")) {
+                    session = req.getSession(true);
+                    session.setAttribute("userIsAdmin", cookie.getValue());
                 }
             }
 
