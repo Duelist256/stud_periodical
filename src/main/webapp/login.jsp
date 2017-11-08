@@ -58,9 +58,10 @@
                     <p> I forgot my password!
                         <input type="submit" class="btn btn-link" value="<fmt:message key="forgot"/>"/></p></form>
             </div>
-            <p  align="center"><c:if test="${requestScope.error != null}">
-                <font class="btn btn-danger"> <fmt:message key="invalidMsg"/> </font>
-            </c:if>
+            <p  align="center">
+                <c:if test="${requestScope.error != null}">
+                    <font class="btn btn-danger"> <fmt:message key="invalidMsg"/> </font>
+                </c:if>
             </p>
         </div>
     </div>
