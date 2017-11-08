@@ -9,6 +9,7 @@
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="fmt2" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Admin Page</title>
@@ -45,8 +46,13 @@
                 <td><c:out value="${periodical.getDescription()}"/></td>
                 <td><c:out value="${periodical.getPublisher()}"/></td>
                 <td><c:out value="${periodical.getGenre()}"/></td>
-                <td><c:out value="${periodical.getPrice()}"/></td>
-                <td><c:out value="${periodical.getImgPath()}" /></td>
+                <fmt2:formatNumber type="number" maxFractionDigits="2"
+                                   minFractionDigits="2"
+                                   pattern="###.00"
+                                   value="${periodical.getPrice()}"
+                                   var="periodicalPrice"/>
+                <td><c:out value="${periodicalPrice}"/></td>
+                <td><c:out value="${periodical.getImgPath()}"/></td>
                 <td>
                     <form action="/adminpage" method="post">
                         <input type="hidden" name="action" value='edit'>
