@@ -3,7 +3,6 @@ package com.epam.students.servlet;
 import com.epam.students.model.User;
 import com.epam.students.service.PasswordUtil;
 import com.epam.students.service.UserService;
-import com.sun.deploy.net.HttpRequest;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,7 +51,7 @@ public class RegisterServlet extends HttpServlet {
         }
     }
 
-    public void emptyFieldsValidation(HttpServletRequest rs, HttpServletResponse rp) throws ServletException, IOException {
+    private void emptyFieldsValidation(HttpServletRequest rs, HttpServletResponse rp) throws ServletException, IOException {
         if (rs.getParameter("name") == null) {
             rs.setAttribute("emptyName", "Field can not be empty!");
             rs.getServletContext().getRequestDispatcher("/register.jsp").forward(rs, rp);
