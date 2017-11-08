@@ -39,12 +39,13 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupEmail"><fmt:message key="email"/></label>
-                        <input id="signupEmail" type="email" name="email" value="<c:out value="${error}" default=""/>" maxlength="50" class="form-control">
+                        <input id="signupEmail" type="email" name="email" value="<c:out value="${error}" default=""/>" maxlength="50" class="form-control"
+                               pattern="[A-Za-z0-9]+@[A-Za-z0-9]+.[a-z]{2,}$" required>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupPassword"><fmt:message key="password"/></label>
                         <input id="signupPassword" type="password" name="pass" maxlength="25" class="form-control"
-                               pattern="^[A-Za-z0-9]{1,20}$" required>
+                               pattern="^[A-Za-z0-9]{4,}$" required>
                     </div>
                     <div class="form-group">
                         <button type="submit" value="login" class="btn btn-info btn-block"><fmt:message
@@ -57,9 +58,10 @@
                     <p> I forgot my password!
                         <input type="submit" class="btn btn-link" value="<fmt:message key="forgot"/>"/></p></form>
             </div>
-            <c:if test="${requestScope.error != null}">
-                <font color=red size=4px>    <fmt:message key="invalidMsg" /> </font>
+            <p  align="center"><c:if test="${requestScope.error != null}">
+                <font class="btn btn-danger"> <fmt:message key="invalidMsg"/> </font>
             </c:if>
+            </p>
         </div>
     </div>
 </div>
