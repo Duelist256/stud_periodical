@@ -3,7 +3,6 @@ package com.epam.students.servlet;
 import com.epam.students.model.User;
 import com.epam.students.service.PasswordUtil;
 import com.epam.students.service.UserService;
-import com.sun.deploy.net.HttpRequest;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
