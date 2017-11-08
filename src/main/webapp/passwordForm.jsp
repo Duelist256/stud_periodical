@@ -15,7 +15,7 @@
 <fmt:setBundle basename="i18n.login"/>
 <link rel="stylesheet" href="css/style.css">
 
-<html>
+<html lang="${language}">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Reset password</title>

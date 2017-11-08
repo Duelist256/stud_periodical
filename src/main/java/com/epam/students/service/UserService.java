@@ -13,6 +13,10 @@ public class UserService {
         userDao = new UserDao();
     }
 
+    public boolean checkEmailExistens(String email){
+        return userDao.readByEmail(email)!=null;
+    }
+
     public User checkUser(String email, String password) {
 
         if (email == null || password == null) {
