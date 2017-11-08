@@ -8,6 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <html>
 <head>
     <title>Admin Page</title>
@@ -21,6 +22,9 @@
     <form action="/adminpage" method="post">
         <input type="submit" value="Add New Periodical">
         <input type="hidden" name='action' value="new">
+    </form>
+    <form action="/logout" method="get">
+        <input type="submit" value="Log Out">
     </form>
     <table border="1" cellpadding="5">
         <caption><h2>List of Periodicals</h2></caption>
