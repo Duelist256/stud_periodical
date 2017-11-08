@@ -50,9 +50,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupEmail"><fmt:message key="email"/></label>
-                        <input id="signupEmail" pattern="[A-Za-z0-9]+@[A-Za-z0-9]+.[a-z]{2,}$" required
-
-                               type="email" name="email" class="form-control">
+                        <input id="signupEmail" type="email" name="email" class="form-control" required>
 
                         <p align="center">
                             <c:if test="${requestScope.emptyEmail != null}">
