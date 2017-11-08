@@ -19,10 +19,11 @@ import java.util.Date;
 
 @WebServlet(name = "BuyServlet", urlPatterns = "/bought")
 public class BuyServlet extends HttpServlet {
-    int idUser;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int idUser = 0;
+
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie cookieReq : cookies) {

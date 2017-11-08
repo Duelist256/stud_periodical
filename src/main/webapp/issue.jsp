@@ -21,7 +21,7 @@
     var RestGet = function (id) {
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8080/bought?id=' + id,
+            url:  '/bought?id=' + id,
             dataType: 'json',
             async: true,
             success: function (result) {
@@ -72,15 +72,6 @@
         </div>
     </div>
     <div class="container">
-
-        <ul class="nav nav-tabs">
-            <li class="active">
-
-            <li>
-                <a href="/getall"><fmt:message key="getAll"/> <span
-                        class="badge">  20</span></a></li>
-        </ul>
-        <!-- Блоки с текстом!!!!!! -->
         <c:forEach var="all" items="${list}">
             <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
                 <div class="thumbnail">
@@ -99,18 +90,9 @@
 
 <nav class="text-center">
     <ul class="pagination">
-        <li>
-            <a href="#">
-                <i class="glyphicon glyphicon-chevron-left"></i>
-            </a>
-        </li>
-        <li><a href="/page?num=1">1</a></li>
-        <li><a href="/page?num=2">2</a></li>
-        <li>
-            <a href="#">
-                <i class="glyphicon glyphicon-chevron-right"></i>
-            </a>
-        </li>
+        <c:forEach var="num" begin="1" end="${Integer.valueOf(Math.cbrt(allList.size()+1/12))}">
+            <li><a href="/page?num=${num}">${num}</a></li>
+        </c:forEach>
     </ul>
 </nav>
 </body>

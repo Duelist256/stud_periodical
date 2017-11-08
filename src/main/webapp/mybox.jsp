@@ -35,9 +35,14 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-
                     right">
-                        <a href="/issue.jsp">
+                        <a href="/page?num=1">
                             <button type="button" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
                                 <fmt:message key="backshop"/>
+                            </button>
+                        </a>
+                        <a href="/mypurchases">
+                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                                <fmt:message key="Mypurchases"/>
                             </button>
                         </a>
                     </ul>

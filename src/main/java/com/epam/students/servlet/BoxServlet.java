@@ -20,6 +20,7 @@ import java.util.*;
 @WebServlet(name = "BoxServlet", urlPatterns = "/mybox")
 public class BoxServlet extends HttpServlet {
     private List<Periodical> periodicalList = new ArrayList<>();
+
     private int idUser;
     private OrderDao orderDao = new OrderDao();
     private OrderPeriodicalDao orderPeriodicalDao = new OrderPeriodicalDao();
@@ -41,7 +42,7 @@ public class BoxServlet extends HttpServlet {
         List<Order> allByIdUser = orderDao.getAllByIdUser(idUser);
         if (!allByIdUser.isEmpty()) {
             for (Order order : allByIdUser) {
-                if (order != null) {
+                if (order.getStatus().equals("Ordered")) {
                     OrderPeriodical orderPeriodical = orderPeriodicalDao.read(order.getId());
                     if (orderPeriodical != null) {
                         int idPeriodical = orderPeriodical.getIdPeriodical();
@@ -51,26 +52,33 @@ public class BoxServlet extends HttpServlet {
                 }
             }
         }
-
         req.setAttribute("pl", periodicalList);
         req.getRequestDispatcher("/mybox.jsp").forward(req, resp);
     }
 
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+
+        //переход в корзину
         if (req.getParameter("buy") != null) {
             List<OrderPeriodical> all = orderPeriodicalDao.getAll();
             if (!all.isEmpty()) {
                 for (OrderPeriodical orderPeriodical : all) {
+
                     int idOrder = orderPeriodical.getIdOrder();
-                    Order ordered = Order.newBuilder().id(idOrder).idUser(idUser).date(new Timestamp(new Date().getTime())).status("Done").build();
-                    orderDao.update(ordered);
-                    orderPeriodicalDao.delete(orderPeriodical);
+                    if (orderDao.read(idOrder).getIdUser() == idUser) {
+                        Order ordered = Order.newBuilder().id(idOrder).idUser(idUser).date(new Timestamp(new Date().getTime())).status("Done").build();
+                        orderDao.update(ordered);
+                        // orderPeriodicalDao.delete(orderPeriodical);
+                    }
                 }
             }
             periodicalList.clear();
             resp.sendRedirect("/mybox.jsp");
+
+
         } else {
             int delete = Integer.valueOf(req.getParameter("delete"));
             for (Periodical periodical : periodicalList) {
