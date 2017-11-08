@@ -21,7 +21,7 @@ public class PeriodicalsPageServlet extends HttpServlet {
         String parameter = req.getParameter("num");
         int pageNum = Integer.parseInt(parameter);
 
-        List<Periodical> resultPage = periodicalService.getPage(pageNum, 10);
+        List<Periodical> resultPage = periodicalService.getPage(pageNum, 12);
 
         req.setAttribute("list", resultPage);
         req.getRequestDispatcher("/issue.jsp").forward(req, resp);
