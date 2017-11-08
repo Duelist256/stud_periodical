@@ -13,7 +13,7 @@ public class PeriodicalMapper {
                 .description(rs.getString("description"))
                 .publisher(rs.getString("publisher"))
                 .genre(rs.getString("genre"))
-                .price(rs.getString("price"))
+                .price(rs.getFloat("price"))
                 .imgPath(rs.getString("img_path"))
                 .build();
 

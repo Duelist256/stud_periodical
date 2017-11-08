@@ -110,7 +110,7 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
                 .description(description)
                 .publisher(publisher)
                 .genre(genre)
-                .price(price)
+                .price(Float.parseFloat(price))
                 .imgPath(imgPath)
                 .build();
         periodicalService.addPeriodical(periodical);
@@ -139,7 +139,7 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
                 .description(description)
                 .publisher(publisher)
                 .genre(genre)
-                .price(price)
+                .price(Float.parseFloat(price))
                 .imgPath(imgPath)
                 .build();
         periodicalService.updatePeriodical(periodical);
@@ -169,6 +169,5 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
         Periodical periodical = Periodical.newBuilder().id(id).build();
         periodicalService.deletePeriodical(periodical);
         response.sendRedirect("/adminpage");
-
     }
 }
