@@ -55,7 +55,7 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
                         break;
                     case "delete":
                         int id = Integer.parseInt(request.getParameter("delete"));
-                        deletePeriodical(request, response, id);
+                        deletePeriodical(response, id);
                         break;
                 }
             }
@@ -164,7 +164,7 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
         return "/img/" + fileName;
     }
 
-    private void deletePeriodical(HttpServletRequest request, HttpServletResponse response, int id)
+    private void deletePeriodical(HttpServletResponse response, int id)
             throws SQLException, IOException {
         Periodical periodical = Periodical.newBuilder().id(id).build();
         periodicalService.deletePeriodical(periodical);
