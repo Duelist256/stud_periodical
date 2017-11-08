@@ -51,7 +51,7 @@ public class RegisterServlet extends HttpServlet {
         }
     }
 
-    public void emptyFieldsValidation(HttpServletRequest rs, HttpServletResponse rp) throws ServletException, IOException {
+    private void emptyFieldsValidation(HttpServletRequest rs, HttpServletResponse rp) throws ServletException, IOException {
         if (rs.getParameter("name") == null) {
             rs.setAttribute("emptyName", "Field can not be empty!");
             rs.getServletContext().getRequestDispatcher("/register.jsp").forward(rs, rp);
