@@ -12,15 +12,45 @@
 <html>
 <head>
     <title>Periodical Form</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <center>
     <h1>Periodicals Editor</h1>
 </center>
-<div align="center">
-    <form action="/adminpage" method="post">
-        <input type="submit" value='Back To List'>
-    </form>
+<div class="container">
+    <div class="row">
+
+        <p align="right">
+            <a href="/language?lan=ru"><img src="img/Russia.png" width="40" height="40"
+                                            alt="RU"></a>
+
+            <a href="/language?lan=en"><img src="img/United-Kingdom.png" width="40" height="40" alt="US">
+
+            </a></p>
+
+        <div class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <p class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                        Hello <% if (session.getAttribute("userName") != null) {
+                        out.print(session.getAttribute("userName").toString());
+                    }%>
+                    </p>
+                    <div class="nav navbar-nav navbar-right">
+
+                        <form action="/adminpage" method="post">
+                            <input type="submit" class="btn btn-info btn-block" value='Back To List'>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <c:if test="${periodical != null}">
     <form action="/adminpage" method="post" enctype="multipart/form-data">
         <input type="hidden" name="action" value="update">
@@ -29,7 +59,7 @@
         <form action="/adminpage" method="post" enctype="multipart/form-data">
             <input type="hidden" name="action" value="insert">
             </c:if>
-            <table border="1" cellpadding="5">
+            <table class="table">
                 <caption>
                     <h2>
                         <c:choose>
@@ -45,7 +75,7 @@
                 <c:if test="${periodical != null}">
                     <input type="hidden" name="id" value='${periodical.getId()}'/>
                 </c:if>
-                <tr>
+                <tr class="active">
                     <th>Title:</th>
                     <td>
                         <input type="text" name="title" size="45"
@@ -53,7 +83,7 @@
                         />
                     </td>
                 </tr>
-                <tr>
+                <tr class="active">
                     <th>Description:</th>
                     <td>
                         <input type="text" name="description" size="45"
@@ -61,7 +91,7 @@
                         />
                     </td>
                 </tr>
-                <tr>
+                <tr class="active">
                     <th>Publisher:</th>
                     <td>
                         <input type="text" name="publisher" size="45"
@@ -69,7 +99,7 @@
                         />
                     </td>
                 </tr>
-                <tr>
+                <tr class="active">
                     <th>Genre:</th>
                     <td>
                         <input type="text" name="genre" size="45"
@@ -77,7 +107,7 @@
                         />
                     </td>
                 </tr>
-                <tr>
+                <tr class="active">
                     <th>Price:</th>
                     <td>
                         <fmt:setLocale value="en_US"/>
@@ -94,16 +124,16 @@
                         --%>
                     </td>
                 </tr>
-                <tr>
+                <tr class="active">
                     <th>Image Path:</th>
                     <td>
-                        <input type="file" name="file" size="45" />
-                        <input type="hidden" name="imgPath" value='${periodical.getImgPath()}' size="45" />
+                        <input type="file" name="file" class="btn btn-info btn-block" size="45" />
+                        <input type="hidden" name="imgPath" class="btn btn-info btn-block" value='${periodical.getImgPath()}' size="45" />
                     </td>
                 </tr>
-                <tr>
+                <tr class="active">
                     <td colspan="2" align="center">
-                        <input type="submit" value="Save"/>
+                        <input type="submit" class="btn btn-info btn-block" value="Save"/>
                     </td>
                 </tr>
             </table>

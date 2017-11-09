@@ -10,66 +10,100 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="fmt2" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 <html>
 <head>
     <title>Admin Page</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <center>
     <h1>Periodicals Editor</h1>
 </center>
+<div class="container">
+    <div class="row">
 
-<div align="center">
-    <form action="/adminpage" method="post">
-        <input type="submit" value="Add New Periodical">
-        <input type="hidden" name='action' value="new">
-    </form>
-    <form action="/logout" method="get">
-        <input type="submit" value="Log Out">
-    </form>
-    <table border="1" cellpadding="5">
-        <caption><h2>List of Periodicals</h2></caption>
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Publisher</th>
-            <th>Genre</th>
-            <th>Price</th>
-            <th>Image Path</th>
-            <th colspan="2">Actions</th>
-        </tr>
-        <c:forEach var="periodical" items="${periodicals}">
+        <p align="right">
+            <a href="/language?lan=ru"><img src="img/Russia.png" width="40" height="40"
+                                            alt="RU"></a>
+
+            <a href="/language?lan=en"><img src="img/United-Kingdom.png" width="40" height="40" alt="US">
+
+            </a></p>
+
+        <div class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <p class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                        Hello <% if (session.getAttribute("userName") != null) {
+                        out.print(session.getAttribute("userName").toString());
+                    }%>
+                    </p>
+                    <div class="nav navbar-nav navbar-right">
+                        <form action="/adminpage" method="post">
+                        <input type="submit" class="btn btn-info btn-block" value="Add New Periodical">
+                        <input type="hidden" class="btn btn-info btn-block" name='action' value="new">
+                    </form>
+                        <form action="/logout" method="get">
+                            <input type="submit" class="btn btn-info btn-block" value="Log Out">
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <table class="table">
+
             <tr>
-                <td><c:out value="${periodical.getId()}"/></td>
-                <td><c:out value="${periodical.getTitle()}"/></td>
-                <td><c:out value="${periodical.getDescription()}"/></td>
-                <td><c:out value="${periodical.getPublisher()}"/></td>
-                <td><c:out value="${periodical.getGenre()}"/></td>
-                <fmt2:formatNumber type="number" maxFractionDigits="2"
-                                   minFractionDigits="2"
-                                   pattern="###.00"
-                                   value="${periodical.getPrice()}"
-                                   var="periodicalPrice"/>
-                <td><c:out value="${periodicalPrice}"/></td>
-                <td><c:out value="${periodical.getImgPath()}"/></td>
-                <td>
-                    <form action="/adminpage" method="post">
-                        <input type="hidden" name="action" value='edit'>
-                        <input type="hidden" name="id" value='${periodical.getId()}'>
-                        <input type="submit" value='Edit'>
-                    </form>
-                </td>
-                <td>
-                    <form action="/adminpage" method="post">
-                        <input type="hidden" name="action" value='delete'>
-                        <input type="hidden" name="delete" value='${periodical.getId()}'>
-                        <input type="submit" value='Delete'>
-                    </form>
-                </td>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Publisher</th>
+                <th>Genre</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th colspan="2">Actions</th>
             </tr>
-        </c:forEach>
-    </table>
+            <c:forEach var="periodical" items="${periodicals}">
+                <tr class="active">
+                    <td><c:out value="${periodical.getId()}"/></td>
+                    <td><c:out value="${periodical.getTitle()}"/></td>
+                    <td><c:out value="${periodical.getDescription()}"/></td>
+                    <td><c:out value="${periodical.getPublisher()}"/></td>
+                    <td><c:out value="${periodical.getGenre()}"/></td>
+                    <fmt2:formatNumber type="number" maxFractionDigits="2"
+                                       minFractionDigits="2"
+                                       pattern="###.00"
+                                       value="${periodical.getPrice()}"
+                                       var="periodicalPrice"/>
+                    <td><c:out value="${periodicalPrice}"/></td>
+                    <%--<td><c:out value="${periodical.getImgPath()}"/></td>--%>
+                   <td> <img src="<c:out value="${periodical.getImgPath()}"/>" class="img-thumbnail" height="50" width="50"></td>
+                    <td>
+                        <form action="/adminpage" method="post">
+                            <input type="hidden" name="action" value='edit'>
+                            <input type="hidden" name="id" value='${periodical.getId()}'>
+                            <input type="submit" class="btn btn-info btn-block" value='Edit'>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/adminpage" method="post">
+                            <input type="hidden" name="action" value='delete'>
+                            <input type="hidden" name="delete" value='${periodical.getId()}'>
+                            <input type="submit" class="btn btn-info btn-block" value='Delete'>
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
 </div>
 </body>
 </html>
