@@ -27,7 +27,7 @@ public class PeriodicalServlet extends HttpServlet {
                 .description(rs.getParameter("description"))
                 .publisher(rs.getParameter("publisher"))
                 .genre(rs.getParameter("publisher"))
-                .price(rs.getParameter("price"))
+                .price(Float.parseFloat(rs.getParameter("price")))
                 .imgPath(rs.getParameter("img_path"))
                 .build();
 

@@ -10,7 +10,7 @@ CREATE TABLE periodicals (
   description VARCHAR(255) NULL,
   publisher VARCHAR(255) NOT NULL,
   genre VARCHAR(255) NOT NULL,
-  price VARCHAR(45) NOT NULL,
+  price DECIMAL (10, 2) NOT NULL,
   img_path VARCHAR(255),
   PRIMARY KEY (`id`));
 

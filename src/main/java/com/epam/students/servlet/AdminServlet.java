@@ -5,14 +5,24 @@ import com.epam.students.service.PeriodicalService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.concurrent.Executor;
+
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 @WebServlet(urlPatterns = {"/adminpage"})
+@MultipartConfig
 public class AdminServlet extends javax.servlet.http.HttpServlet {
 
     private PeriodicalService periodicalService;
@@ -45,7 +55,7 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
                         break;
                     case "delete":
                         int id = Integer.parseInt(request.getParameter("delete"));
-                        deletePeriodical(request, response, id);
+                        deletePeriodical(response, id);
                         break;
                 }
             }
@@ -83,20 +93,24 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
     }
 
     private void insertPeriodical(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException {
+            throws SQLException, IOException, ServletException {
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         String publisher = request.getParameter("publisher");
         String genre = request.getParameter("genre");
         String price = request.getParameter("price");
-        String imgPath = request.getParameter("imgPath");
+
+        String imgPath = uploadFile(request);
+        if (imgPath == null) {
+            imgPath = "";
+        }
 
         Periodical periodical = Periodical.newBuilder()
                 .title(title)
                 .description(description)
                 .publisher(publisher)
                 .genre(genre)
-                .price(price)
+                .price(Float.parseFloat(price))
                 .imgPath(imgPath)
                 .build();
         periodicalService.addPeriodical(periodical);
@@ -104,14 +118,20 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
     }
 
     private void updatePeriodical(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException {
+            throws SQLException, IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         String publisher = request.getParameter("publisher");
         String genre = request.getParameter("genre");
         String price = request.getParameter("price");
-        String imgPath = request.getParameter("imgPath");
+
+
+        String imgPath = uploadFile(request);
+
+        if (imgPath == null) {
+            imgPath = request.getParameter("imgPath");
+        }
 
         Periodical periodical = Periodical.newBuilder()
                 .id(id)
@@ -119,18 +139,35 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
                 .description(description)
                 .publisher(publisher)
                 .genre(genre)
-                .price(price)
+                .price(Float.parseFloat(price))
                 .imgPath(imgPath)
                 .build();
         periodicalService.updatePeriodical(periodical);
         response.sendRedirect("/adminpage");
     }
 
-    private void deletePeriodical(HttpServletRequest request, HttpServletResponse response, int id)
+    private String uploadFile(HttpServletRequest request) throws IOException, ServletException {
+        Part filePart = request.getPart("file");
+        if (filePart.getSize() == 0) {
+            return null;
+        }
+        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+
+        File uploads = new File(request.getServletContext().getRealPath("/img"));
+
+        File file = new File(uploads, fileName);
+
+        try (InputStream input = filePart.getInputStream();) {
+            Files.copy(input, file.toPath(), REPLACE_EXISTING);
+        }
+
+        return "/img/" + fileName;
+    }
+
+    private void deletePeriodical(HttpServletResponse response, int id)
             throws SQLException, IOException {
         Periodical periodical = Periodical.newBuilder().id(id).build();
         periodicalService.deletePeriodical(periodical);
         response.sendRedirect("/adminpage");
-
     }
 }

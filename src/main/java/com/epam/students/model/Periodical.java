@@ -11,7 +11,7 @@ public class Periodical {
     private String description;
     private String publisher;
     private String genre;
-    private String price;
+    private float price;
     private String imgPath;
 
     private Periodical(){
@@ -38,7 +38,7 @@ public class Periodical {
         return genre;
     }
 
-    public String getPrice() {
+    public float getPrice() {
         return price;
     }
 
@@ -81,7 +81,7 @@ public class Periodical {
             return this;
         }
 
-        public Builder price(String price){
+        public Builder price(float price){
             Periodical.this.price = price;
             return this;
         }

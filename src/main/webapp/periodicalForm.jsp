@@ -8,6 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Periodical Form</title>
@@ -21,11 +22,11 @@
         <input type="submit" value='Back To List'>
     </form>
     <c:if test="${periodical != null}">
-    <form action="/adminpage" method="post">
+    <form action="/adminpage" method="post" enctype="multipart/form-data">
         <input type="hidden" name="action" value="update">
         </c:if>
         <c:if test="${periodical == null}">
-        <form action="/adminpage" method="post">
+        <form action="/adminpage" method="post" enctype="multipart/form-data">
             <input type="hidden" name="action" value="insert">
             </c:if>
             <table border="1" cellpadding="5">
@@ -79,17 +80,25 @@
                 <tr>
                     <th>Price:</th>
                     <td>
+                        <fmt:setLocale value="en_US"/>
                         <input type="text" name="price" size="5"
-                               value='${periodical.getPrice()}'
-                        />
+                               value="<fmt:formatNumber type="number" maxFractionDigits="2"
+                               minFractionDigits="2"
+                               pattern="###.00"
+                               value="${periodical.getPrice()}" />"
+                               required pattern="^(?:\d{1,10}|(?!.{12})\d+\.\d+)$"
+                               title="Only digits. Example: 42, 1.12, 1234.37"/>
+
+                        <%-- TODO Need to return locale when localization will be added, something like:
+                            <fmt:setLocale value="en_RU"/>
+                        --%>
                     </td>
                 </tr>
                 <tr>
                     <th>Image Path:</th>
                     <td>
-                        <input type="text" name="imgPath" size="45"
-                               value='${periodical.getImgPath()}'
-                        />
+                        <input type="file" name="file" size="45" />
+                        <input type="hidden" name="imgPath" value='${periodical.getImgPath()}' size="45" />
                     </td>
                 </tr>
                 <tr>

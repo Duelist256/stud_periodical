@@ -34,6 +34,8 @@
     }
 </script>
 
+<c:set var="isUserAdmin"  value="${cookie['userIsAdmin'].value}"/>
+
 <html>
 <head>
     <title>Issue</title>
@@ -59,13 +61,18 @@
                     }%>
                     </p>
                     <ul class="nav navbar-nav navbar-right">
+                        <c:if test="${isUserAdmin == 1}">
+                            <a href="/adminpage" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                                <fmt:message key="admin"/>
+                            </a>
+                        </c:if>
                         <a href="/mybox" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
                             <fmt:message key="box"/>
                         </a>
                         <a href="/logout" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
                             <fmt:message key="logout"/>
                         </a>
-
+                        <c:out value="${isUserAdmin}"/>
                     </ul>
                 </div>
             </div>
@@ -75,7 +82,7 @@
         <c:forEach var="all" items="${list}">
             <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
                 <div class="thumbnail">
-                    <img src="http://placehold.it/300x240" alt="">
+                    <img src="${all.getImgPath()}" alt="Image unavailable">
                     <div class="caption">
                         <h4><a href="#"> ${all.getTitle()} </a></h4>
                         <p>${all.getDescription()}</p>
