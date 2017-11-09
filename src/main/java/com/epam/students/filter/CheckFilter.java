@@ -79,7 +79,7 @@ public class CheckFilter implements Filter {
             }
 
         } else {
-            response.sendRedirect(loginURI);
+            response.sendRedirect("/403.html");
         }
     }
 
