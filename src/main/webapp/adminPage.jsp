@@ -24,6 +24,10 @@
         <input type="submit" value="Add New Periodical">
         <input type="hidden" name='action' value="new">
     </form>
+    <form action="/page" method="get">
+        <input type="hidden" name="num" value="1">
+        <input type="submit" value="Go To Catalogue">
+    </form>
     <form action="/logout" method="get">
         <input type="submit" value="Log Out">
     </form>
