@@ -39,8 +39,9 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupEmail"><fmt:message key="email"/></label>
-                        <input id="signupEmail" type="email" name="email" value="<c:out value="${error}" default=""/>" maxlength="50" class="form-control"
-                                required>
+                        <input id="signupEmail" type="email" name="email"
+                               value="<c:out value="${error}" default=""/>"
+                               maxlength="50" class="form-control">
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupPassword"><fmt:message key="password"/></label>
@@ -61,7 +62,6 @@
             <p  align="center"><c:if test="${requestScope.error != null}">
                 <font class="btn btn-danger"> <fmt:message key="invalidMsg"/> </font>
             </c:if>
-            </p>
         </div>
     </div>
 </div>

@@ -1,5 +1,6 @@
 package com.epam.students.filter;
 
+import com.epam.students.dao.UserDao;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
@@ -12,30 +13,14 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Defines admission rights for different kinds of users.
- * Equality? Never heard!
- */
 @WebFilter("/*")
 public class CheckFilter implements Filter {
 
     private final static Logger logger = Logger.getLogger(CheckFilter.class);
 
-    @Override
     public void destroy() {
     }
 
-    /**
-     * Restricts unauthorized users' access to most pages except for login, registration and error pages.
-     * Makes admin page accessible only for admins.
-     *
-     * @param req for http-request
-     * @param resp for http-respond
-     * @param chain for implementing sequence of filters
-     * @throws ServletException from doFilter method
-     * @throws IOException  from redirect and doFilter methods
-     */
-    @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
 
         HttpServletRequest request = (HttpServletRequest) req;
@@ -71,7 +56,7 @@ public class CheckFilter implements Filter {
                 || requestURI.matches(".*(css|jpg|png|gif|js|ico)")) {
 
             if (isUserNotAdmin && adminPages.contains(requestURI)) {
-                response.sendRedirect("/page?num=1");
+                response.sendRedirect("/issue.jsp");
             } else {
                 chain.doFilter(request, response);
             }
@@ -84,15 +69,17 @@ public class CheckFilter implements Filter {
     private boolean isUserNotAdmin(Cookie[] cookies) {
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("userIsAdmin")) {
-                    return Integer.parseInt(cookie.getValue()) == 0;
+                if (cookie.getName().equals("userId")) {
+                    int id = Integer.parseInt(cookie.getValue());
+                    UserDao userDao = new UserDao();
+                    int admin = userDao.read(id).isAdmin();
+                    return admin == 0;
                 }
             }
         }
         return true;
     }
 
-    @Override
     public void init(FilterConfig config) throws ServletException {
 
     }
