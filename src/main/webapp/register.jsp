@@ -47,15 +47,17 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupEmail"><fmt:message key="email"/></label>
-                        <input id="signupEmail" pattern="[a-z]+@[a-z]+.[a-z]+" required title="<fmt:message key="loginRegPattern"/>"
-                               type="email" name="email" maxlength="50" class="form-control">
-                        <c:if test="${requestScope.emptyEmail != null}">
-                            <font color=red size=4px>    <fmt:message key="emptyField" /> </font>
-                        </c:if>
+                        <input id="signupEmail" type="email" name="email" class="form-control" required>
+
+                        <p align="center">
+                            <c:if test="${requestScope.emptyEmail != null}">
+                            <font class="btn btn-danger"> <fmt:message key="emptyField"/> </font>
+                            </c:if>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupPassword"><fmt:message key="password"/></label>
-                        <input id="signupPassword" pattern="[A-Za-z0-9]{4,20}$" required title="<fmt:message key="loginRegPattern"/>"
+                        <input id="signupPassword" pattern="[A-Za-z0-9]{4,20}$" required
+                               title="<fmt:message key="loginRegPattern"/>"
                                type="password" name="pass" maxlength="25" class="form-control"
                                length="40" value="">
 
