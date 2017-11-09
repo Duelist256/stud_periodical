@@ -45,7 +45,8 @@ public class CheckFilter implements Filter {
         necessaryPages.add("/404.html");
         necessaryPages.add("/500.html");
 
-        boolean isUserNotAdmin = isUserNotAdmin(request.getCookies());
+        Cookie[] cookies = request.getCookies();
+        boolean isUserNotAdmin = cookies == null || isUserNotAdmin(cookies);
 
         Set<String> adminPages = new HashSet<>();
         adminPages.add("/adminpage");
@@ -67,17 +68,16 @@ public class CheckFilter implements Filter {
     }
 
     private boolean isUserNotAdmin(Cookie[] cookies) {
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("userId")) {
-                    int id = Integer.parseInt(cookie.getValue());
-                    UserDao userDao = new UserDao();
-                    int admin = userDao.read(id).isAdmin();
-                    return admin == 0;
-                }
+        int admin = 0;
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("userId")) {
+                int id = Integer.parseInt(cookie.getValue());
+                UserDao userDao = new UserDao();
+                admin = userDao.read(id).isAdmin();
+                break;
             }
         }
-        return true;
+        return admin == 0;
     }
 
     public void init(FilterConfig config) throws ServletException {
