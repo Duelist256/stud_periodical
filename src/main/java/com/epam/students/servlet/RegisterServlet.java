@@ -34,7 +34,7 @@ public class RegisterServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        if (!userService.checkEmailExistens(rs.getParameter("email"))) {
+        if (!userService.checkEmailExistence(rs.getParameter("email"))) {
             User user = User.newBuilder()
                     .name(rs.getParameter("name"))
                     .login(rs.getParameter("email"))

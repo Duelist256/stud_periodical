@@ -23,7 +23,7 @@ public class UserServiceTest {
     @Test
     public void checkEmailExistence() throws Exception {
         String email = "test1@test.com";
-        userService.checkEmailExistens(email);
+        userService.checkEmailExistence(email);
         verify(userDao, times(1)).readByEmail(email);
     }
 
