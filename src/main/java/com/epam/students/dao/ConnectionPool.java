@@ -24,9 +24,9 @@ public class ConnectionPool {
     private static JdbcConnectionPool connectionPool;
 
     /**
-    * <p>Singleton-based connection pool method</p>
+    * Singleton-based connection pool method
     *
-    * @return connection pool, created with test schema and data, or provides access to existing one</p>
+    * @return connection pool, created with test schema and data, or provides access to existing one
      */
     public static synchronized JdbcConnectionPool getConnectionPool() {
         if (connectionPool == null) {
@@ -54,7 +54,7 @@ public class ConnectionPool {
     }
 
     /**
-     * <p>Executes sql script from /resource directory</p>
+     * Executes sql script from /resource directory
      *
      * @param filename  file in /resources to execute.
      * @param connectionPool pool to take connection from.
