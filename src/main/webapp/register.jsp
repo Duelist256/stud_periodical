@@ -74,7 +74,7 @@
                     </p><fmt:message key="Alreadyhaveaccount"/><a href="login.jsp"> <fmt:message key="Sign"/> </a></p>
                 </form>
                 <c:if test="${requestScope.error != null}">
-                    <font color=red size=4px> <fmt:message key="loginExistensError"/> </font>
+                    <font class="btn btn-danger"> <fmt:message key="loginExistensError"/> </font>
                 </c:if>
             </div>
         </div>
