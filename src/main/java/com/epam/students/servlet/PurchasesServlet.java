@@ -39,17 +39,14 @@ public class PurchasesServlet extends HttpServlet {
         }
 
         List<Order> allByIdUser = orderDao.getAllByIdUser(idUser);
-        System.out.println(idUser + "<------");
-        allByIdUser.forEach(t -> System.out.println(t.getIdUser() + " idUser"));
 
         if (!allByIdUser.isEmpty()) {
             for (Order order : allByIdUser) {
-                if (order.getStatus().equals("Done") && order.getIdUser() == idUser) {
-
-                    OrderPeriodical read = orderPeriodicalDao.read(order.getId());
-                    System.out.println(read);
-                    int idPeriodical = read.getIdPeriodical();
-                    periodicalBought.add(periodicalDao.read(idPeriodical));
+                if (order.getStatus().equals("Done")) {
+                    if (order != null) {
+                        OrderPeriodical read = orderPeriodicalDao.read(order.getId());
+                        periodicalBought.add(periodicalDao.read(read.getIdPeriodical()));
+                    }
                 }
             }
         }
