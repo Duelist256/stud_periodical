@@ -1,5 +1,6 @@
 package com.epam.students.filter;
 
+import com.epam.students.dao.UserDao;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
@@ -60,7 +61,8 @@ public class CheckFilter implements Filter {
         necessaryPages.add("/404.html");
         necessaryPages.add("/500.html");
 
-        boolean isUserNotAdmin = isUserNotAdmin(request.getCookies());
+        Cookie[] cookies = request.getCookies();
+        boolean isUserNotAdmin = cookies == null || isUserNotAdmin(cookies);
 
         Set<String> adminPages = new HashSet<>();
         adminPages.add("/adminpage");
@@ -82,11 +84,12 @@ public class CheckFilter implements Filter {
     }
 
     private boolean isUserNotAdmin(Cookie[] cookies) {
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("userIsAdmin")) {
-                    return Integer.parseInt(cookie.getValue()) == 0;
-                }
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("userId")) {
+                int id = Integer.parseInt(cookie.getValue());
+                UserDao userDao = new UserDao();
+                int admin = userDao.read(id).isAdmin();
+                return admin == 0;
             }
         }
         return true;
