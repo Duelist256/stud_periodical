@@ -1,5 +1,6 @@
 package com.epam.students.filter;
 
+import com.epam.students.dao.UserDao;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
@@ -68,12 +69,11 @@ public class CheckFilter implements Filter {
     private boolean isUserNotAdmin(Cookie[] cookies) {
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("userIsAdmin")) {
-                    if (Integer.parseInt(cookie.getValue()) == 0) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                if (cookie.getName().equals("userId")) {
+                    int id = Integer.parseInt(cookie.getValue());
+                    UserDao userDao = new UserDao();
+                    int admin = userDao.read(id).isAdmin();
+                    return admin == 0;
                 }
             }
         }

@@ -24,7 +24,6 @@ public class LoginServlet extends HttpServlet {
 
     private Cookie cookieUserId;
     private Cookie cookieUserName;
-    private Cookie cookieIsAdmin;
     private HttpSession session;
     private HttpSession sessionLanguage;
 
@@ -37,22 +36,20 @@ public class LoginServlet extends HttpServlet {
         User user = userService.checkUser(login, password);
         if (user != null) {
 
-            String name = user.getName();
+            int id = user.getId();
+            String userName = user.getName();
 
-            cookieUserName = new Cookie("user", name);
+            cookieUserName = new Cookie("user", userName);
             cookieUserName.setMaxAge(60 * 5); //5 mins
             response.addCookie(cookieUserName);
 
-            cookieUserId = new Cookie("userId", String.valueOf(user.getId()));
+            cookieUserId = new Cookie("userId", String.valueOf(id));
             cookieUserId.setMaxAge(60 * 5);
             response.addCookie(cookieUserId);
 
-            cookieIsAdmin = new Cookie("userIsAdmin", String.valueOf(user.isAdmin()));
-            cookieIsAdmin.setMaxAge(60 * 5);
-            response.addCookie(cookieIsAdmin);
-
             session = request.getSession(true);
-            session.setAttribute("userName", name);
+            session.setAttribute("userId", id);
+            session.setAttribute("userName", userName);
 
             sessionLanguage = request.getSession(true);
             sessionLanguage.setAttribute(language, getLanguage());
@@ -60,7 +57,7 @@ public class LoginServlet extends HttpServlet {
             redirectUser(response, user);
 
         } else {
-            request.setAttribute("error",login);
+            request.setAttribute("error", login);
             request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }
@@ -69,7 +66,7 @@ public class LoginServlet extends HttpServlet {
         if (user.isAdmin() == 1) {
             response.sendRedirect("/adminpage");
         } else {
-            response.sendRedirect(" /page?num=1");
+            response.sendRedirect("/page?num=1");
         }
 
     }
@@ -78,23 +75,20 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Cookie[] cookies = req.getCookies();
+        UserDao userDao = new UserDao();
+
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("user")) {
                     session = req.getSession(true);
                     session.setAttribute("userName", cookie.getValue());
                 }
-
-                if (cookie.getName().equals("userIsAdmin")) {
-                    session = req.getSession(true);
-                    session.setAttribute("userIsAdmin", cookie.getValue());
-                }
             }
 
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("userId")) {
                     int id = Integer.parseInt(cookie.getValue());
-                    User user = new UserDao().read(id);
+                    User user = userDao.read(id);
                     redirectUser(resp, user);
                     return;
                 }
