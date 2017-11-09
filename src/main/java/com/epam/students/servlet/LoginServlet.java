@@ -27,7 +27,6 @@ public class LoginServlet extends HttpServlet {
     private HttpSession session;
     private HttpSession sessionLanguage;
 
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("email");
         String password = request.getParameter("pass");

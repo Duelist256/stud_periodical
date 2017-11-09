@@ -7,12 +7,12 @@ import java.io.IOException;
 
 @WebServlet(name = "LogoutServlet", urlPatterns = "/logout")
 public class LogoutServlet extends HttpServlet {
-    private HttpSession session;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.getSession().invalidate();
+
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie cookieReq : cookies) {
@@ -21,6 +21,8 @@ public class LogoutServlet extends HttpServlet {
                 resp.addCookie(cookieReq);
             }
         }
+
+
         req.getRequestDispatcher("/login.jsp").forward(req, resp);
     }
 }

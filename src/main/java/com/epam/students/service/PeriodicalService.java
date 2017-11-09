@@ -5,6 +5,9 @@ import com.epam.students.model.Periodical;
 
 import java.util.List;
 
+/**
+ * Service class for manipulations with Periodical table entries
+ */
 public class PeriodicalService {
 
     private PeriodicalDao periodicalDao;
