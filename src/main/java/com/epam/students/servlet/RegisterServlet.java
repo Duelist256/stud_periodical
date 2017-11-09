@@ -34,7 +34,7 @@ public class RegisterServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        if (!userService.checkEmailExistens(rs.getParameter("email"))) {
+        if (!userService.checkEmailExistence(rs.getParameter("email"))) {
             User user = User.newBuilder()
                     .name(rs.getParameter("name"))
                     .login(rs.getParameter("email"))
@@ -51,7 +51,7 @@ public class RegisterServlet extends HttpServlet {
         }
     }
 
-    public void emptyFieldsValidation(HttpServletRequest rs, HttpServletResponse rp) throws ServletException, IOException {
+    private void emptyFieldsValidation(HttpServletRequest rs, HttpServletResponse rp) throws ServletException, IOException {
         if (rs.getParameter("name") == null) {
             rs.setAttribute("emptyName", "Field can not be empty!");
             rs.getServletContext().getRequestDispatcher("/register.jsp").forward(rs, rp);

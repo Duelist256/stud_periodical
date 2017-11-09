@@ -26,7 +26,7 @@ public class PeriodicalDaoTest {
         .description("Description1234")
         .publisher("Publisher1234")
         .genre("Genre1234")
-        .price("1234")
+        .price(1234)
         .imgPath("path1234")
                 .build();
 
@@ -50,7 +50,7 @@ public class PeriodicalDaoTest {
         String newDescription = "Know more about cars";
         String newPublisher = "Za Rulem publishing house";
         String newGenre = "cars";
-        String newPrice = "145";
+        float newPrice = 145;
         String newImgPath = "newImgPath";
 
 
@@ -76,7 +76,7 @@ public class PeriodicalDaoTest {
         assertEquals(newDescription, readPeriodical.getDescription());
         assertEquals(newPublisher, readPeriodical.getPublisher());
         assertEquals(newGenre, readPeriodical.getGenre());
-        assertEquals(newPrice, readPeriodical.getPrice());
+        assertEquals(newPrice, readPeriodical.getPrice(), 0.0F);
         assertEquals(newImgPath, readPeriodical.getImgPath());
     }
 

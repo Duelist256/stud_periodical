@@ -11,6 +11,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * This Class provides connection pool for database connection.
+ * Offers Singleton pattern implementation.
+ */
+
 public class ConnectionPool {
 
     private final static Logger logger = Logger.getLogger(ConnectionPool.class);
@@ -18,6 +23,11 @@ public class ConnectionPool {
     private static final ClassLoader classLoader = ConnectionPool.class.getClassLoader();
     private static JdbcConnectionPool connectionPool;
 
+    /**
+    * Singleton-based connection pool method
+    *
+    * @return connection pool, created with test schema and data, or provides access to existing one
+     */
     public static synchronized JdbcConnectionPool getConnectionPool() {
         if (connectionPool == null) {
             Properties prop = new Properties();
@@ -43,6 +53,14 @@ public class ConnectionPool {
         return connectionPool;
     }
 
+    /**
+     * Executes sql script from /resource directory
+     *
+     * @param filename  file in /resources to execute.
+     * @param connectionPool pool to take connection from.
+     *
+     * @throws NullPointerException says warning, idk why :|
+     * */
     private static void executeSchema(String filename, JdbcConnectionPool connectionPool) {
         try (Connection conn = connectionPool.getConnection()) {
             URL resource = classLoader.getResource(filename);

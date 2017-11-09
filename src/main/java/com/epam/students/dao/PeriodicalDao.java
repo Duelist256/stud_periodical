@@ -29,7 +29,7 @@ public class PeriodicalDao implements Dao<Periodical> {
             preparedStatement.setString(2, newPeriodical.getDescription());
             preparedStatement.setString(3, newPeriodical.getPublisher());
             preparedStatement.setString(4, newPeriodical.getGenre());
-            preparedStatement.setString(5, newPeriodical.getPrice());
+            preparedStatement.setFloat(5, newPeriodical.getPrice());
             preparedStatement.setString(6, newPeriodical.getImgPath());
             preparedStatement.executeUpdate();
 
@@ -79,7 +79,7 @@ public class PeriodicalDao implements Dao<Periodical> {
             preparedStatement.setString(2, periodical.getDescription());
             preparedStatement.setString(3, periodical.getPublisher());
             preparedStatement.setString(4, periodical.getGenre());
-            preparedStatement.setString(5, periodical.getPrice());
+            preparedStatement.setFloat(5, periodical.getPrice());
             preparedStatement.setString(6, periodical.getImgPath());
             preparedStatement.setInt(7, periodical.getId());
 
