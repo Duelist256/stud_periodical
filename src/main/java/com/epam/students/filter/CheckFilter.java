@@ -68,16 +68,15 @@ public class CheckFilter implements Filter {
     }
 
     private boolean isUserNotAdmin(Cookie[] cookies) {
-        int admin = 0;
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("userId")) {
                 int id = Integer.parseInt(cookie.getValue());
                 UserDao userDao = new UserDao();
-                admin = userDao.read(id).isAdmin();
-                break;
+                int admin = userDao.read(id).isAdmin();
+                return admin == 0;
             }
         }
-        return admin == 0;
+        return true;
     }
 
     public void init(FilterConfig config) throws ServletException {
