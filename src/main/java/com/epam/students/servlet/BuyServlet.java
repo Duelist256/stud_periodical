@@ -33,7 +33,6 @@ public class BuyServlet extends HttpServlet {
             }
         }
         int idPeriodical = Integer.valueOf(req.getParameter("id"));
-        System.out.println("id periodical" + idPeriodical);
 
         Order ordered = Order.newBuilder().idUser(idUser).date(new Timestamp(new Date().getTime())).status("Ordered").build();
         OrderDao orderDao = new OrderDao();
