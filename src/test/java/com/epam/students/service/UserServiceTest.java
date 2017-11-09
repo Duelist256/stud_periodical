@@ -5,16 +5,16 @@ import com.epam.students.model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Spy;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {
 
-    @Spy
+    @Mock
     private UserDao userDao;
 
     @InjectMocks
@@ -22,6 +22,7 @@ public class UserServiceTest {
 
     @Test
     public void checkEmailExistence() throws Exception {
+        doReturn(User.newBuilder().build()).when(userDao).readByEmail(anyString());
         String email = "test1@test.com";
         userService.checkEmailExistence(email);
         verify(userDao, times(1)).readByEmail(email);
@@ -29,6 +30,7 @@ public class UserServiceTest {
 
     @Test
     public void checkUser() throws Exception {
+        doReturn(User.newBuilder().build()).when(userDao).readByEmail(anyString());
         String email = "test1@test.com";
         String password = "test1@test.com";
         userService.checkUser(email, password);
@@ -37,6 +39,7 @@ public class UserServiceTest {
 
     @Test
     public void addUser() throws Exception {
+        doNothing().when(userDao).create(any());
         User user = User
                 .newBuilder()
                 .name("Petya")
