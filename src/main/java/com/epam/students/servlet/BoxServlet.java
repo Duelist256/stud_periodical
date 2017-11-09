@@ -64,12 +64,18 @@ public class BoxServlet extends HttpServlet {
             List<OrderPeriodical> all = orderPeriodicalDao.getAll();
             if (!all.isEmpty()) {
                 for (OrderPeriodical orderPeriodical : all) {
+                    if (orderPeriodical != null) {
+                        int idOrder = orderPeriodical.getIdOrder();
+                        if (orderDao.read(idOrder).getIdUser() == idUser && !orderDao.read(idOrder).getStatus().equals("Delete")) {
 
-                    int idOrder = orderPeriodical.getIdOrder();
-                    if (orderDao.read(idOrder).getIdUser() == idUser) {
-                        Order ordered = Order.newBuilder().id(idOrder).idUser(idUser).date(new Timestamp(new Date().getTime())).status("Done").build();
-                        orderDao.update(ordered);
-                        // orderPeriodicalDao.delete(orderPeriodical);
+                            Order order = Order.newBuilder()
+                                    .id(orderPeriodical.getIdOrder())
+                                    .idUser(idUser)
+                                    .date(orderDao.read(idOrder).getDate())
+                                    .status("Done")
+                                    .build();
+                            orderDao.update(order);
+                        }
                     }
                 }
             }
@@ -87,9 +93,15 @@ public class BoxServlet extends HttpServlet {
             }
             List<OrderPeriodical> all = orderPeriodicalDao.getAll();
             for (OrderPeriodical orderPeriodical : all) {
-                if (orderPeriodical.getIdPeriodical() == delete) {
-                    orderDao.delete(orderDao.read(orderPeriodical.getIdOrder())); //delete order from user's orders
-                    orderPeriodicalDao.delete(orderPeriodical);
+                if (orderPeriodical.getIdPeriodical() == delete && orderDao.read(orderPeriodical.getIdOrder()).getStatus().equals("Ordered")) {
+
+                    Order order = Order.newBuilder()
+                            .id(orderPeriodical.getIdOrder())
+                            .idUser(idUser)
+                            .date(orderDao.read(orderPeriodical.getIdOrder()).getDate())
+                            .status("Delete")
+                            .build();
+                    orderDao.update(order);
                     break;
                 }
             }
