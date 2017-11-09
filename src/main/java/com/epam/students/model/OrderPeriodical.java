@@ -1,5 +1,9 @@
 package com.epam.students.model;
 
+/**
+ * POJO class for OrderPeriodical table data access with Builder,
+ * not much to comment here.
+ */
 public class OrderPeriodical {
 
     private int id_order;
