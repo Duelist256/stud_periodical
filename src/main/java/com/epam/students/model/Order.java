@@ -2,6 +2,10 @@ package com.epam.students.model;
 
 import java.sql.Timestamp;
 
+/**
+ * POJO class for Order table data access with Builder,
+ * not much to comment here.
+ */
 public class Order {
 
     private int id;

@@ -30,12 +30,12 @@
             <div class="panel-body">
                 <form name="regForm" method="POST" action="register" role="form">
                     <div class="form-group">
-                        <h2>Create account <a href="/language?lan=ru"><img src="img/United-Kingdom.png" align="right"
-                                                                           width="40"
-                                                                           height="40" alt="US">
+                        <h2><fmt:message key="Createyouraccount"/><a href="/language?lan=ru"><img src="img/Russia.png" align="right"
+                                                                              width="40"
+                                                                              height="40" alt="US">
                         </a>
-                            <a href="/language?lan=en"><img src="img/Russia.png" align="right" width="40" height="40"
-                                                            alt="RU"></a></h2>
+                            <a href="/language?lan=en"><img src="img/United-Kingdom.png" align="right" width="40" height="40"
+                                                               alt="RU"></a></h2>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupName"><fmt:message key="name"/></label>
@@ -67,12 +67,11 @@
                             </c:if>
                     </div>
                     <div class="form-group">
-                        <button id="signupSubmit" type="submit" value="Register" class="btn btn-info btn-block">Create
-                            your account
+                        <button id="signupSubmit" type="submit" value="Register" class="btn btn-info btn-block"> <fmt:message key="Createyouraccount"/>
                         </button>
                     </div>
                     <hr>
-                    </p>Already have an account? <a href="login.jsp">Sign in</a></p>
+                    </p><fmt:message key="Alreadyhaveaccount"/><a href="login.jsp"> <fmt:message key="Sign"/> </a></p>
                 </form>
                 <c:if test="${requestScope.error != null}">
                     <font color=red size=4px> <fmt:message key="loginExistensError"/> </font>

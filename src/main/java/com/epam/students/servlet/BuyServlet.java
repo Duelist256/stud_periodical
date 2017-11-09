@@ -19,10 +19,11 @@ import java.util.Date;
 
 @WebServlet(name = "BuyServlet", urlPatterns = "/bought")
 public class BuyServlet extends HttpServlet {
-    int idUser;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int idUser = 0;
+
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie cookieReq : cookies) {
@@ -32,7 +33,6 @@ public class BuyServlet extends HttpServlet {
             }
         }
         int idPeriodical = Integer.valueOf(req.getParameter("id"));
-        System.out.println("id periodical" + idPeriodical);
 
         Order ordered = Order.newBuilder().idUser(idUser).date(new Timestamp(new Date().getTime())).status("Ordered").build();
         OrderDao orderDao = new OrderDao();

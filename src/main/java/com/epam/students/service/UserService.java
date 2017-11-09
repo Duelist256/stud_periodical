@@ -5,6 +5,9 @@ import com.epam.students.model.User;
 
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Service class for manipulations with User table entries and verification.
+ */
 public class UserService {
 
     private UserDao userDao;
@@ -17,6 +20,13 @@ public class UserService {
         return userDao.readByEmail(email)!=null;
     }
 
+    /**
+     * Verifies email and password input bu user.
+     *
+     * @param email input by user
+     * @param password input by user
+     * @return User object if data is verified. Or null if it is not.
+     */
     public User checkUser(String email, String password) {
 
         if (email == null || password == null) {
