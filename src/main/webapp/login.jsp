@@ -39,13 +39,14 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupEmail"><fmt:message key="email"/></label>
-                        <input id="signupEmail" type="email" name="email" value="<c:out value="${error}" default=""/>" maxlength="50" class="form-control"
-                               required>
+                        <input id="signupEmail" type="email" name="email"
+                               value="<c:out value="${error}" default=""/>"
+                               maxlength="50" class="form-control">
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupPassword"><fmt:message key="password"/></label>
                         <input id="signupPassword" type="password" name="pass" maxlength="25" class="form-control"
-                               pattern="^[A-Za-z0-9]{4,}$" required>
+                               pattern="[A-Za-z0-9]{1,20}$" required>
                     </div>
                     <div class="form-group">
                         <button type="submit" value="login" class="btn btn-info btn-block"><fmt:message
