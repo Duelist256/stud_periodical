@@ -8,16 +8,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%@ taglib prefix="fmt2" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="language"
+       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
+       scope="session"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="i18n.login"/>
+<link href="css/bootstrap.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <html>
 <head>
     <title>Admin Page</title>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <center>
@@ -42,16 +45,18 @@
                         out.print(session.getAttribute("userName").toString());
                     }%>
                     </p>
+
                     <div class="nav navbar-nav navbar-right">
                         <form action="/adminpage" method="post">
-                        <input type="submit" class="btn btn-info btn-block" value="Add New Periodical">
-                        <input type="hidden" class="btn btn-info btn-block" name='action' value="new">
-                    </form>
+                            <input type="submit" class="btn btn-info btn-block" value="<fmt:message key="addNew"/> ">
+                            <input type="hidden" class="btn btn-info btn-block" name='action' value="new">
+                        </form>
                         <form action="/logout" method="get">
-                            <input type="submit" class="btn btn-info btn-block" value="Log Out">
+                            <input type="submit" class="btn btn-info btn-block" value="<fmt:message key="logout"/> ">
                         </form>
 
                     </div>
+
                 </div>
             </div>
         </div>
@@ -90,14 +95,14 @@
                         <form action="/adminpage" method="post">
                             <input type="hidden" name="action" value='edit'>
                             <input type="hidden" name="id" value='${periodical.getId()}'>
-                            <input type="submit" class="btn btn-info btn-block" value='Edit'>
+                            <input type="submit" class="btn btn-info btn-block" value='<fmt:message key="edit"/>'>
                         </form>
                     </td>
                     <td>
                         <form action="/adminpage" method="post">
                             <input type="hidden" name="action" value='delete'>
                             <input type="hidden" name="delete" value='${periodical.getId()}'>
-                            <input type="submit" class="btn btn-info btn-block" value='Delete'>
+                            <input type="submit" class="btn btn-info btn-block" value='<fmt:message key="delete"/> '>
                         </form>
                     </td>
                 </tr>

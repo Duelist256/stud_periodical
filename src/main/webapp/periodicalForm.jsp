@@ -9,6 +9,11 @@
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="language"
+       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"
+       scope="session"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="i18n.login"/>
 <html>
 <head>
     <title>Periodical Form</title>
@@ -42,7 +47,7 @@
                     <div class="nav navbar-nav navbar-right">
 
                         <form action="/adminpage" method="post">
-                            <input type="submit" class="btn btn-info btn-block" value='Back To List'>
+                            <input type="submit" class="btn btn-info btn-block" value="<fmt:message key="backToListBtn" />">
                         </form>
 
                     </div>
@@ -127,13 +132,14 @@
                 <tr class="active">
                     <th>Image Path:</th>
                     <td>
-                        <input type="file" name="file" class="btn btn-info btn-block" size="45" />
-                        <input type="hidden" name="imgPath" class="btn btn-info btn-block" value='${periodical.getImgPath()}' size="45" />
+                        <input type="file" name="file" size="45" />
+                        <input type="hidden" name="imgPath" value='${periodical.getImgPath()}' size="45" />
+
                     </td>
                 </tr>
                 <tr class="active">
                     <td colspan="2" align="center">
-                        <input type="submit" class="btn btn-info btn-block" value="Save"/>
+                        <input type="submit" class="btn btn-info btn-block" value="<fmt:message key="saveBtn"/> "/>
                     </td>
                 </tr>
             </table>
