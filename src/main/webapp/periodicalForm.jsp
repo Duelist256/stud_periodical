@@ -34,7 +34,8 @@
 
             <a href="/language?lan=en"><img src="img/United-Kingdom.png" width="40" height="40" alt="US">
 
-            </a></p>
+            </a>
+        </p>
 
         <div class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -139,7 +140,7 @@
                 </tr>
                 <tr class="active">
                     <td colspan="2" align="center">
-                        <input type="submit" class="btn btn-info btn-block" value="<fmt:message key="saveBtn"/> "/>
+                        <input type="submit" class="btn btn-info" value="<fmt:message key="saveBtn"/> "/>
                     </td>
                 </tr>
             </table>
