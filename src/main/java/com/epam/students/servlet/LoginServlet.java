@@ -9,18 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
+import static com.epam.students.servlet.Language.language;
+
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
-
-    private static String language = "ru";
-
-    public static String getLanguage() {
-        return language;
-    }
-
-    public static void setLanguage(String language) {
-        LoginServlet.language = language;
-    }
 
     private HttpSession session;
 
@@ -46,7 +38,7 @@ public class LoginServlet extends HttpServlet {
             session = request.getSession(true);
             session.setAttribute("userId", id);
             session.setAttribute("userName", userName);
-            session.setAttribute(language, getLanguage());
+            session.setAttribute("language", language);
 
             redirectUser(response, user);
 
@@ -89,7 +81,7 @@ public class LoginServlet extends HttpServlet {
             }
         }
 
-        req.getSession().setAttribute("language", getLanguage());
+        req.getSession().setAttribute("language", language);
         req.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
     }
 

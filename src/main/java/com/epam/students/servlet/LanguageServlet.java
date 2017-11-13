@@ -7,8 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.epam.students.servlet.LoginServlet.getLanguage;
-import static com.epam.students.servlet.LoginServlet.setLanguage;
+import static com.epam.students.servlet.Language.language;
 
 @WebServlet(name = "LanguageServlet", urlPatterns = "/language")
 public class LanguageServlet extends HttpServlet {
@@ -18,12 +17,12 @@ public class LanguageServlet extends HttpServlet {
 
         String referer = req.getHeader("referer");
         if (req.getParameter("lan").equals("ru")) {
-            setLanguage("ru");
-            req.getSession().setAttribute("language", getLanguage());
+            language = "ru";
+            req.getSession().setAttribute("language", language);
 
         } else if (req.getParameter("lan").equals("en")) {
-            setLanguage("en");
-            req.getSession().setAttribute("language", getLanguage());
+            language = "en";
+            req.getSession().setAttribute("language", language);
         }
         resp.sendRedirect(referer);
     }
