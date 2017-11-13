@@ -60,10 +60,7 @@
                         <input type="submit" class="btn btn-link" value="<fmt:message key="forgot"/>"/></p>
                 </form>
 
-                <p  align="center"><c:if test="${requestScope.error != null}">
-                    <font class="btn btn-danger"> <fmt:message key="invalidMsg"/> </font>
-                </c:if>
-                </p>
+
             </div>
 
         </div>
