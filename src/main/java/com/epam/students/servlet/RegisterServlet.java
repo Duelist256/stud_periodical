@@ -1,7 +1,7 @@
 package com.epam.students.servlet;
 
 import com.epam.students.model.User;
-import com.epam.students.service.PasswordUtil;
+import com.epam.students.utils.PasswordUtil;
 import com.epam.students.service.UserService;
 
 import javax.servlet.ServletException;

@@ -2,6 +2,7 @@ package com.epam.students.service;
 
 import com.epam.students.dao.UserDao;
 import com.epam.students.model.User;
+import com.epam.students.utils.PasswordUtil;
 
 import java.security.NoSuchAlgorithmException;
 

@@ -1,4 +1,4 @@
-package com.epam.students.service;
+package com.epam.students.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

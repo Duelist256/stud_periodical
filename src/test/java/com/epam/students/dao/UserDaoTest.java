@@ -1,7 +1,7 @@
 package com.epam.students.dao;
 
 import com.epam.students.model.User;
-import com.epam.students.service.PasswordUtil;
+import com.epam.students.utils.PasswordUtil;
 import org.junit.Test;
 
 import java.security.NoSuchAlgorithmException;
