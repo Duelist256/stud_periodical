@@ -28,22 +28,26 @@
     <div class="row">
         <div class="panel panel-primary">
             <div class="panel-body">
-                <form name="regForm" method="POST" action="register" role="form">
+                <form method="POST" action="register" role="form">
+
                     <div class="form-group">
-                        <h2><fmt:message key="Createyouraccount"/><a href="/language?lan=ru"><img src="img/Russia.png" align="right"
-                                                                              width="40"
-                                                                              height="40" alt="US">
-                        </a>
-                            <a href="/language?lan=en"><img src="img/United-Kingdom.png" align="right" width="40" height="40"
-                                                               alt="RU"></a></h2>
+                        <h2><fmt:message key="Createyouraccount"/>
+                            <a href="/language?lan=ru"><img src="img/Russia.png" align="right" width="40" height="40"
+                                                            alt="RU"></a>
+
+                            <a href="/language?lan=en"><img src="img/United-Kingdom.png" align="right" width="40"
+                                                            height="40" alt="US"></a></h2>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupName"><fmt:message key="name"/></label>
-                        <input id="signupName" pattern="^[A-Za-z0-9]{4,20}$" required title="<fmt:message key="loginRegPattern"/>"
-                               type="text" name="name" maxlength="50" class="form-control">
-                        <c:if test="${requestScope.emptyName != null}">
-                            <font color=red size=4px>    <fmt:message key="emptyField" /> </font>
-                        </c:if>
+                        <input id="signupName" pattern="[A-Za-z0-9]{4,20}$" required
+                               title="<fmt:message key="loginRegPattern"/>"
+                               type="text" name="name" class="form-control">
+
+                        <p align="center">
+                            <c:if test="${requestScope.emptyName != null}">
+                            <font class="btn btn-danger"> <fmt:message key="emptyField"/> </font>
+                            </c:if>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupEmail"><fmt:message key="email"/></label>
@@ -56,8 +60,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupPassword"><fmt:message key="password"/></label>
-                        <input id="signupPassword" pattern="[A-Za-z0-9]{4,20}$" required
-                               title="<fmt:message key="loginRegPattern"/>"
+                        <input id="signupPassword" pattern="^[A-Za-z0-9]{4,20}$" required title="<fmt:message key="loginRegPattern"/>"
                                type="password" name="pass" maxlength="25" class="form-control"
                                length="40" value="">
 
@@ -74,7 +77,7 @@
                     </p><fmt:message key="Alreadyhaveaccount"/><a href="login.jsp"> <fmt:message key="Sign"/> </a></p>
                 </form>
                 <c:if test="${requestScope.error != null}">
-                    <font class="btn btn-danger"> <fmt:message key="loginExistensError"/> </font>
+                    <font color=red size=4px>    <fmt:message key="loginExistensError" /> </font>
                 </c:if>
             </div>
         </div>
