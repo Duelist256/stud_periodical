@@ -116,18 +116,10 @@
                 <tr class="active">
                     <th>Price:</th>
                     <td>
-                        <fmt:setLocale value="en_US"/>
                         <input type="text" name="price" size="5"
-                               value="<fmt:formatNumber type="number" maxFractionDigits="2"
-                               minFractionDigits="2"
-                               pattern="###.00"
-                               value="${periodical.getPrice()}" />"
+                               value="${periodical.getPrice()}"
                                required pattern="^(?:\d{1,10}|(?!.{12})\d+\.\d+)$"
                                title="Only digits. Example: 42, 1.12, 1234.37"/>
-
-                        <%-- TODO Need to return locale when localization will be added, something like:
-                            <fmt:setLocale value="en_RU"/>
-                        --%>
                     </td>
                 </tr>
                 <tr class="active">
