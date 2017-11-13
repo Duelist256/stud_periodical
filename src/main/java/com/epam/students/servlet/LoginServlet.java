@@ -22,10 +22,7 @@ public class LoginServlet extends HttpServlet {
         LoginServlet.language = language;
     }
 
-    private Cookie cookieUserId;
-    private Cookie cookieUserName;
     private HttpSession session;
-    private HttpSession sessionLanguage;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("email");
@@ -38,20 +35,18 @@ public class LoginServlet extends HttpServlet {
             int id = user.getId();
             String userName = user.getName();
 
-            cookieUserName = new Cookie("user", userName);
+            Cookie cookieUserName = new Cookie("user", userName);
             cookieUserName.setMaxAge(60 * 5); //5 mins
             response.addCookie(cookieUserName);
 
-            cookieUserId = new Cookie("userId", String.valueOf(id));
+            Cookie cookieUserId = new Cookie("userId", String.valueOf(id));
             cookieUserId.setMaxAge(60 * 5);
             response.addCookie(cookieUserId);
 
             session = request.getSession(true);
             session.setAttribute("userId", id);
             session.setAttribute("userName", userName);
-
-            sessionLanguage = request.getSession(true);
-            sessionLanguage.setAttribute(language, getLanguage());
+            session.setAttribute(language, getLanguage());
 
             redirectUser(response, user);
 
