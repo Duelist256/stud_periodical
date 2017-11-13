@@ -29,13 +29,14 @@
         <div class="panel panel-primary">
             <div class="panel-body">
                 <form method="POST" action="register" role="form">
+
                     <div class="form-group">
-                        <h2><fmt:message key="Createyouraccount"/><a href="/language?lan=ru"><img src="img/Russia.png" align="right"
-                                                                              width="40"
-                                                                              height="40" alt="US">
-                        </a>
-                            <a href="/language?lan=en"><img src="img/United-Kingdom.png" align="right" width="40" height="40"
-                                                               alt="RU"></a></h2>
+                        <h2><fmt:message key="Createyouraccount"/>
+                            <a href="/language?lan=ru"><img src="img/Russia.png" align="right" width="40" height="40"
+                                                            alt="RU"></a>
+
+                            <a href="/language?lan=en"><img src="img/United-Kingdom.png" align="right" width="40"
+                                                            height="40" alt="US"></a></h2>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupName"><fmt:message key="name"/></label>

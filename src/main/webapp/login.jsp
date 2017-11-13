@@ -62,6 +62,11 @@
 
 
             </div>
+            <p  align="center">
+                <c:if test="${requestScope.error != null}">
+                    <font class="btn btn-danger"> <fmt:message key="invalidMsg"/> </font>
+                </c:if>
+            </p>
 
         </div>
     </div>

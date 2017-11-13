@@ -83,7 +83,7 @@
                     <td><c:out value="${periodical.getDescription()}"/></td>
                     <td><c:out value="${periodical.getPublisher()}"/></td>
                     <td><c:out value="${periodical.getGenre()}"/></td>
-                    <fmt2:formatNumber type="number" maxFractionDigits="2"
+                    <fmt:formatNumber type="number" maxFractionDigits="2"
                                        minFractionDigits="2"
                                        pattern="###.00"
                                        value="${periodical.getPrice()}"
