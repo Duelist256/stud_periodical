@@ -63,7 +63,7 @@
                     </div>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <c:if test="${isUserAdmin == 1}">
+                        <c:if test="${sessionScope.userIsAdmin == 1}">
                             <a href="/adminpage" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
                                 <fmt:message key="admin"/>
                             </a>
