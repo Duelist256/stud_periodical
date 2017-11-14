@@ -76,6 +76,7 @@ public class LoginServlet extends HttpServlet {
                 if (cookie.getName().equals("userId")) {
                     int id = Integer.parseInt(cookie.getValue());
                     User user = userDao.read(id);
+                    session.setAttribute("userIsAdmin", user.isAdmin());
                     redirectUser(resp, user);
                     return;
                 }
