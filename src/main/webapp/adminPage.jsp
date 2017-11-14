@@ -41,7 +41,8 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
 
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#">Hello, <c:out value="${sessionScope.userName}" />!</a>
+                        <a class="navbar-brand" href="#">
+                            <fmt:message key="hello"/> <c:out value="${sessionScope.userName}" />!</a>
                     </div>
 
                     <div class="nav navbar-nav navbar-right">

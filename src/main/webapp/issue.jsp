@@ -56,11 +56,12 @@
         <div class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="myNavbar">
-                    <p class="btn btn-link" data-toggle="modal" data-target="#MyBox">
-                        Hello <% if (session.getAttribute("userName") != null) {
-                        out.print(session.getAttribute("userName").toString());
-                    }%>
-                    </p>
+
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">
+                            <fmt:message key="hello"/> <c:out value="${sessionScope.userName}" />!</a>
+                    </div>
+
                     <ul class="nav navbar-nav navbar-right">
                         <c:if test="${isUserAdmin == 1}">
                             <a href="/adminpage" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
