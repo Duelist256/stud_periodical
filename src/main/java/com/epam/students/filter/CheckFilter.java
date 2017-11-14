@@ -62,7 +62,8 @@ public class CheckFilter implements Filter {
         necessaryPages.add("/500.html");
 
         Cookie[] cookies = request.getCookies();
-        boolean isUserNotAdmin = cookies == null || isUserNotAdmin(cookies);
+
+        boolean isUserNotAdmin = cookies == null || isUserNotAdmin(session);
 
         Set<String> adminPages = new HashSet<>();
         adminPages.add("/adminpage");
@@ -83,14 +84,15 @@ public class CheckFilter implements Filter {
         }
     }
 
-    private boolean isUserNotAdmin(Cookie[] cookies) {
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("userId")) {
-                int id = Integer.parseInt(cookie.getValue());
-                UserDao userDao = new UserDao();
-                int admin = userDao.read(id).isAdmin();
-                return admin == 0;
-            }
+    private boolean isUserNotAdmin(HttpSession session) {
+        if (session == null) {
+            return true;
+        }
+
+        Object isAdmin = session.getAttribute("userIsAdmin");
+        if (isAdmin != null) {
+            int tmp = (int) isAdmin;
+            return tmp != 1;
         }
         return true;
     }

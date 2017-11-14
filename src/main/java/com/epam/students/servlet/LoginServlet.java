@@ -38,6 +38,7 @@ public class LoginServlet extends HttpServlet {
             session = request.getSession(true);
             session.setAttribute("userId", id);
             session.setAttribute("userName", userName);
+            session.setAttribute("userIsAdmin", user.isAdmin());
             session.setAttribute("language", language);
 
             redirectUser(response, user);
