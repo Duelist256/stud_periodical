@@ -22,9 +22,9 @@
     <title>Admin Page</title>
 </head>
 <body>
-<center>
-    <h1>Periodicals Editor</h1>
-</center>
+<div style="text-align: center;">
+    <h1><fmt:message key="editor" /></h1>
+</div>
 <div class="container">
     <div class="row">
 
