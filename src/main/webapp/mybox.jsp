@@ -23,7 +23,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <h2><fmt:message key="box"/></h2>
+        <h2><fmt:message key="purchases"/></h2>
         <p align="right">
             <a href="/language?lan=ru"><img src="img/Russia.png" width="40" height="40"
                                             alt="RU"></a>
@@ -53,7 +53,7 @@
 </div>
 
 <div class="container">
-    <h3><fmt:message key="purchases"/></h3>
+    <h3><fmt:message key="box"/></h3>
     <div class="table-responsive">
         <table class="table">
             <thead>
