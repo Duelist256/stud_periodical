@@ -9,7 +9,10 @@ import com.epam.students.model.Periodical;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +20,13 @@ import java.util.List;
 @WebServlet(name = "PurchasesServlet", urlPatterns = "/mypurchases")
 public class PurchasesServlet extends HttpServlet {
 
-    private List<Periodical> periodicalBought = new ArrayList<>();
     private OrderDao orderDao = new OrderDao();
     private OrderPeriodicalDao orderPeriodicalDao = new OrderPeriodicalDao();
     private PeriodicalDao periodicalDao = new PeriodicalDao();
-    private HttpSession session;
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        periodicalBought.clear();
+        List<Periodical> periodicalBought = new ArrayList<>();
         int idUser = 0;
 
         Cookie[] cookies = req.getCookies();
@@ -40,16 +40,13 @@ public class PurchasesServlet extends HttpServlet {
 
         List<Order> allByIdUser = orderDao.getAllByIdUser(idUser);
 
-        if (!allByIdUser.isEmpty()) {
-            for (Order order : allByIdUser) {
-                if (order.getStatus().equals("Done")) {
-                    if (order != null) {
-                        OrderPeriodical read = orderPeriodicalDao.read(order.getId());
-                        periodicalBought.add(periodicalDao.read(read.getIdPeriodical()));
-                    }
-                }
+        for (Order order : allByIdUser) {
+            if (order.getStatus().equals("Done")) {
+                OrderPeriodical read = orderPeriodicalDao.read(order.getId());
+                periodicalBought.add(periodicalDao.read(read.getIdPeriodical()));
             }
         }
+
         req.setAttribute("pb", periodicalBought);
         req.getRequestDispatcher("/storyPurchases.jsp").forward(req, resp);
     }
