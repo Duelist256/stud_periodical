@@ -39,23 +39,24 @@
         <div class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="myNavbar">
-                    <p class="btn btn-link" data-toggle="modal" data-target="#MyBox">
-                        Hello <% if (session.getAttribute("userName") != null) {
-                        out.print(session.getAttribute("userName").toString());
-                    }%>
-                    </p>
 
-                    <div class="nav navbar-nav navbar-right">
-                        <form action="/adminpage" method="post">
-                            <input type="submit" class="btn btn-info btn-block" value="<fmt:message key="addNew"/> ">
-                            <input type="hidden" class="btn btn-info btn-block" name='action' value="new">
-                        </form>
-                        <form action="/logout" method="get">
-                            <input type="submit" class="btn btn-info btn-block" value="<fmt:message key="logout"/> ">
-                        </form>
-
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Hello, <c:out value="${sessionScope.userName}" />!</a>
                     </div>
 
+                    <div class="nav navbar-nav navbar-right">
+                        <form class="navbar-form navbar-left" action="/adminpage" method="post">
+                            <input type="hidden" name="action" value="new">
+                            <input type="submit" class="btn btn-info" value="<fmt:message key="addNew"/> ">
+                        </form>
+                        <form class="navbar-form navbar-left" action="/page" method="get">
+                            <input type="hidden" name="num" value="1">
+                            <input type="submit" class="btn btn-primary" value="<fmt:message key="gotoCatalogue"/> ">
+                        </form>
+                        <form class="navbar-form navbar-right" action="/logout" method="get">
+                            <input type="submit" class="btn btn-default" value="<fmt:message key="logout"/> ">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
