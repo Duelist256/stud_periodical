@@ -69,13 +69,13 @@
 
             <tr>
                 <th>ID</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Publisher</th>
-                <th>Genre</th>
-                <th>Price</th>
-                <th>Image</th>
-                <th colspan="2">Actions</th>
+                <th><fmt:message key="Title"/></th>
+                <th><fmt:message key="Description"/></th>
+                <th><fmt:message key="Publisher"/></th>
+                <th><fmt:message key="Genre"/></th>
+                <th><fmt:message key="Price"/></th>
+                <th><fmt:message key="Image"/></th>
+                <th colspan="2"><fmt:message key="Actions"/></th>
             </tr>
             <c:forEach var="periodical" items="${periodicals}">
                 <tr class="active">
