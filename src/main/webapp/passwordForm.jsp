@@ -27,10 +27,9 @@
         <form method="post" action="resetPassword">
             <input type="hidden" name="emailChange" value="approveChange">
             <input type="hidden" name="email" value="${useremail}">
-            <div align="left"><fmt:message key="newPassword"/></div>
-            <div align="left"><input class="login-field" type="password" name="pass"/></div>
-            <hr width="125%">
-            <div align="right"><input type="submit" value=<fmt:message key="approve"/>>
+            <div align="center"><fmt:message key="newPassword"/></div>
+            <div align="center"><input class="login-field" type="password" name="pass"/></div>
+            <div align="center"><input type="submit" value=<fmt:message key="approve"/>>
             </div>
         </form>
     </c:when>
@@ -39,15 +38,14 @@
         <form method="post" action="resetPassword">
             <input type="hidden" name="emailChange" value="changeEmail">
 
-            <div align="left"><fmt:message key="email"/></div>
-            <div align="left"><input class="login-field" type="text" name="email"/></div>
+            <div align="center"><fmt:message key="email"/></div>
+            <div align="center"><input class="login-field" type="text" name="email"/></div>
             <c:if test="${error != null}">
                 <div style="color:red">
                     <fmt:message key="invalidEmail"/>
                 </div>
             </c:if>
-            <hr width="125%">
-            <div align="right"><input type="submit"
+            <div align="center"><input type="submit"
                                       value=<fmt:message key="reset"/>>
             </div>
         </form>
