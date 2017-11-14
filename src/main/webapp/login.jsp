@@ -71,7 +71,7 @@
             </div>
             <p align="center">
                 <c:if test="${requestScope.error != null}">
-                    <font class="btn btn-danger"> <fmt:message key="invalidMsg"/> </font>
+                    <label class="text-danger"> <fmt:message key="invalidMsg"/> </label>
                 </c:if>
             </p>
         </div>
