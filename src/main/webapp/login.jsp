@@ -32,10 +32,10 @@
                     <div class="form-group">
                         <h2><fmt:message key="Sign"/>
                             <a href="/language?lan=ru"><img src="img/Russia.png" align="right" width="40" height="40"
-                                                               alt="RU"></a>
+                                                            alt="RU"></a>
 
                             <a href="/language?lan=en"><img src="img/United-Kingdom.png" align="right" width="40"
-                                                               height="40" alt="US"></a></h2>
+                                                            height="40" alt="US"></a></h2>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupEmail"><fmt:message key="email"/></label>
@@ -52,17 +52,24 @@
                         <button type="submit" value="login" class="btn btn-info btn-block"><fmt:message
                                 key="login"/></button>
                     </div>
-                    <p><fmt:message key="Doyouhave"/><a href="register.jsp"><fmt:message key="register"/></a></p>
+                    <%--<p><fmt:message key="Doyouhave"/><a href="register.jsp"><fmt:message key="register"/></a></p>--%>
+                </form>
+
+                <form method="post" action="/register.jsp">
+                    <fmt:message key="Doyouhave"/>
+                    <input type="submit" class="btn btn-link" value="<fmt:message key="register" />"/>
                 </form>
 
                 <form method="post" action="/resetPassword">
-                    <p><fmt:message key="Iforgotpass"/>
-                        <input type="submit" class="btn btn-link" value="<fmt:message key="forgot"/>"/></p>
+                    <p>
+                        <fmt:message key="Iforgotpass"/>
+                        <input type="submit" class="btn btn-link" value="<fmt:message key="forgot"/>"/>
+                    </p>
                 </form>
 
 
             </div>
-            <p  align="center">
+            <p align="center">
                 <c:if test="${requestScope.error != null}">
                     <font class="btn btn-danger"> <fmt:message key="invalidMsg"/> </font>
                 </c:if>
