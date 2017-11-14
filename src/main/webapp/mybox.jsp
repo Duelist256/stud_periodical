@@ -94,7 +94,9 @@
                         </form>
                     </div>
                 </div>
-                <c:set var="sum" value="${sum + Integer.valueOf(periodicalList.getPrice())}"/>
+                <c:set var="sum">
+                    ${sum + periodicalList.getPrice()}
+                </c:set>
             </c:forEach>
             </tbody>
         </table>
@@ -102,7 +104,9 @@
     <hr>
     <p>
     <h4 align="right"><fmt:message key="Total"/>
-        <c:out value="${sum}"/></h4>
+        <fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2"
+                          value="${sum}" var="tmp"/>
+        <c:out value="${tmp}"/></h4>
     <form action="/mybox?buy=1" method="post">
         <p align="right"><input type="hidden" name="buy" value="ololo">
             <button type="submit" class="btn btn-default" align="right"><h3><span
