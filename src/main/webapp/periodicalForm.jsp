@@ -40,14 +40,9 @@
         <div class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="myNavbar">
-                    <p class="btn btn-link" data-toggle="modal" data-target="#MyBox">
-                        Hello <% if (session.getAttribute("userName") != null) {
-                        out.print(session.getAttribute("userName").toString());
-                    }%>
-                    </p>
                     <div class="nav navbar-nav navbar-right">
 
-                        <form action="/adminpage" method="post">
+                        <form class="navbar-form" action="/adminpage" method="post">
                             <input type="submit" class="btn btn-info btn-block" value="<fmt:message key="backToListBtn" />">
                         </form>
 
