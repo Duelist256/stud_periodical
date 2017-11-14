@@ -52,9 +52,8 @@
                         <button type="submit" value="login" class="btn btn-info btn-block"><fmt:message
                                 key="login"/></button>
                     </div>
-                    <%--<p><fmt:message key="Doyouhave"/><a href="register.jsp"><fmt:message key="register"/></a></p>--%>
                 </form>
-
+                <hr>
                 <form method="post" action="/register.jsp">
                     <fmt:message key="Doyouhave"/>
                     <input type="submit" class="btn btn-link" value="<fmt:message key="register" />"/>
