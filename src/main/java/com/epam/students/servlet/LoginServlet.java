@@ -28,11 +28,11 @@ public class LoginServlet extends HttpServlet {
             String userName = user.getName();
 
             Cookie cookieUserName = new Cookie("user", userName);
-            cookieUserName.setMaxAge(60 * 5); //5 mins
+            cookieUserName.setMaxAge(60 * 30);
             response.addCookie(cookieUserName);
 
             Cookie cookieUserId = new Cookie("userId", String.valueOf(id));
-            cookieUserId.setMaxAge(60 * 5);
+            cookieUserId.setMaxAge(60 * 30);
             response.addCookie(cookieUserId);
 
             session = request.getSession(true);
