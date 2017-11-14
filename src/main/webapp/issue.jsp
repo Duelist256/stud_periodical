@@ -34,6 +34,7 @@
     }
 </script>
 
+<%--FIXME --%>
 <c:set var="isUserAdmin"  value="${cookie['userIsAdmin'].value}"/>
 
 <html>
@@ -97,7 +98,8 @@
 
 <nav class="text-center">
     <ul class="pagination">
-        <c:forEach var="num" begin="1" end="${Integer.valueOf(Math.cbrt(allList.size()+1/12))}">
+        <c:set var="end" value="${Integer.valueOf(Math.cbrt(allList.size()+1/12))}" />
+        <c:forEach var="num" begin="1" end="${end}">
             <li><a href="/page?num=${num}">${num}</a></li>
         </c:forEach>
     </ul>
