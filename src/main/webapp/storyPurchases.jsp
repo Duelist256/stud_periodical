@@ -55,7 +55,7 @@
         <c:forEach var="periodicalBought" items="${pb}">
             <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
                 <div class="thumbnail">
-                    <img src="http://placehold.it/300x240" alt="">
+                    <img src="${periodicalBought.getImgPath()}" alt="Image unavailable">
                     <div class="caption">
                         <h4><a href="#"> ${periodicalBought.getTitle()} </a></h4>
                         <p>${periodicalBought.getDescription()}</p>
