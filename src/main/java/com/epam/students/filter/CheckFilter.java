@@ -1,6 +1,5 @@
 package com.epam.students.filter;
 
-import com.epam.students.dao.UserDao;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
