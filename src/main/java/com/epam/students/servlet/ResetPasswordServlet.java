@@ -71,7 +71,7 @@ public class ResetPasswordServlet extends HttpServlet {
 
             userDao.update(updatedUser);
 
-            resp.sendRedirect("/login.jsp");
+            resp.sendRedirect("/login");
         }
     }
 }
