@@ -52,6 +52,7 @@ public class CheckFilter implements Filter {
 
         Set<String> necessaryPages = new HashSet<>();
         necessaryPages.add(loginURI);
+        necessaryPages.add("/");
         necessaryPages.add("/register.jsp");
         necessaryPages.add("/register");
         necessaryPages.add("/resetPassword");
