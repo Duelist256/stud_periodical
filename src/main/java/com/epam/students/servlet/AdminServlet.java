@@ -54,8 +54,10 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
                         updatePeriodical(request, response);
                         break;
                     case "delete":
-                        int id = Integer.parseInt(request.getParameter("delete"));
+                        int id = Integer.parseInt(request.getParameter("deleteId"));
                         deletePeriodical(response, id);
+                        String imgPath = request.getParameter("deleteImage");
+                        deleteImage(request, imgPath);
                         break;
                 }
             }
@@ -169,5 +171,10 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
         Periodical periodical = Periodical.newBuilder().id(id).build();
         periodicalService.deletePeriodical(periodical);
         response.sendRedirect("/adminpage");
+    }
+
+    private void deleteImage(HttpServletRequest request, String imgPath) {
+        File file = new File(request.getServletContext().getRealPath(imgPath));
+        file.delete();
     }
 }
