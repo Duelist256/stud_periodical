@@ -22,9 +22,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<center>
-    <h1>Periodicals Editor</h1>
-</center>
+<div style="text-align: center;">
+    <h1><fmt:message key="editor" /></h1>
+</div>
 <div class="container">
     <div class="row">
 
@@ -65,10 +65,10 @@
                     <h2>
                         <c:choose>
                             <c:when test="${periodical != null}">
-                                Edit Periodical
+                                <fmt:message key="editPeriodical"/>
                             </c:when>
                             <c:when test="${periodical == null}">
-                                Add New Periodical
+                                <fmt:message key="addPeriodical"/>
                             </c:when>
                         </c:choose>
                     </h2>
@@ -77,7 +77,7 @@
                     <input type="hidden" name="id" value='${periodical.getId()}'/>
                 </c:if>
                 <tr class="active">
-                    <th>Title:</th>
+                    <th><fmt:message key="Title" />:</th>
                     <td>
                         <input type="text" name="title" size="45"
                                value='${periodical.getTitle()}'
@@ -85,7 +85,7 @@
                     </td>
                 </tr>
                 <tr class="active">
-                    <th>Description:</th>
+                    <th><fmt:message key="Description" />:</th>
                     <td>
                         <input type="text" name="description" size="45"
                                value='${periodical.getDescription()}'
@@ -93,7 +93,7 @@
                     </td>
                 </tr>
                 <tr class="active">
-                    <th>Publisher:</th>
+                    <th><fmt:message key="Publisher" />:</th>
                     <td>
                         <input type="text" name="publisher" size="45"
                                value='${periodical.getPublisher()}'
@@ -101,7 +101,7 @@
                     </td>
                 </tr>
                 <tr class="active">
-                    <th>Genre:</th>
+                    <th><fmt:message key="Genre" />:</th>
                     <td>
                         <input type="text" name="genre" size="45"
                                value='${periodical.getGenre()}'
@@ -109,7 +109,7 @@
                     </td>
                 </tr>
                 <tr class="active">
-                    <th>Price:</th>
+                    <th><fmt:message key="Price" />:</th>
                     <td>
                         <input type="text" name="price" size="5"
                                value="${periodical.getPrice()}"
@@ -118,7 +118,7 @@
                     </td>
                 </tr>
                 <tr class="active">
-                    <th>Image Path:</th>
+                    <th><fmt:message key="Image" />:</th>
                     <td>
                         <input type="file" name="file" size="45" />
                         <input type="hidden" name="imgPath" value='${periodical.getImgPath()}' size="45" />
