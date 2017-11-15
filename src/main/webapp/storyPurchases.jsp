@@ -33,18 +33,17 @@
         <div class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav navbar-
-                    right">
-                        <a href="/page?num=1">
-                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a href="/page?num=1" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
                                 <fmt:message key="backshop"/>
-                            </button>
-                        </a>
-                        <a href="/mybox">
-                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/mybox" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
                                 <fmt:message key="backtobox"/>
-                            </button>
-                        </a>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
