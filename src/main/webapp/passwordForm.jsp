@@ -15,7 +15,6 @@
 <fmt:setBundle basename="i18n.login"/>
 
 <link href="css/bootstrap.css" rel="stylesheet">
-<link rel="stylesheet" href="css/style1.css">
 <link rel="stylesheet" href="css/style.css">
 
 <html lang="${language}">
