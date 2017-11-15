@@ -48,7 +48,7 @@
                     <div class="nav navbar-nav navbar-right">
                         <form class="navbar-form navbar-left" action="/adminpage" method="post">
                             <input type="hidden" name="action" value="new">
-                            <input type="submit" class="btn btn-info" value="<fmt:message key="addNew"/> ">
+                            <input type="submit" class="btn btn-success" value="<fmt:message key="addNew"/> ">
                         </form>
                         <form class="navbar-form navbar-left" action="/page" method="get">
                             <input type="hidden" name="num" value="1">
@@ -96,7 +96,7 @@
                         <form action="/adminpage" method="post">
                             <input type="hidden" name="action" value='edit'>
                             <input type="hidden" name="id" value='${periodical.getId()}'>
-                            <input type="submit" class="btn btn-info btn-block" value='<fmt:message key="edit"/>'>
+                            <input type="submit" class="btn btn-success btn-block" value='<fmt:message key="edit"/>'>
                         </form>
                     </td>
                     <td>
