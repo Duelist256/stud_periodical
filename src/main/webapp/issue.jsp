@@ -88,8 +88,11 @@
                     <div class="caption">
                         <h4><a href="#"> ${all.getTitle()} </a></h4>
                         <p>${all.getDescription()}</p>
-                        <button type="button" class="btn btn-success" onclick="RestGet(${all.getId()})"><fmt:message
-                                key="buy"/></button>
+                        <div>
+                            <button type="button" class="btn btn-success" onclick="RestGet(${all.getId()})">
+                                <fmt:message key="buy"/></button>
+                            <h4 style="display: inline;">${all.getPrice()}$</h4>
+                        </div>
                     </div>
                 </div>
             </div>
