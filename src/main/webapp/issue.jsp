@@ -64,17 +64,22 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <c:if test="${sessionScope.userIsAdmin == 1}">
-                            <a href="/adminpage" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
-                                <fmt:message key="admin"/>
-                            </a>
+                            <li>
+                                <a href="/adminpage" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                                    <fmt:message key="admin"/>
+                                </a>
+                            </li>
                         </c:if>
-                        <a href="/mybox" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
-                            <fmt:message key="box"/>
-                        </a>
-                        <a href="/logout" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
-                            <fmt:message key="logout"/>
-                        </a>
-                        <c:out value="${isUserAdmin}"/>
+                        <li>
+                            <a href="/mybox" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                                <fmt:message key="box"/>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/logout" class="btn btn-link" data-toggle="modal" data-target="#MyBox">
+                                <fmt:message key="logout"/>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
