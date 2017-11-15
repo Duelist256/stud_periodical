@@ -103,7 +103,7 @@
                         <form action="/adminpage" method="post">
                             <input type="hidden" name="action" value='delete'>
                             <input type="hidden" name="delete" value='${periodical.getId()}'>
-                            <input type="submit" class="btn btn-info btn-block" value='<fmt:message key="delete"/> '>
+                            <input type="submit" class="btn btn-danger btn-block" value='<fmt:message key="delete"/> '>
                         </form>
                     </td>
                 </tr>
