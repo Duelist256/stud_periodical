@@ -57,7 +57,7 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
                         int id = Integer.parseInt(request.getParameter("deleteId"));
                         deletePeriodical(response, id);
                         String imgPath = request.getParameter("deleteImage");
-                        deleteImage(request, imgPath);
+//                        deleteImage(request, imgPath);
                         break;
                 }
             }
@@ -173,8 +173,8 @@ public class AdminServlet extends javax.servlet.http.HttpServlet {
         response.sendRedirect("/adminpage");
     }
 
-    private void deleteImage(HttpServletRequest request, String imgPath) {
-        File file = new File(request.getServletContext().getRealPath(imgPath));
-        file.delete();
-    }
+//    private void deleteImage(HttpServletRequest request, String imgPath) {
+//        File file = new File(request.getServletContext().getRealPath(imgPath));
+//        file.delete();
+//    }
 }
