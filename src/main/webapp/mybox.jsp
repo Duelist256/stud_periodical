@@ -103,10 +103,12 @@
     </div>
     <hr>
     <p>
-    <h4 align="right"><fmt:message key="Total"/>
+    <h4 align="right" style="font-weight: bold">
+        <fmt:message key="Total"/>:
         <fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2"
                           value="${sum}" var="tmp"/>
-        <c:out value="${tmp}"/></h4>
+        <c:out value="${tmp}"/>
+    </h4>
     <form action="/mybox?buy=1" method="post">
         <p align="right"><input type="hidden" name="buy" value="ololo">
             <button type="submit" class="btn btn-default" align="right"><h3><span
